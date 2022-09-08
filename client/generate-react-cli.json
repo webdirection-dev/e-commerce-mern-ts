@@ -6,42 +6,48 @@
     "component": {
         "default": {
             "customTemplates": {
-                "component": "src/templates/TemplateName.tsx",
-                "style": "src/templates/TemplateName.scss",
-                "hook": "src/templates/useTemplateName.ts"
+                "component": "src/configs/templates/TemplateName.tsx",
+                "style": "src/configs/templates/TemplateName.scss",
+                "hook": "src/configs/templates/useTemplateName.ts",
+                "styled": "src/configs/templates/styledTemplateName.ts"
             },
             "path": "src/components",
-            "withStyle": true,
+            "withStyle": false,
             "withTest": false,
             "withStory": false,
             "withLazy": false,
-            "withHook": true
+            "withHook": true,
+            "withStyled": true
         },
         "page": {
             "customTemplates": {
-                "component": "src/templates/TemplateName.tsx",
-                "style": "src/templates/TemplateName.scss",
-                "hook": "src/templates/useTemplateName.ts"
+                "component": "src/configs/templates/TemplateName.tsx",
+                "style": "src/configs/templates/TemplateName.scss",
+                "hook": "src/configs/templates/useTemplateName.ts",
+                "styled": "src/configs/templates/styledTemplateName.ts"
             },
             "path": "src/pages",
-            "withStyle": true,
+            "withStyle": false,
             "withTest": false,
             "withStory": false,
             "withLazy": false,
-            "withHook": true
+            "withHook": true,
+            "withStyled": true
         },
         "layout": {
             "customTemplates": {
-                "component": "src/templates/TemplateName.tsx",
-                "style": "src/templates/TemplateName.scss",
-                "hook": "src/templates/useTemplateName.ts"
+                "component": "src/configs/templates/TemplateName.tsx",
+                "style": "src/configs/templates/TemplateName.scss",
+                "hook": "src/configs/templates/useTemplateName.ts",
+                "styled": "src/configs/templates/styledTemplateName.ts"
             },
             "path": "src/layout",
-            "withStyle": true,
+            "withStyle": false,
             "withTest": false,
             "withStory": false,
             "withLazy": false,
-            "withHook": true
+            "withHook": true,
+            "withStyled": true
         }
     }
 }

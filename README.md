@@ -11,5 +11,6 @@
 - JWT
 - Firebase
 - crypto-js
+- Styled Components
 
 [DEMO](http://webdirection.org)
