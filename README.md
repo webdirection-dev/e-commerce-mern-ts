@@ -13,4 +13,4 @@
 - crypto-js
 - Styled Components
 
-[DEMO]([http://webdirection.org](https://e-commerce-mern-ts.vercel.app))
+[DEMO]([http://webdirection.org](https://e-commerce-mern-ts.vercel.app)
