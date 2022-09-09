@@ -13,4 +13,4 @@
 - crypto-js
 - Styled Components
 
-[DEMO][https://e-commerce-mern-ts.vercel.app]
+[DEMO](https://e-commerce-mern-ts.vercel.app)
