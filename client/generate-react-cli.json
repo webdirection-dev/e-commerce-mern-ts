@@ -1,53 +1,47 @@
 {
-    "usesTypeScript": true,
-    "usesCssModule": true,
-    "cssPreprocessor": "scss",
-    "testLibrary": "Testing Library",
-    "component": {
-        "default": {
-            "customTemplates": {
-                "component": "src/configs/templates/TemplateName.tsx",
-                "style": "src/configs/templates/TemplateName.scss",
-                "hook": "src/configs/templates/useTemplateName.ts",
-                "styled": "src/configs/templates/styledTemplateName.ts"
-            },
-            "path": "src/components",
-            "withStyle": false,
-            "withTest": false,
-            "withStory": false,
-            "withLazy": false,
-            "withHook": true,
-            "withStyled": true
-        },
-        "page": {
-            "customTemplates": {
-                "component": "src/configs/templates/TemplateName.tsx",
-                "style": "src/configs/templates/TemplateName.scss",
-                "hook": "src/configs/templates/useTemplateName.ts",
-                "styled": "src/configs/templates/styledTemplateName.ts"
-            },
-            "path": "src/pages",
-            "withStyle": false,
-            "withTest": false,
-            "withStory": false,
-            "withLazy": false,
-            "withHook": true,
-            "withStyled": true
-        },
-        "layout": {
-            "customTemplates": {
-                "component": "src/configs/templates/TemplateName.tsx",
-                "style": "src/configs/templates/TemplateName.scss",
-                "hook": "src/configs/templates/useTemplateName.ts",
-                "styled": "src/configs/templates/styledTemplateName.ts"
-            },
-            "path": "src/layout",
-            "withStyle": false,
-            "withTest": false,
-            "withStory": false,
-            "withLazy": false,
-            "withHook": true,
-            "withStyled": true
-        }
+  "usesTypeScript": true,
+  "usesCssModule": true,
+  "cssPreprocessor": "scss",
+  "testLibrary": "Testing Library",
+  "component": {
+    "default": {
+      "customTemplates": {
+        "component": "src/static/configs/templates/TemplateName.tsx",
+        "style": "src/static/configs/templates/TemplateName.scss",
+        "hook": "src/static/configs/templates/useTemplateName.ts"
+      },
+      "path": "src/components",
+      "withStyle": true,
+      "withHook": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    },
+    "page": {
+      "customTemplates": {
+        "component": "src/static/configs/templates/TemplateName.tsx",
+        "style": "src/static/configs/templates/TemplateName.scss",
+        "hook": "src/static/configs/templates/useTemplateName.ts"
+      },
+      "path": "src/pages",
+      "withStyle": true,
+      "withHook": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    },
+    "layout": {
+      "customTemplates": {
+        "component": "src/static/configs/templates/TemplateName.tsx",
+        "style": "src/static/configs/templates/TemplateName.scss",
+        "hook": "src/static/configs/templates/useTemplateName.ts"
+      },
+      "path": "src/layout",
+      "withStyle": true,
+      "withHook": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
     }
+  }
 }

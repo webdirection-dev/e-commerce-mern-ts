@@ -1,0 +1,41 @@
+// FONTS
+
+// position
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// SECTIONS
+@mixin section() {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+// BTN
+@mixin btn() {
+    background-color: transparent;
+    text-decoration: none;
+    border: 0;
+    padding: 0;
+    user-select: none;
+    cursor: pointer;
+}
+
+@mixin btn-circle() {
+    border-radius: 50%;
+}
+
+@mixin link() {
+    text-decoration: none;
+    user-select: none;
+}
+
+// Images
+@mixin img() {
+    background-color: transparent;
+    object-fit: fill;
+    object-position: top;
+}

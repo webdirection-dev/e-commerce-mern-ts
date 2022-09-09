@@ -1,0 +1,10 @@
+@import 'src/index';
+
+.announcement {
+    @include flex-center();
+    height: 30px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: teal;
+}

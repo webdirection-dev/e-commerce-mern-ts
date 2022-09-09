@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
+import './TemplateName.scss'
 import {useTemplateName} from './useTemplateName'
-import {Container} from './styledTemplateName'
 
 interface ITemplateNameProps {}
 
@@ -9,9 +9,9 @@ const TemplateName: FC<ITemplateNameProps> = () => {
     const {} = useTemplateName
 
     return(
-        <Container>
+        <div className='templateName'>
             TemplateName Component
-        </Container>
+        </div>
     )
 }
 

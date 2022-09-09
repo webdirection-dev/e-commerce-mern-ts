@@ -1,0 +1,56 @@
+@import 'src/index';
+
+.navbar {
+    @include flex-center();
+    height: 40px;
+    padding: 10px 20px;
+
+    &__actions {
+        flex: 1;
+        @include flex-center();
+        justify-content: flex-start;
+    }
+
+    &__language {
+        @include btn();
+        font-size: 14px;
+    }
+
+    &__search {
+        @include flex-center();
+        border: 0.5px solid lightgray;
+        margin-left: 25px;
+        padding: 5px;
+
+        input {
+            border: none;
+        }
+
+        svg {
+            color: gray;
+            margin-left: 5px;
+            font-size: 16px;
+        }
+    }
+
+    &__logo {
+        flex: 1;
+        text-align: center;
+
+        h1 {
+            font-weight: bold;
+        }
+    }
+
+    &__user {
+        flex: 1;
+        @include flex-center();
+        justify-content: flex-end;
+
+        &-action {
+            @include btn();
+            font-size: 14px;
+            margin-left: 25px;
+        }
+    }
+}

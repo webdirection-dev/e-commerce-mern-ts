@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
+import './navbar.scss'
 import {useNavbar} from './useNavbar'
 
 import {MdSearch, MdOutlineShoppingCart} from 'react-icons/md'
-import {Container, Wrapper, Left, Language, SearchContainer, Input, Center, Logo, Right, MenuItem} from "./styledNavbar"
 import Badge from '@mui/material/Badge'
 
 interface INavbarProps {}
@@ -12,36 +12,34 @@ const Navbar: FC<INavbarProps> = () => {
     const {} = useNavbar
 
     return(
-        <Container>
-            <Wrapper>
-                <Left>
-                    <Language>EN</Language>
+        <div className='navbar'>
+            <div className='navbar__actions'>
+                <button className='navbar__language'>EN</button>
 
-                    <SearchContainer>
-                        <Input />
-                        <MdSearch style={{color: 'gray', marginLeft: '5px', fontSize: '16px'}} />
-                    </SearchContainer>
-                </Left>
+                <div className='navbar__search'>
+                    <input type="text"/>
+                    <MdSearch />
+                </div>
+            </div>
 
-                <Center>
-                    <Logo>.STORE</Logo>
-                </Center>
+            <div className='navbar__logo'>
+                <h1 >.STORE</h1>
+            </div>
 
-                <Right>
-                    <MenuItem>REGISTER</MenuItem>
-                    <MenuItem>SING IN</MenuItem>
+            <div className='navbar__user'>
+                <button className='navbar__user-action'>REGISTER</button>
+                <button className='navbar__user-action'>SING IN</button>
 
-                    <MenuItem>
-                        <Badge badgeContent={4} color="primary">
-                            <MdOutlineShoppingCart
-                                color="action"
-                                style={{fontSize: '24px'}}
-                            />
-                        </Badge>
-                    </MenuItem>
-                </Right>
-            </Wrapper>
-        </Container>
+                <button className='navbar__user-action'>
+                    <Badge badgeContent={4} color="primary">
+                        <MdOutlineShoppingCart
+                            color="action"
+                            style={{fontSize: '24px'}}
+                        />
+                    </Badge>
+                </button>
+            </div>
+        </div>
     )
 }
 
