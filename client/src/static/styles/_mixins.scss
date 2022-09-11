@@ -7,6 +7,12 @@
     align-items: center;
 }
 
+@mixin flex-between() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 // SECTIONS
 @mixin section() {
     display: flex;
@@ -36,6 +42,6 @@
 // Images
 @mixin img() {
     background-color: transparent;
-    object-fit: fill;
+    object-fit: cover;
     object-position: top;
 }

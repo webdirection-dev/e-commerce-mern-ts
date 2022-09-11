@@ -1,0 +1,6 @@
+@import 'src/index';
+
+.categories {
+    @include flex-between();
+    padding: 20px;
+}
