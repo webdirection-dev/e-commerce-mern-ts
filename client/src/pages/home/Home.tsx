@@ -4,10 +4,12 @@ import './home.scss'
 import {useHome} from './useHome'
 
 import Navbar from '../../components/navbar/Navbar'
-import Announcement from '../../components/announcement/Announcement'
 import Slider from "../../components/slider/Slider"
 import Categories from "../../components/categories/Categories"
 import Products from "../../components/products/Products"
+import Newsletter from "../../components/newsletter/Newsletter"
+
+import BreakLine from '../../components/breakLine/BreakLine'
 
 interface IHomeProps {}
 
@@ -17,10 +19,14 @@ const Home: FC<IHomeProps> = () => {
     return(
         <>
             <Navbar />
-            <Announcement />
+            <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
             <Slider auto={false}/>
+            <BreakLine txt='Categories'/>
             <Categories />
+            <BreakLine txt='Popular Products'/>
             <Products />
+            <BreakLine txt='Newsletter'/>
+            <Newsletter />
         </>
     )
 }
