@@ -14,4 +14,14 @@ export const categoriesData = [
         img: 'https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg',
         title: 'fresh in cotton'
     },
+    {
+        id: 4,
+        img: 'https://cdn.shopify.com/s/files/1/2185/2813/products/M3181R_04457_b1_s3_a2_1_m93_1500x.jpg?v=1659044186',
+        title: 'just dropped'
+    },
+    {
+        id: 5,
+        img: 'https://is4.fwrdassets.com/images/p/fw/z/APEF-WS37_V1.jpg',
+        title: 'made to move'
+    }
 ]

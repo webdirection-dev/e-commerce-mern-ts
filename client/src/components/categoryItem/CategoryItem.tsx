@@ -9,7 +9,7 @@ interface ICategoryItemProps {
 }
 
 const CategoryItem: FC<ICategoryItemProps> = ({img, title}) => (
-    <div className='categoryItem'>
+    <li className='categoryItem'>
         <img src={img} alt={title}/>
 
         <div className="categoryItem__info">
@@ -17,7 +17,7 @@ const CategoryItem: FC<ICategoryItemProps> = ({img, title}) => (
 
             <button>show now</button>
         </div>
-    </div>
+    </li>
 )
 
 export default CategoryItem

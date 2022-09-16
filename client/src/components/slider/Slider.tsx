@@ -15,13 +15,6 @@ const Slider: FC<ISliderProps> = ({auto}) => {
 
     return(
         <div className='slider'>
-            <button
-                disabled={isDisabledBtn}
-                id='slide-left'
-                className="slider__btn"
-                onClick={() => handleClick('left')}
-            ><MdArrowLeft /></button>
-
             <ul className="slider__wrapper">
                 {
                     sliderItems.map((i, index) => {
@@ -39,6 +32,13 @@ const Slider: FC<ISliderProps> = ({auto}) => {
                     })
                 }
             </ul>
+
+            <button
+                disabled={isDisabledBtn}
+                id='slide-left'
+                className="slider__btn"
+                onClick={() => handleClick('left')}
+            ><MdArrowLeft /></button>
 
             <button
                 disabled={isDisabledBtn}
