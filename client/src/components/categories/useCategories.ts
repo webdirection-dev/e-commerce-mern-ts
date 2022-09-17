@@ -1,5 +1,6 @@
 import {useState} from "react"
 import {categoriesData} from "../../static/data/categories-data"
+import {MdArrowLeft, MdArrowRight} from "react-icons/md"
 
 export const useCategories = () => {
     const [count, setCount] = useState(0)
@@ -15,5 +16,5 @@ export const useCategories = () => {
         }
     }
 
-    return {count, handleClick}
+    return {categoriesData, count, handleClick, MdArrowLeft, MdArrowRight}
 }

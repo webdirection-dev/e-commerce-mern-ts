@@ -1,26 +1,31 @@
 import React, { FC } from 'react'
+import {useImgSmaller} from "./hooks/useImgSmaller"
 
 interface ISlideItemProps {
-    id?: number;
-    img: string;
+    id: number;
     title: string;
     desc: string;
     bg: string;
-    styles: string
+    styles: string;
+    isClick?: boolean;
 }
 
-const SlideItem: FC<ISlideItemProps> = ({img, title, desc, bg, styles}) => (
-    <li className={styles} style={{backgroundColor: `${bg}`}}>
-        <div className="slider__slide-img">
-            <img src={img} alt={title}/>
-        </div>
+const SlideItem: FC<ISlideItemProps> = ({isClick, id, title, desc, bg, styles}) => {
+    const {className, src} = useImgSmaller(id -1)
 
-        <div className="slider__slide-info">
-            <h1>{title}</h1>
-            <p>{desc}</p>
-            <button>show now</button>
-        </div>
-    </li>
-)
+    return(
+        <li className={styles} style={{backgroundColor: `${bg}`}}>
+            <div className="slider__slide-img">
+                <img src={src} alt={title} className={isClick ? undefined : className}/>
+            </div>
+
+            <div className="slider__slide-info">
+                <h1>{title}</h1>
+                <p>{desc}</p>
+                <button>show now</button>
+            </div>
+        </li>
+    )
+}
 
 export default SlideItem

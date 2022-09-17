@@ -27,6 +27,15 @@
             img {
                 @include img();
                 height: 90%;
+
+                &.loading {
+                    filter: blur(10px);
+                }
+
+                &.loaded {
+                    filter: blur(0);
+                    transition: filter 0.3s linear;
+                }
             }
         }
 

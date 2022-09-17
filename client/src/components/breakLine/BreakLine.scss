@@ -4,6 +4,9 @@
     @include flex-center();
     height: 30px;
     color: white;
-    font-weight: 500;
     background-color: teal;
+
+    h1 {
+        font-weight: normal;
+    }
 }

@@ -7,7 +7,9 @@ interface IBreakLineProps {
 }
 
 const BreakLine: FC<IBreakLineProps> = ({txt, fs = 20}) => (
-    <div className='break-line' style={{fontSize: `${fs}px`}}>{txt}</div>
+    <section className='break-line'>
+        <h1 style={{fontSize: `${fs}px`}}>{txt}</h1>
+    </section>
 )
 
 export default BreakLine

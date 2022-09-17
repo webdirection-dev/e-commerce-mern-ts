@@ -1,18 +1,15 @@
 import React, {FC} from 'react'
-
 import './Categories.scss'
 import {useCategories} from './useCategories'
-import {categoriesData} from "../../static/data/categories-data"
-import CategoryItem from "../categoryItem/CategoryItem"
-import {MdArrowLeft, MdArrowRight} from "react-icons/md";
+import CategoryItem from "../../categoryItem/CategoryItem"
 
 interface ICategoriesProps {}
 
 const Categories: FC<ICategoriesProps> = () => {
-    const {count, handleClick} = useCategories()
+    const {categoriesData, count, handleClick, MdArrowLeft, MdArrowRight} = useCategories()
 
     return(
-        <div className='categories'>
+        <section className='categories'>
             <ul className='categories__wrapper' style={{transform: `translateX(calc(-33.33vw * ${count}))`}}>
                 {
                     categoriesData.map((i: any) => {
@@ -32,7 +29,7 @@ const Categories: FC<ICategoriesProps> = () => {
                 className={count < categoriesData.length -3 ? 'slider__btn' : 'hide'}
                 onClick={() => handleClick('right')}
             ><MdArrowRight /></button>
-        </div>
+        </section>
     )
 }
 

@@ -1,6 +1,6 @@
-@import 'src/index';
+@import '../../index';
 
-.navbar {
+.header {
     @include flex-center();
     height: 40px;
     padding: 10px 30px;
@@ -38,7 +38,8 @@
         text-align: center;
 
         h1 {
-            font-weight: bold;
+            //font-weight: bold;
+            //font-size: 24px;
         }
     }
 
