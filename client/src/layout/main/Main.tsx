@@ -10,7 +10,7 @@ import Newsletter from "../../components/newsletter/Newsletter"
 const Main: FC = () => (
     <main>
         <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
-        <Slider auto={false}/>
+        <Slider auto={true}/>
         <BreakLine txt='Categories'/>
         <Categories />
         <BreakLine txt='Popular Products'/>

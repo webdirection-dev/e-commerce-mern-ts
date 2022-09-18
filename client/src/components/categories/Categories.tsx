@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import './Categories.scss'
 import {useCategories} from './useCategories'
-import CategoryItem from "../../categoryItem/CategoryItem"
+import CategoryItem from "../categoryItem/CategoryItem"
 
 interface ICategoriesProps {}
 
