@@ -1,0 +1,26 @@
+@import 'src/index';
+
+.productList {
+
+    &__title {
+        margin: 20px;
+    }
+
+    &__filter {
+        @include flex-between();
+
+        li {
+            margin: 20px;
+
+            span, label {
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+
+        select {
+            padding: 10px;
+            margin-left: 20px;
+        }
+    }
+}

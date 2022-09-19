@@ -1,0 +1,98 @@
+@import 'src/index';
+
+.product {
+    .wrapper {
+        display: flex;
+        padding: 50px;
+
+        .showcase {
+            flex: 1;
+            img {
+                @include img();
+                object-position: center;
+                width: 100%;
+                height: 85vh;
+            }
+        }
+
+        .info {
+            flex: 1;
+            padding: 0 50px;
+            h1 {font-weight: 200;}
+            p {margin: 20px 0;}
+
+            .info-price {
+                font-size: 40px;
+                font-weight: 100;
+            }
+
+            .container-filter {
+                @include flex-between();
+                width: 50%;
+                margin: 30px 0;
+
+                .product-filter {
+                    @include flex-center();
+
+                    h2, label {
+                        font-size: 20px;
+                        font-weight: 200;
+                    }
+
+                    .product-color {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin: 0 4px;
+                        cursor: pointer;
+                        transition: all 0.5s ease;
+                        &:hover {transform: scale(1.13);}
+                    }
+
+                    select {
+                        margin-left: 10px;
+                        padding: 5px;
+                    }
+                }
+            }
+
+            .container-add {
+                @include flex-between();
+                width: 50%;
+
+                .product-amount {
+                    @include flex-between();
+                    font-weight: 700;
+                    color: teal;
+
+                    svg {
+                        font-size: 24px;
+                        cursor: pointer;
+                    }
+
+                    span {
+                        @include flex-center();
+                        width: 30px;
+                        height: 30px;
+                        border: 1px solid teal;
+                        border-radius: 10px;
+                        margin: 0 5px;
+                    }
+                }
+
+                button {
+                    @include btn();
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    color: teal;
+                    border: 2px solid teal;
+                    padding: 15px;
+
+                    &:hover {
+                        background-color: rgba(0, 128, 128, 0.03);
+                    }
+                }
+            }
+        }
+    }
+}
