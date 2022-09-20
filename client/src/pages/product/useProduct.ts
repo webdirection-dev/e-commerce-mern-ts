@@ -19,11 +19,14 @@ export const useProduct = () => {
     const [isZoom, setIsZoom] = useState(false)
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
     const [magnifyingZoom, setMagnifyingZoom] = useState(initialZoom)
-    const [classScale, setClassScale] = useState('')
+    const [classScale, setClassScale] = useState('click-scale')
 
     const handlerClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        setIsZoom(!isZoom)
-        setClassScale('click-scale')
+        if (!isZoom) {
+            setTimeout(() => {
+                setIsZoom(!isZoom)
+            }, 200)
+        } else setIsZoom(!isZoom)
 
         const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
         let
@@ -39,8 +42,8 @@ export const useProduct = () => {
     }
 
     const handlerMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        setClassScale('')
         if (isZoom) {
+            setClassScale('')
             const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
             let
                 clientX = e.clientX - offsetLeft,
@@ -54,7 +57,7 @@ export const useProduct = () => {
             })
         } else {
             // img.style.transform = 'translate(-50%, -50%) scale(1)'
-            setMagnifyingZoom(initialZoom)
+            // setMagnifyingZoom(initialZoom)
         }
     }
 

@@ -3,7 +3,7 @@
 .header {
     @include flex-center();
     height: 40px;
-    padding: 10px 30px;
+    padding: 30px;
 
     &__actions {
         flex: 1;
