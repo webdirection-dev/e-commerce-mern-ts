@@ -6,7 +6,7 @@ import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
 
 const Product: FC = () => {
-    const {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd} = useProduct()
+    const {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale} = useProduct()
 
     return(
         <div className='product'>
@@ -25,6 +25,7 @@ const Product: FC = () => {
                         id='magnifying-img'
                         src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg"
                         alt="..."
+                        className={classScale}
                         style={{transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}}
                     />
                 </div>

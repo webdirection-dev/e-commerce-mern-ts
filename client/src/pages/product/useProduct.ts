@@ -19,9 +19,11 @@ export const useProduct = () => {
     const [isZoom, setIsZoom] = useState(false)
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
     const [magnifyingZoom, setMagnifyingZoom] = useState(initialZoom)
+    const [classScale, setClassScale] = useState('')
 
     const handlerClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         setIsZoom(!isZoom)
+        setClassScale('click-scale')
 
         const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
         let
@@ -37,6 +39,7 @@ export const useProduct = () => {
     }
 
     const handlerMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+        setClassScale('')
         if (isZoom) {
             const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
             let
@@ -69,8 +72,11 @@ export const useProduct = () => {
     }, [])
 
     useEffect(() => {
-        if (!isZoom) setMagnifyingZoom(initialZoom)
+        if (!isZoom) {
+            setMagnifyingZoom(initialZoom)
+            setClassScale('click-scale')
+        }
     }, [isZoom])
 
-    return {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd}
+    return {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale}
 }
