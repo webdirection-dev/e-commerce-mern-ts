@@ -7,3 +7,22 @@ body {
 .hide {
     display: none;
 }
+
+//img click zooming
+#magnifying-area {
+    position: relative;
+    //width: 85vw;
+    height: 85vh;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+#magnifying-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    //max-width: 100%;
+    //min-width: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}

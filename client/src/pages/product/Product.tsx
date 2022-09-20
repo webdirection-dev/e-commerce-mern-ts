@@ -1,24 +1,32 @@
-import React, { FC } from 'react'
+import React, {FC} from 'react'
 import './Product.scss'
 import {useProduct} from './useProduct'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
 
-import { MdRemove, MdAdd } from "react-icons/md"
-
-interface IProductProps {}
-
-const Product: FC<IProductProps> = () => {
-    const {} = useProduct
+const Product: FC = () => {
+    const {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd} = useProduct()
 
     return(
         <div className='product'>
             <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
 
             <div className="wrapper">
-                <div className="showcase">
-                    <img src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg" alt="..."/>
+                <div
+                    id='magnifying-area'
+                    className="showcase"
+                    style={{cursor: !isZoom ? 'zoom-in' : 'zoom-out'}}
+                    onClick={(e) => handlerClick(e)}
+                    onMouseMove={e => handlerMouseMove(e)}
+                    onMouseLeave={() => setIsZoom(false)}
+                >
+                    <img
+                        id='magnifying-img'
+                        src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg"
+                        alt="..."
+                        style={{transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}}
+                    />
                 </div>
 
                 <div className="info">
