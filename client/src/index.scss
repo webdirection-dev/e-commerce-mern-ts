@@ -30,3 +30,12 @@ body {
 .click-scale {
     transition: all .3s ease;
 }
+
+.loading {
+    filter: blur(10px);
+}
+
+.loaded {
+    filter: blur(0);
+    transition: filter 0.3s linear;
+}

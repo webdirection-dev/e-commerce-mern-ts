@@ -1,0 +1,68 @@
+@import 'src/index';
+
+.register {
+    @include flex-center();
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, .5));
+    overflow: hidden;
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 40%;
+        background-color: white;
+        padding: 20px;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin: 20px 0;
+
+            input {
+                padding: 10px;
+            }
+        }
+
+        span {
+            font-size: 12px;
+        }
+
+        button {
+            @include btn();
+            width: 40%;
+            color: white;
+            background-color: teal;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            padding: 15px 20px;
+
+            &:hover {
+                background-color: #036f6f;
+            }
+        }
+    }
+
+
+    img {
+        @include img();
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -10;
+    }
+}

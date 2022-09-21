@@ -13,7 +13,7 @@ const Newsletter: FC<INewsletterProps> = () => {
         <section className='newsletter'>
             <h1>Newsletter</h1>
             <div className="newsletter__description">Get timely updates from your favorite products.</div>
-            <form>
+            <form className='newsletter__form'>
                 <input
                     type="text"
                     placeholder='Your email'

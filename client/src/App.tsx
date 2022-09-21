@@ -1,15 +1,13 @@
-import React from 'react'
+import Root from "./layout/Root"
 
-import Header from "./layout/header/Header"
-import Main from "./layout/main/Main"
-import Footer from "./layout/footer/Footer"
+import Register from "./pages/register/Register"
+import Login from "./pages/login/Login"
 
 const  App = () => (
-    <div className="App">
-        <Header />
-        <Main />
-        <Footer />
-    </div>
+    <>
+        {/*<Root />*/}
+        <Register />
+    </>
 )
 
 export default App
