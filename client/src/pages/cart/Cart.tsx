@@ -31,19 +31,17 @@ const Cart: FC<ICartProps> = () => {
                 <div className="cart__footer">
                     <div className="products">
                         <div className="product">
-                            <div className="details">
-                                <img src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS27_V1.jpg" alt="..."/>
+                            <img src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS27_V1.jpg" alt="..."/>
 
-                                <ul>
-                                    <li><b>product:</b> denim overshirt</li>
-                                    <li><b>id:</b> 93813718293</li>
-                                    <li className='wrapper-product-color'>
-                                        <b>color:</b>
-                                        <div className='product-details-color' style={{backgroundColor: '#f1e0c8'}}></div>
-                                    </li>
-                                    <li><b>size:</b> 37.5</li>
-                                </ul>
-                            </div>
+                            <ul>
+                                <li><b>product:</b> denim overshirt</li>
+                                <li><b>id:</b> 93813718293</li>
+                                <li className='wrapper-product-color'>
+                                    <b>color:</b>
+                                    <div className='product-details-color' style={{backgroundColor: '#f1e0c8'}}></div>
+                                </li>
+                                <li><b>size:</b> 37.5</li>
+                            </ul>
 
                             <div className="price">
                                 <div className="amount">
@@ -57,19 +55,17 @@ const Cart: FC<ICartProps> = () => {
                         </div>
                         <hr/>
                         <div className="product">
-                            <div className="details">
-                                <img src="https://cdn.shopify.com/s/files/1/2185/2813/products/W7112R_0101_1_bbffc526-2fca-4185-bd44-fa4f9d594ba7_750x.jpg?v=1619474670" alt="..."/>
+                            <img src="https://cdn.shopify.com/s/files/1/2185/2813/products/W7112R_0101_1_bbffc526-2fca-4185-bd44-fa4f9d594ba7_750x.jpg?v=1619474670" alt="..."/>
 
-                                <ul>
-                                    <li><b>product:</b> OFF-DUTY CAP</li>
-                                    <li><b>id:</b> 77813718277</li>
-                                    <li className='wrapper-product-color'>
-                                        <b>color:</b>
-                                        <div className='product-details-color' style={{backgroundColor: 'black'}}></div>
-                                    </li>
-                                    <li><b>size:</b> M</li>
-                                </ul>
-                            </div>
+                            <ul>
+                                <li><b>product:</b> OFF-DUTY CAP</li>
+                                <li><b>id:</b> 77813718277</li>
+                                <li className='wrapper-product-color'>
+                                    <b>color:</b>
+                                    <div className='product-details-color' style={{backgroundColor: 'black'}}></div>
+                                </li>
+                                <li><b>size:</b> M</li>
+                            </ul>
 
                             <div className="price">
                                 <div className="amount">
