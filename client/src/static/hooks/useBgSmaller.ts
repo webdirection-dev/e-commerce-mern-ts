@@ -1,10 +1,7 @@
 import {useEffect, useState} from "react"
-import {slider} from "../../../static/img"
 
-const {imgMini, imgNormal} = slider
-
-export const useImgSmaller = (idx: number) => {
-    const [isImfLoaded, setIsImfLoaded] = useState(false)
+export const useBgSmaller = ({imgNormal, imgMini}: {[key: string]: string[]}, idx = 0) => {
+    const [isBgLoaded, setIsBgLoaded] = useState(false)
 
     useEffect(() => {
         const img = new Image()
@@ -12,14 +9,14 @@ export const useImgSmaller = (idx: number) => {
         img.src = imgNormal[idx] //на этой строке начинается загрузка картинки в память приложения||компонента
 
         img.onload = () => {
-            setIsImfLoaded(true)
+            setIsBgLoaded(true)
         }
     }, [])
 
     return(
         {
-            className: isImfLoaded ? 'loaded' : 'loading',
-            src: isImfLoaded ? imgNormal[idx] : imgMini[idx],
+            className: isBgLoaded ? 'loaded' : 'loading',
+            src: isBgLoaded ? imgNormal[idx] : imgMini[idx],
         }
     )
 }

@@ -1,16 +1,14 @@
 import React, { FC } from 'react'
-import './Register.scss'
-import {useRegister} from './useRegister'
-import {useBgSmaller} from "./useBgSmaller"
+import './Auth.scss'
+import {useBgSmaller} from "../../static/hooks/useBgSmaller"
 
-interface IRegisterProps {}
+import {bgRegister} from "../../static/img"
 
-const Register: FC<IRegisterProps> = () => {
-    const {className, src} = useBgSmaller()
-    const {} = useRegister()
+const Register: FC = () => {
+    const {className, src} = useBgSmaller(bgRegister)
 
     return(
-        <section className='register'>
+        <section className='auth'>
             <div className="wrapper">
                 <h1>create an account</h1>
 
@@ -20,7 +18,7 @@ const Register: FC<IRegisterProps> = () => {
                     <input type="text" placeholder='username'/>
                     <input type="email" placeholder='email'/>
                     <input type="password" placeholder='password'/>
-                    <input type="password" placeholder=' confirm password'/>
+                    <input type="password" placeholder='confirm password'/>
                 </form>
 
 

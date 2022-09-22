@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import {useImgSmaller} from "./hooks/useImgSmaller"
+
+import {slider} from "../../static/img"
+import {useBgSmaller} from "../../static/hooks/useBgSmaller"
 
 interface ISlideItemProps {
     id: number;
@@ -11,7 +13,7 @@ interface ISlideItemProps {
 }
 
 const SlideItem: FC<ISlideItemProps> = ({isClick, id, title, desc, bg, styles}) => {
-    const {className, src} = useImgSmaller(id -1)
+    const {className, src} = useBgSmaller(slider,id -1)
 
     return(
         <li className={styles} style={{backgroundColor: `${bg}`}}>

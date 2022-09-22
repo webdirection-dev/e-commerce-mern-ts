@@ -1,6 +1,6 @@
-@import 'src/index';
+@import '../../index';
 
-.register {
+.auth {
     @include flex-center();
     position: relative;
     width: 100vw;
@@ -9,6 +9,7 @@
     overflow: hidden;
 
     .wrapper {
+        &.login-wrapper{width: 25%}
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -24,6 +25,7 @@
         }
 
         form {
+            &.login-form {grid-template-columns: repeat(1, 1fr);}
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
@@ -40,6 +42,7 @@
         }
 
         button {
+            &.login-btn{margin: 10px 0;}
             @include btn();
             width: 40%;
             color: white;
@@ -53,10 +56,21 @@
                 background-color: #036f6f;
             }
         }
+
+        a {
+            @include link();
+            color: black;
+            font-size: 12px;
+            text-transform: capitalize;
+            text-decoration: underline;
+            margin: 5px 0;
+            &:hover {color: #036f6f}
+        }
     }
 
 
     img {
+        &.login-bg {object-position: right;}
         @include img();
         position: absolute;
         top: 0;

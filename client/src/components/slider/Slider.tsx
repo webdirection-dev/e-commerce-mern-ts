@@ -3,7 +3,7 @@ import React, {FC} from 'react'
 import './Slider.scss'
 
 import {sliderItems} from "../../static/data/slider-data"
-import {useSlider} from "./hooks/useSlider"
+import {useSlider} from "./useSlider"
 import SlideItem from "./SlideItem"
 
 import {MdArrowLeft, MdArrowRight} from "react-icons/md"

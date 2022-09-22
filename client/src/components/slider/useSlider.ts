@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {sliderItems} from "../../../static/data/slider-data"
+import {sliderItems} from "../../static/data/slider-data"
 
 export const useSlider = (auto: boolean) => {
     const [isClick, setIsClick] = useState(false)

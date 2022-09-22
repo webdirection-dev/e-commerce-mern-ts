@@ -1,12 +1,12 @@
 import Root from "./layout/Root"
-
-import Register from "./pages/register/Register"
-import Login from "./pages/login/Login"
+import Register from "./pages/authentification/Register"
+import Login from "./pages/authentification/Login"
 
 const  App = () => (
     <>
-        {/*<Root />*/}
-        <Register />
+        <Root />
+        {/*<Register />*/}
+        {/*<Login />*/}
     </>
 )
 
