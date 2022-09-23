@@ -9,7 +9,7 @@ interface ISlideItemProps {
     desc: string;
     bg: string;
     styles: string;
-    isClick?: boolean;
+    isClick: number;
 }
 
 const SlideItem: FC<ISlideItemProps> = ({isClick, id, title, desc, bg, styles}) => {
@@ -18,7 +18,7 @@ const SlideItem: FC<ISlideItemProps> = ({isClick, id, title, desc, bg, styles}) 
     return(
         <li className={styles} style={{backgroundColor: `${bg}`}}>
             <div className="slider__slide-img">
-                <img src={src} alt={title} className={isClick ? undefined : className}/>
+                <img src={src} alt={title} className={isClick > 0 ? undefined : className}/>
             </div>
 
             <div className="slider__slide-info">

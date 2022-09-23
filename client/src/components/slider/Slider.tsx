@@ -19,7 +19,7 @@ const Slider: FC<ISliderProps> = ({auto}) => {
                 {
                     sliderItems.map((i, index) => {
                         if (index === slideIndex) {
-                            return <SlideItem key={i.id} styles={styles} {...i} />
+                            return <SlideItem key={i.id} styles={styles} {...i} isClick={isClick}/>
                         }
                     })
                 }

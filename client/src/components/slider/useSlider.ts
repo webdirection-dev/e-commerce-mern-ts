@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import {sliderItems} from "../../static/data/slider-data"
 
 export const useSlider = (auto: boolean) => {
-    const [isClick, setIsClick] = useState(false)
+    const [isClick, setIsClick] = useState(0)
     const [isDisabledBtn, setIsDisabledBtn] = useState(false)
     const [styles, setStyles] = useState('slider__slide')
     const [stylesSub, setStylesSub] = useState('slider__slide slider__sub')
@@ -10,7 +10,7 @@ export const useSlider = (auto: boolean) => {
     const [slideIndexSub, setSlideIndexSub] = useState(-1)
 
     const handleClick = (direction: string) => {
-        setIsClick(true)
+        setIsClick(isClick +1)
         const length = sliderItems.length
         setIsDisabledBtn(true)
 
