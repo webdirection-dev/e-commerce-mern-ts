@@ -47,6 +47,8 @@
             .product {
                 display: grid;
                 grid-template-columns: 230px 1fr 300px;
+                border-bottom: 2px solid #eeeeee;
+                &:nth-last-child(1) {border: none;}
 
                 img {
                     @include img();
@@ -101,16 +103,42 @@
                     }
                 }
             }
-
-            hr {
-                background-color: #eee;
-                border: none;
-                height: 2px;
-            }
         }
 
         .summary {
-            background-color: azure;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+
+            h1 {font-weight: 200;}
+
+            .details {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 10px;
+                align-items: center;
+                text-transform: capitalize;
+                margin: 30px 0;
+
+                h3 {font-weight: normal;}
+                span {justify-self: flex-end;}
+
+                .details__total {
+                    font-size: 24px;
+                    font-weight: 500;
+                }
+            }
+
+            button {
+                @include btn();
+                width: 100%;
+                color: white;
+                background-color: black;
+                font-weight: 600;
+                text-transform: uppercase;
+                padding: 10px;
+                &:hover {background-color: teal;}
+            }
         }
     }
 }

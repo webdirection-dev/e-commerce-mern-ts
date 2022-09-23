@@ -10,7 +10,7 @@ const Header: FC = () => (
             <button className='header__language'>EN</button>
 
             <div className='header__search'>
-                <input type="text"/>
+                <input type="text" placeholder='Search'/>
                 <MdSearch />
             </div>
         </div>

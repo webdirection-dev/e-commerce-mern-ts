@@ -1,29 +1,38 @@
 @import '../../index';
 
 .header {
-    @include flex-center();
-    height: 40px;
-    padding: 30px;
+    display: grid;
+    grid-template-columns: 25% 25% 50%;
+    padding: 10px 0;
+    @media ($phone) {grid-template-columns: 30% 30% 40%;}
+    @media ($laptop) {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 10px 30px;
+    }
 
     &__actions {
-        flex: 1;
         @include flex-center();
         justify-content: flex-start;
     }
 
     &__language {
         @include btn();
+        display: none;
         font-size: 14px;
+        @media ($laptop) {display: block;}
     }
 
     &__search {
         @include flex-center();
         border: 0.5px solid lightgray;
-        margin-left: 25px;
+        margin-left: 5px;
         padding: 5px;
+        @media ($laptop) {margin-left: 25px;}
 
         input {
+            width: 50px;
             border: none;
+            @media ($laptop) {width: auto;}
         }
 
         svg {
@@ -34,24 +43,23 @@
     }
 
     &__logo {
-        flex: 1;
         text-align: center;
-
         h1 {
-            //font-weight: bold;
-            //font-size: 24px;
+            font-size: 24px;
+            @media ($phone) {font-size: 32px}
         }
     }
 
     &__user {
-        flex: 1;
         @include flex-center();
-        justify-content: flex-end;
+        justify-content: center;
+        @media ($laptop) {justify-content: flex-end;}
 
         &-action {
             @include btn();
-            font-size: 14px;
-            margin-left: 25px;
+            font-size: 12px;
+            margin-left: 5px;
+            @media ($laptop) {font-size: 14px; margin-left: 25px;}
         }
     }
 }

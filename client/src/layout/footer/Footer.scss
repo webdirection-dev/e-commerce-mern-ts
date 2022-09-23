@@ -1,14 +1,17 @@
 @import 'src/index';
 
 .footer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    padding: 20px;
+    @media ($phone) {grid-template-columns: repeat(2, 1fr);}
+    @media ($laptop) {grid-template-columns: repeat(3, 1fr);}
 
     &__left {
-        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 20px;
 
         p {
             margin: 20px 0;
@@ -27,39 +30,36 @@
                 margin-right: 15px;
                 cursor: pointer;
                 transition: all 0.5s ease;
-
-                &:hover {
-                    transform: scale(1.06);
-                }
+                &:hover {transform: scale(1.06);}
             }
         }
     }
 
     &__center {
-        flex: 1;
-        padding: 20px;
+        display: none;
+        @media ($laptop) {display: block;}
 
         h3 {
             margin-bottom: 20px;
         }
 
         ul {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
 
-            li {
-                width: 50%;
-                margin-bottom: 10px;
+            li > a {
+                @include link();
+                color: black;
+                &:hover {text-decoration: underline; font-weight: 500;}
             }
         }
     }
 
     &__right {
-        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 20px;
 
         h3 {
             margin-bottom: 20px;

@@ -29,19 +29,19 @@ const Footer: FC<IFooterProps> = () => (
             <h3>Useful Links</h3>
 
             <ul>
-                <li>Home</li>
-                <li>Cart</li>
-                <li>Man Fashion</li>
-                <li>Woman Fashion</li>
-                <li>Accessories</li>
-                <li>My Account</li>
-                <li>Order Tracking</li>
-                <li>Wishlist</li>
-                <li>Terms</li>
+                <li><a href='#'>Home</a></li>
+                <li><a href='#'>Cart</a></li>
+                <li><a href='#'>Man Fashion</a></li>
+                <li><a href='#'>Woman Fashion</a></li>
+                <li><a href='#'>Accessories</a></li>
+                <li><a href='#'>My Account</a></li>
+                <li><a href='#'>Order Tracking</a></li>
+                <li><a href='#'>Wishlist</a></li>
+                <li><a href='#'>Terms</a></li>
             </ul>
         </div>
 
-        <div className="footer__right">
+        <div className="footer__right"  >
             <h3>Contact</h3>
             <div className="footer__contact"><MdRoom /> 622 Dixie Path, South Tobinchester 98336</div>
             <div className="footer__contact"><MdPhone /> +1 234 5678</div>

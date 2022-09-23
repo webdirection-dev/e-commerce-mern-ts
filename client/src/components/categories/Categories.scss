@@ -7,10 +7,17 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+
     &__wrapper {
         display: flex;
-        padding: 20px 0;
+        flex-direction: column;
         transform: translateX(0);
         transition: all 1.5s ease;
+        @media ($phone) {flex-direction: row; padding: 20px 0;}
+    }
+
+    button {
+        display: none;
+        @media ($phone) {display: flex}
     }
 }

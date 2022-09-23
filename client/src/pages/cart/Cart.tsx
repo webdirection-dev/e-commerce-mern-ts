@@ -53,7 +53,7 @@ const Cart: FC<ICartProps> = () => {
                                 <span>$ 30</span>
                             </div>
                         </div>
-                        <hr/>
+
                         <div className="product">
                             <img src="https://cdn.shopify.com/s/files/1/2185/2813/products/W7112R_0101_1_bbffc526-2fca-4185-bd44-fa4f9d594ba7_750x.jpg?v=1619474670" alt="..."/>
 
@@ -79,7 +79,25 @@ const Cart: FC<ICartProps> = () => {
                         </div>
                     </div>
 
-                    <div className="summary">summary</div>
+                    <div className="summary">
+                        <h1>order summary</h1>
+
+                        <div className="details">
+                            <h3>subtotal</h3>
+                            <span>$ 80</span>
+
+                            <h3>estimated shipping</h3>
+                            <span>$ 5.90</span>
+
+                            <h3>shipping discount</h3>
+                            <span>$ -5.90</span>
+
+                            <h3 className='details__total'>total</h3>
+                            <span className='details__total'>$ 80</span>
+                        </div>
+
+                        <button>checkout now</button>
+                    </div>
                 </div>
             </div>
         </div>

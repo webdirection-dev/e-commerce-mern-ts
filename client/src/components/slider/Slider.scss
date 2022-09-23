@@ -2,10 +2,11 @@
 
 .slider {
     position: relative;
-    display: flex;
+    display: none;
     width: 100%;
     height: calc(100vh - 60px - 30px);
     overflow: hidden;
+    @media ($tablet) {display: flex;}
 
     &__wrapper {
         display: flex;
