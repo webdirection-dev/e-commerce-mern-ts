@@ -7,20 +7,21 @@ body {
 //img click zooming
 #magnifying-area {
     position: relative;
-    //width: 85vw;
-    height: 85vh;
+    height: 40vh;
     overflow: hidden;
     cursor: zoom-in;
+    @media ($tablet) {height: 85vh;}
 }
 
 #magnifying-img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    //max-width: 100%;
-    //min-width: 100%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+    transform: translate(0, 0) !important;
+    @media ($laptop) {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%) !important;
+    }
 }
 
 .hide {

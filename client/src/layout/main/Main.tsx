@@ -7,10 +7,10 @@ import Cart from "../../pages/cart/Cart"
 
 const Main: FC = () => (
     <main>
-        <Home />
+        {/*<Home />*/}
         {/*<ProductList />*/}
         {/*<Product />*/}
-        {/*<Cart />*/}
+        <Cart />
     </main>
 )
 

@@ -3,7 +3,8 @@
 .cart {
     min-height: calc(100vh - 60px - 230.5px);
     .wrapper {
-        padding: 20px;
+        padding: 10px;
+        @media ($tablet) {padding: 20px;}
 
         h1 {
             font-weight: 300;
@@ -30,7 +31,8 @@
         }
 
         .description {
-            display: flex;
+            display: none;
+            @media ($phone) {display: flex;}
             p {
                 text-transform: capitalize;
                 text-decoration: underline;
@@ -41,20 +43,25 @@
 
     &__footer {
         display: grid;
-        grid-template-columns: 70% 30%;
+        grid-template-columns: max(100%);
+        @media ($laptop) {grid-template-columns: 70% 30%;}
 
         .products {
             .product {
                 display: grid;
-                grid-template-columns: 230px 1fr 300px;
+                grid-template-columns: repeat(2, 1fr);
                 border-bottom: 2px solid #eeeeee;
                 &:nth-last-child(1) {border: none;}
+                @media ($phone) {grid-template-columns: repeat(3, 1fr);}
+                @media ($laptop) {grid-template-columns: 230px 1fr 300px;}
 
                 img {
                     @include img();
                     object-position: center;
-                    height: 200px;
-                    width: 200px;
+                    height: 115px;
+                    width: 115px;
+                    @media ($phone) {height: 200px; width: 200px;}
+
                 }
 
                 ul {
@@ -86,11 +93,14 @@
                     flex: 1;
                     @include flex-center();
                     flex-direction: column;
+                    margin-bottom: 30px;
+                    @media ($phone) {margin-bottom: 0;}
 
                     .amount {
                         @include flex-center();
                         font-size: 24px;
-                        margin-bottom: 20px;
+                        @media ($phone) {margin-bottom: 20px;}
+
                         svg {
                             cursor: pointer;
                             margin: 5px;

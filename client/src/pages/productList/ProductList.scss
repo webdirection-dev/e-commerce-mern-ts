@@ -7,20 +7,24 @@
     }
 
     &__filter {
-        @include flex-between();
+        display: flex;
+        justify-content: space-between;
 
         li {
-            margin: 20px;
+            margin: 0 20px;
+            @media ($phone) {margin: 20px;}
 
             span, label {
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 600;
+                @media ($tablet) {font-size: 20px;}
             }
         }
 
         select {
             padding: 10px;
-            margin-left: 20px;
+            @media ($tablet) {margin-left: 20px;}
+
         }
     }
 }

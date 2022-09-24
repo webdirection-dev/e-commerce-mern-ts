@@ -9,28 +9,31 @@
     overflow: hidden;
 
     .wrapper {
-        &.login-wrapper{width: 25%}
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-direction: column;
-        width: 40%;
+        width: 75%;
         background-color: white;
         padding: 20px;
+        @media ($projector) {width: 40%;}
+        &.login-wrapper{@media ($laptop) {width: 25%;}}
 
         h1 {
+            text-align: center;
             font-size: 24px;
             font-weight: 300;
             text-transform: uppercase;
         }
 
         form {
-            &.login-form {grid-template-columns: repeat(1, 1fr);}
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(1, 1fr);
             gap: 20px;
             width: 100%;
             margin: 20px 0;
+            @media ($tablet) {grid-template-columns: repeat(2, 1fr);}
+            &.login-form {grid-template-columns: repeat(1, 1fr);}
 
             input {
                 padding: 10px;
@@ -42,35 +45,33 @@
         }
 
         button {
-            &.login-btn{margin: 10px 0;}
             @include btn();
-            width: 40%;
+            width: 100%;
             color: white;
             background-color: teal;
             font-size: 16px;
             text-transform: uppercase;
             margin-top: 20px;
             padding: 15px 20px;
-
-            &:hover {
-                background-color: #036f6f;
-            }
+            &:hover {background-color: #036f6f;}
+            @media ($laptop) {width: 40%;}
+            &.login-btn{margin: 10px 0;}
         }
 
         a {
             @include link();
             color: black;
             font-size: 12px;
+            text-align: center;
             text-transform: capitalize;
             text-decoration: underline;
             margin: 5px 0;
-            &:hover {color: #036f6f}
+            &:hover {color: #036f6f;}
         }
     }
 
 
     img {
-        &.login-bg {object-position: right;}
         @include img();
         position: absolute;
         top: 0;
@@ -78,5 +79,6 @@
         width: 100vw;
         height: 100vh;
         z-index: -10;
+        &.login-bg {object-position: right;}
     }
 }
