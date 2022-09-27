@@ -2,10 +2,10 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const express = require('express')
 
-const userRoot = require('./routes/user')
-
 const app = express()
 const mongoSetting = {useNewUrlParser: true, useUnifiedTopology: true}
+
+const userRoot = require('./routes/user')
 
 dotenv.config()
 
