@@ -7,6 +7,7 @@ const mongoSetting = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const authRoot = require('./routes/auth')
 const userRoot = require('./routes/user')
+const productRoot = require('./routes/product')
 
 dotenv.config()
 
@@ -18,5 +19,6 @@ mongoose
 app.use(express.json())
 app.use('/api/auth', authRoot)
 app.use('/api/users', userRoot)
+app.use('/api/products', productRoot)
 
 app.listen(process.env.PORT || 8800, () => {console.log('Backend Server Is Running!')})
