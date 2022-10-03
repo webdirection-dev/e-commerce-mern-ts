@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react'
-import StripeCheckout, {Token} from 'react-stripe-checkout'
+import StripeCheckout from 'react-stripe-checkout'
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 
 const STRIPE_PUBLIC_KEY = 'pk_test_51Lo4zzDDzYjnKe8qNBUpNPxh6Npq1PLDFx6F9gTdDBWKhWQ7uip47rb23065Vp054aQJZRfyx09UBCJKqsHjPahB00PinSa7uU'
 
 const Pay = () => {
-    const [stripeToken, setStripeToken] = useState(null as null | Token)
+    const [stripeToken, setStripeToken] = useState(null)
     const navigate = useNavigate()
 
-    const onToken = (token: Token) => {
+    const onToken = (token) => {
         setStripeToken(token)
     }
 
@@ -46,7 +46,7 @@ const Pay = () => {
             shippingAddress
             description='Your Total is $20'
             amount={2000} //в центах
-            token={(token: Token) => onToken(token)}
+            token={(token) => onToken(token)}
             stripeKey={STRIPE_PUBLIC_KEY}
         >
             {
