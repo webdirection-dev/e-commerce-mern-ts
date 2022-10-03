@@ -8,7 +8,7 @@ import Register from "./pages/authentification/Register"
 import Login from "./pages/authentification/Login"
 
 const  App = () => (
-    <>
+    <BrowserRouter>
         {/*<Routes>*/}
         {/*    <Route path="/pay" element={<Pay />} />*/}
         {/*    <Route path="/success" element={<Success />} />*/}
@@ -17,7 +17,7 @@ const  App = () => (
         {/*<Root />*/}
         <Register />
         {/*<Login />*/}
-    </>
+    </BrowserRouter>
 )
 
 export default App
