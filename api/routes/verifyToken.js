@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const verifyToken = (req, res, checkAllow) => {
+const verifyToken = (req, res, next) => {
     const authHeader = req.headers.token
 
     if (authHeader) {
@@ -13,7 +13,7 @@ const verifyToken = (req, res, checkAllow) => {
                 if (err) res.status(403).json('Token is not valid!')
                 else {
                     req.payloadJWT = payloadJWT
-                    checkAllow()
+                    next()
                 }
             }
         )
@@ -42,4 +42,4 @@ const verifyTokenAndAdmin = (req, res, next) => {
     )
 }
 
-module.exports = {verifyTokenAndAuthorisation, verifyTokenAndAdmin}
+module.exports = {verifyToken, verifyTokenAndAuthorisation, verifyTokenAndAdmin}

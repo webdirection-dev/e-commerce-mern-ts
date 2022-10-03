@@ -1,7 +1,86 @@
 const router = require('express').Router()
+const Order = require('../models/Order')
+const {verifyToken, verifyTokenAndAuthorisation, verifyTokenAndAdmin} = require('./verifyToken')
 
-router.get('/', (req, res) => {})
+//CREATE ORDER
+router.post(
+    '/',
+    verifyToken,
+    async (req, res) => {
+        const out = await new Order(req.body).save()
+        try {res.status(201).json(out)}
+        catch (err) { res.status(500).json(err) }
+    }
+)
 
-router.post('/', (req, res) => {})
+//UPDATE ORDER
+router.put(
+    '/:id',
+    verifyTokenAndAdmin, //middleware
+    async (req, res) => {
+        try {
+            const out = await Order.findByIdAndUpdate(
+                req.params.id, //поиск по id
+                {$set: req.body}, //заменить найденное на req.body
+                {new: true}, //отправить клиенту обновленные данные
+            )
+
+            res.status(200).json(out)
+        } catch (err) { res.status(500).json(err) }
+    }
+)
+
+//DELETE ORDER
+router.delete(
+    '/:id',
+    verifyTokenAndAdmin, //middleware
+    async (req, res) => {
+        try {
+            await Order.findByIdAndDelete(req.params.id)
+            res.status(200).json('Order has been deleted.')
+        } catch (err) { res.status(500).json(err) }
+    }
+)
+
+//GET USER ORDER
+router.get(
+    '/find/:userId',
+    verifyTokenAndAuthorisation,
+    async (req, res) => {
+        try { res.status(200).json(await Order.find({userId: req.params.userId})) }
+        catch (err) { res.status(500).json(err) }
+    }
+)
+
+//GET ALL ORDERS
+router.get(
+    '/',
+    verifyTokenAndAdmin,
+    async (req, res) => {
+        try { res.status(200).json(await Order.find()) }
+        catch (err) { res.status(500).json(err) }
+    }
+)
+
+//GET MONTHLY INCOME
+router.get(
+    '/income',
+    verifyTokenAndAdmin,
+    async (req, res) => {
+        const date = new Date()
+        const lastMonth = new Date(date.setMonth(date.getMonth() - 1))
+        const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1))
+
+        try {
+            const income = await Order.aggregate([
+                {$match: {createdAt: {$gte: previousMonth}}},
+                {$project: {month: {$month: '$createdAt'}, sales: '$amount'}},
+                {$group: {_id: '$month', total: {$sum: '$sales'}}},
+            ])
+
+            res.status(200).json(income)
+        } catch (err) { res.status(500).json(err) }
+    }
+)
 
 module.exports = router

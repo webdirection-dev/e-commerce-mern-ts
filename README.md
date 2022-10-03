@@ -11,6 +11,6 @@
 - JWT
 - Crypto-js
 - Firebase
-- Styled Components
+- STRIPE
 
 [DEMO](https://e-commerce-mern-ts.vercel.app)
