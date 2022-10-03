@@ -15,7 +15,7 @@ const  App = () => (
         </Routes>
 
         {/*<Root />*/}
-        {/*<Register />*/}
+        <Register />
         {/*<Login />*/}
     </BrowserRouter>
 )
