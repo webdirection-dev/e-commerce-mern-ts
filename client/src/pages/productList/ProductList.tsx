@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, {FC, useEffect} from 'react'
 import './ProductList.scss'
 import {useProductList} from './useProductList'
 
@@ -10,6 +10,11 @@ interface IProductListProps {}
 
 const ProductList: FC<IProductListProps> = () => {
     const {} = useProductList
+
+    useEffect(() => {
+        //позволит смотреть страницу с ее начала
+        window.scrollTo(0, 0);
+    }, [])
 
     return(
         <div className='productList'>

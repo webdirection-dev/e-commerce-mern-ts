@@ -6,7 +6,7 @@ import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
 
 const Product: FC = () => {
-    const {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale} = useProduct()
+    const {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale} = useProduct()
 
     return(
         <div className='product'>
@@ -16,7 +16,7 @@ const Product: FC = () => {
                 <div
                     id='magnifying-area'
                     className="showcase"
-                    style={{cursor: !isZoom ? 'zoom-in' : 'zoom-out'}}
+                    style={isMatchMedia ? {cursor: !isZoom ? 'zoom-in' : 'zoom-out'} : undefined}
                     onClick={(e) => handlerClick(e)}
                     onMouseMove={e => handlerMouseMove(e)}
                     onMouseLeave={() => setIsZoom(false)}
@@ -26,7 +26,11 @@ const Product: FC = () => {
                         src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg"
                         alt="..."
                         className={classScale}
-                        style={{transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}}
+                        style={
+                            isClick && isZoom ?
+                                {transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}  :
+                                undefined
+                        }
                     />
                 </div>
 

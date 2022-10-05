@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import {Link} from "react-router-dom"
 import './header.scss'
 
 import {MdSearch, MdOutlineShoppingCart} from 'react-icons/md'
@@ -15,9 +16,9 @@ const Header: FC = () => (
             </div>
         </div>
 
-        <div className='header__logo'>
+        <Link to='/' className='header__logo'>
             <h1 >.STORE</h1>
-        </div>
+        </Link>
 
         <div className='header__user'>
             <button className='header__user-action'>REGISTER</button>

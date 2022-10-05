@@ -3,6 +3,7 @@ import './Auth.scss'
 import {useBgSmaller} from '../../static/hooks/useBgSmaller'
 
 import {bgLogin} from "../../static/img"
+import {Link} from "react-router-dom";
 
 const Login: FC = () => {
     const {src, className} = useBgSmaller(bgLogin)
@@ -19,7 +20,7 @@ const Login: FC = () => {
 
                 <button className='login-btn'>login</button>
                 <a href="#">do not you remember the password?</a>
-                <a href="#">create a new account</a>
+                <Link to='/register'>create a new account</Link>
             </div>
 
             <img src={src} alt="..." className={className + ' login-bg'}/>

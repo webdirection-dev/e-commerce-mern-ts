@@ -43,9 +43,12 @@
     }
 
     &__logo {
+        @include link();
         text-align: center;
+        cursor: pointer;
         h1 {
             font-size: 24px;
+            color: black;
             @media ($phone) {font-size: 32px}
         }
     }

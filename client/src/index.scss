@@ -9,23 +9,23 @@ body {
     position: relative;
     height: 40vh;
     overflow: hidden;
-    cursor: zoom-in;
     @media ($tablet) {height: 85vh;}
+    @media ($laptop) {cursor: zoom-in;;}
 }
 
 #magnifying-img {
-    transform: translate(0, 0) !important;
+    transform: translate(0, 0);
     @media ($laptop) {
         position: absolute;
         left: 50%;
         top: 50%;
         pointer-events: none;
-        transform: translate(-50%, -50%) !important;
+        transform: translate(-50%, -50%);
     }
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .click-scale {

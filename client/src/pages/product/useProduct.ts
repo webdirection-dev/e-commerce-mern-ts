@@ -15,35 +15,24 @@ const initialZoom = {
     scale: 1,
 }
 
+const isMatchMedia = window.matchMedia('(min-width: 992px)').matches;
+
 export const useProduct = () => {
+    const [isClick, setIsClick] = useState(false)
     const [isZoom, setIsZoom] = useState(false)
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
     const [magnifyingZoom, setMagnifyingZoom] = useState(initialZoom)
     const [classScale, setClassScale] = useState('click-scale')
 
     const handlerClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        if (!isZoom) {
-            setTimeout(() => {
-                setIsZoom(!isZoom)
-            }, 200)
-        } else setIsZoom(!isZoom)
+        if (isMatchMedia) {
+            setIsClick(true)
+            if (!isZoom) {
+                setTimeout(() => {
+                    setIsZoom(!isZoom)
+                }, 200)
+            } else setIsZoom(!isZoom)
 
-        const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
-        let
-            clientX = e.clientX - offsetLeft,
-            clientY = e.clientY - offsetTop
-
-        // img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2)`
-        setMagnifyingZoom({
-            clientX: clientX / offsetWidth * 100,
-            clientY: clientY / offsetHeight * 100,
-            scale: 2,
-        })
-    }
-
-    const handlerMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        if (isZoom) {
-            setClassScale('')
             const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
             let
                 clientX = e.clientX - offsetLeft,
@@ -55,9 +44,28 @@ export const useProduct = () => {
                 clientY: clientY / offsetHeight * 100,
                 scale: 2,
             })
-        } else {
-            // img.style.transform = 'translate(-50%, -50%) scale(1)'
-            // setMagnifyingZoom(initialZoom)
+        }
+    }
+
+    const handlerMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+        if (isMatchMedia) {
+            if (isZoom) {
+                setClassScale('')
+                const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = magnifyingArea
+                let
+                    clientX = e.clientX - offsetLeft,
+                    clientY = e.clientY - offsetTop
+
+                // img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2)`
+                setMagnifyingZoom({
+                    clientX: clientX / offsetWidth * 100,
+                    clientY: clientY / offsetHeight * 100,
+                    scale: 2,
+                })
+            } else {
+                // img.style.transform = 'translate(-50%, -50%) scale(1)'
+                // setMagnifyingZoom(initialZoom)
+            }
         }
     }
 
@@ -81,5 +89,5 @@ export const useProduct = () => {
         }
     }, [isZoom])
 
-    return {isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale}
+    return {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale}
 }

@@ -3,6 +3,7 @@ import './Auth.scss'
 import {useBgSmaller} from "../../static/hooks/useBgSmaller"
 
 import {bgRegister} from "../../static/img"
+import {Link} from "react-router-dom";
 
 const Register: FC = () => {
     const {className, src} = useBgSmaller(bgRegister)
@@ -23,6 +24,7 @@ const Register: FC = () => {
 
 
                 <span>By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b></span>
+                <Link to='/login'>login</Link>
                 <button>create</button>
             </div>
 
