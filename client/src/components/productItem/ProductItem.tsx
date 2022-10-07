@@ -5,12 +5,10 @@ import {useProductItem} from './useProductItem'
 
 import { MdOutlineShoppingCart, MdSearch, MdFavoriteBorder } from "react-icons/md"
 
-interface IProductItemProps {
-    id: number,
-    img: string
-}
+import {IProductFromMongo} from "../../static/types/productTypes"
 
-const ProductItem: FC<IProductItemProps> = ({img}) => {
+
+const ProductItem: FC<IProductFromMongo> = ({img}) => {
     const {} = useProductItem
 
     return(

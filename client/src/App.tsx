@@ -17,22 +17,27 @@ const  App = () => {
 
     return(
         <BrowserRouter>
-            <Routes>
-                <Route
-                    path='/'
-                    element={ !auth && <Navigate to='/login' replace={true} /> }
-                />
+            {!auth && (
+                <Routes>
+                    <Route
+                        path='/'
+                        element={ !auth && <Navigate to='/login' replace={true} /> }
+                    />
 
-                <Route
-                    path='/login'
-                    element={ auth ? <Navigate to='/' replace={true} /> : <Login /> }
-                />
+                    <Route
+                        path='/login'
+                        element={ auth ? <Navigate to='/' replace={true} /> : <Login /> }
+                    />
 
-                <Route
-                    path='/register'
-                    element={ auth ? <Navigate to='/' replace={true} /> : <Register /> }
-                />
-            </Routes>
+                    <Route
+                        path='/register'
+                        element={ auth ? <Navigate to='/' replace={true} /> : <Register /> }
+                    />
+
+
+                    <Route path='*' element={ <h1 style={{height: 'calc(100vh - 58.5px - 246.5px)', textAlign: 'center'}}>404. Page not found</h1> } />
+                </Routes>
+            )}
 
             {auth && <Root />}
         </BrowserRouter>

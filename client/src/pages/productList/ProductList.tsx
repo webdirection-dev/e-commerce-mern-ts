@@ -1,20 +1,13 @@
-import React, {FC, useEffect} from 'react'
-import './ProductList.scss'
+import React, {FC} from 'react'
 import {useProductList} from './useProductList'
+import './ProductList.scss'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Products from "../../components/products/Products"
 import Newsletter from "../../components/newsletter/Newsletter"
 
-interface IProductListProps {}
-
-const ProductList: FC<IProductListProps> = () => {
-    const {} = useProductList
-
-    useEffect(() => {
-        //позволит смотреть страницу с ее начала
-        window.scrollTo(0, 0);
-    }, [])
+const ProductList: FC = () => {
+    const {handleFilter, setSort, category, filter, sort} = useProductList()
 
     return(
         <div className='productList'>
@@ -25,7 +18,10 @@ const ProductList: FC<IProductListProps> = () => {
                 <li>
                     <label>Filter Products:</label>
 
-                    <select name="filter">
+                    <select
+                        name="color"
+                        onChange={e => handleFilter(e)}
+                    >
                         <option value="all">Color</option>
                         <option value="white">White</option>
                         <option value="black">Black</option>
@@ -35,7 +31,10 @@ const ProductList: FC<IProductListProps> = () => {
                         <option value="green">Green</option>
                     </select>
 
-                    <select name="size">
+                    <select
+                        name="size"
+                        onChange={e => handleFilter(e)}
+                    >
                         <option value="all">Size</option>
                         <option value="xs">XS</option>
                         <option value="s">S</option>
@@ -48,15 +47,18 @@ const ProductList: FC<IProductListProps> = () => {
                 <li>
                     <label>Sort Products:</label>
 
-                    <select name="sort">
-                        <option value="new">Newest</option>
+                    <select
+                        name="sort"
+                        onChange={e => setSort(e.target.value)}
+                    >
+                        <option value="newest">Newest</option>
                         <option value="asc">Prise (asc)</option>
                         <option value="desc">Prise (desc)</option>
                     </select>
                 </li>
             </ul>
 
-            <Products />
+            <Products category={category} filter={filter} sort={sort}/>
             <Newsletter />
         </div>
     )

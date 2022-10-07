@@ -1,20 +1,25 @@
-import React, { FC } from 'react'
-
-import './Products.scss'
+import React, {FC} from 'react'
 import {useProducts} from './useProducts'
-import {popularProducts} from "../../static/data/products-data"
+import './Products.scss'
+
 import ProductItem from "../productItem/ProductItem"
+import {IProductFromMongo} from "../../static/types/productTypes"
 
-interface IProductsProps {}
 
-const Products: FC<IProductsProps> = () => {
-    const {} = useProducts
+export interface IProductsProps {
+    category?: string;
+    filter?: {[key: string]: string} ;
+    sort?: string;
+}
+
+const Products: FC<IProductsProps> = (props) => {
+    const {filteredProducts} = useProducts(props)
 
     return(
         <div className='products'>
             {
-                popularProducts.map(i => (
-                    <ProductItem key={i.id} {...i}/>
+                filteredProducts.map((i: IProductFromMongo) => (
+                    <ProductItem key={i._id} {...i}/>
                 ))
             }
         </div>

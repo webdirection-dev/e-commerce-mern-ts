@@ -5,20 +5,14 @@ import Home from "../../pages/home/Home"
 import ProductList from "../../pages/productList/ProductList"
 import Product from "../../pages/product/Product"
 import Cart from "../../pages/cart/Cart"
-import Register from "../../pages/authentification/Register";
-import Login from "../../pages/authentification/Login";
 
 const Main: FC = () => {
-    // let auth = false
-    let auth = true
-
     return (
         <main>
             <Routes>
                 <Route path="/" element={<Home />} />
-                {/*<Route path="/products/:category" element={<ProductList />} />*/}
 
-                <Route path='products'>
+                <Route path='/products'>
                     <Route index element={<ProductList />} />
                     <Route path=':category' element={<ProductList />} />
                 </Route>
@@ -26,12 +20,7 @@ const Main: FC = () => {
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/cart" element={<Cart />} />
 
-                {/*<Route*/}
-                {/*    path='login'*/}
-                {/*    element={*/}
-                {/*        auth ? <Navigate to='/' replace={true} /> : <Login />*/}
-                {/*    }*/}
-                {/*/>*/}
+                <Route path='*' element={ <h1 style={{height: 'calc(100vh - 58.5px - 246.5px)', textAlign: 'center'}}>404. Page not found</h1> } />
             </Routes>
         </main>
     )
