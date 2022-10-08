@@ -14,7 +14,7 @@ const Products: FC = () => {
     return(
         <>
             {
-                productInfo.status !== 'received' ?
+                productInfo.status !== 'received' || !Array.isArray(filteredProducts) ?
                     <img className={'preloader'} src={preloader} alt="preloader"/> :
 
                 productInfo.status === 'received' && productInfo.qty > 0 && filteredProducts.length > 0?
