@@ -23,8 +23,8 @@ export const useProducts = () => {
     useEffect(() => {
 
         if (category && filter) {
-            setFilteredProducts(
-                products.filter(
+            Array.isArray(products) && setFilteredProducts(
+                 products.filter(
                     (item: any) => Object.entries(filter).every(([key, value]) => filter[key] === 'all' || item[key].includes(value))
                 )
             )
