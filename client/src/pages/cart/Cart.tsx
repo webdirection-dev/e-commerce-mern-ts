@@ -29,8 +29,8 @@ const Cart: FC<ICartProps> = () => {
                 </div>
 
                 <div className="cart__footer">
-                    <div className="products">
-                        <div className="product">
+                    <div className="cart__products">
+                        <div className="cart__product">
                             <img src="https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS27_V1.jpg" alt="..."/>
 
                             <ul>
@@ -53,8 +53,7 @@ const Cart: FC<ICartProps> = () => {
                                 <span>$ 30</span>
                             </div>
                         </div>
-
-                        <div className="product">
+                        <div className="cart__product">
                             <img src="https://cdn.shopify.com/s/files/1/2185/2813/products/W7112R_0101_1_bbffc526-2fca-4185-bd44-fa4f9d594ba7_750x.jpg?v=1619474670" alt="..."/>
 
                             <ul>

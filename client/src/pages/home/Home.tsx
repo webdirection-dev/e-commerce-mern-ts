@@ -5,7 +5,7 @@ import {useHome} from './useHome'
 import BreakLine from "../../components/breakLine/BreakLine"
 import Slider from "../../components/slider/Slider"
 import Categories from "../../components/categories/Categories"
-import Products from "../../components/products/Products"
+import Products from "../../features/products/Products"
 import Newsletter from "../../components/newsletter/Newsletter"
 
 interface IHomeProps {}

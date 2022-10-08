@@ -12,6 +12,8 @@ import bgRegMini from './bg-register-mini.jpg'
 import bgLog from './bgLogin.jpg'
 import bgLogMini from './bgLogin-mini.jpg'
 
+import load from './preloader.gif'
+
 export const slider = {
     imgNormal: [slider1, slider2, slider3],
     imgMini: [ sliderMini1, sliderMini2, sliderMini3],
@@ -26,3 +28,5 @@ export const bgLogin = {
     imgNormal: [bgLog],
     imgMini: [bgLogMini],
 }
+
+export const preloader = load

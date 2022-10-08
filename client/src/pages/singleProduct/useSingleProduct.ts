@@ -17,7 +17,7 @@ const initialZoom = {
 
 const isMatchMedia = window.matchMedia('(min-width: 992px)').matches;
 
-export const useProduct = () => {
+export const useSingleProduct = () => {
     const [isClick, setIsClick] = useState(false)
     const [isZoom, setIsZoom] = useState(false)
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)

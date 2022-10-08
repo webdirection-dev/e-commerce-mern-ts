@@ -40,3 +40,9 @@ body {
     filter: blur(0);
     transition: filter 0.3s linear;
 }
+
+.preloader, .product-alert {
+    @include flex-center();
+    margin: 30px auto;
+    height: 70px;
+}

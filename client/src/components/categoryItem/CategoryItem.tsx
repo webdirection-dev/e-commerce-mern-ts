@@ -1,6 +1,8 @@
-import React, { FC } from 'react'
+import React, {FC, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import './CategoryItem.scss'
+import {resetState} from "../../features/products/product-slice"
+import {useAppDispatch} from "../../store";
 
 interface ICategoryItemProps {
     id: number,
@@ -9,18 +11,28 @@ interface ICategoryItemProps {
     category: string,
 }
 
-const CategoryItem: FC<ICategoryItemProps> = ({img, title, category}) => (
-    <li className='categoryItem'>
-        <Link to={`/products/${category}`}>
-            <img src={img} alt={title}/>
+const CategoryItem: FC<ICategoryItemProps> = ({img, title, category}) => {
+    const dispatch = useAppDispatch()
 
-            <div className="categoryItem__info">
-                <h1>{title}</h1>
+    return (
+        <li className='categoryItem'>
+            <div>
+                <img src={img} alt={title}/>
 
-                <button>show now</button>
+                <div className="categoryItem__info">
+                    <h1>{title}</h1>
+
+                    <Link
+                        to={`/products/${category}`}
+                        onClick={() => dispatch(resetState())}
+                    >
+                        show now
+                    </Link>
+                    {/*<button>show now</button>*/}
+                </div>
             </div>
-        </Link>
-    </li>
-)
+        </li>
+    )
+}
 
 export default CategoryItem

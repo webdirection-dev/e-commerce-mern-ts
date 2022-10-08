@@ -1,13 +1,13 @@
 import React, {FC} from 'react'
-import {useProductList} from './useProductList'
-import './ProductList.scss'
+import {useVitrine} from './useVitrine'
+import './Vitrine.scss'
 
 import BreakLine from "../../components/breakLine/BreakLine"
-import Products from "../../components/products/Products"
+import Products from "../../features/products/Products"
 import Newsletter from "../../components/newsletter/Newsletter"
 
-const ProductList: FC = () => {
-    const {handleFilter, setSort, category, filter, sort} = useProductList()
+const Vitrine: FC = () => {
+    const {handleFilter, handleSort} = useVitrine()
 
     return(
         <div className='productList'>
@@ -49,7 +49,7 @@ const ProductList: FC = () => {
 
                     <select
                         name="sort"
-                        onChange={e => setSort(e.target.value)}
+                        onChange={e => handleSort(e.target.value)}
                     >
                         <option value="newest">Newest</option>
                         <option value="asc">Prise (asc)</option>
@@ -58,10 +58,10 @@ const ProductList: FC = () => {
                 </li>
             </ul>
 
-            <Products category={category} filter={filter} sort={sort}/>
+            <Products />
             <Newsletter />
         </div>
     )
 }
 
-export default ProductList
+export default Vitrine

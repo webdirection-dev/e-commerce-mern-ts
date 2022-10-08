@@ -46,75 +46,6 @@
         grid-template-columns: max(100%);
         @media ($laptop) {grid-template-columns: 70% 30%;}
 
-        .products {
-            .product {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                border-bottom: 2px solid #eeeeee;
-                &:nth-last-child(1) {border: none;}
-                @media ($phone) {grid-template-columns: repeat(3, 1fr);}
-                @media ($laptop) {grid-template-columns: 230px 1fr 300px;}
-
-                img {
-                    @include img();
-                    object-position: center;
-                    height: 115px;
-                    width: 115px;
-                    @media ($phone) {height: 200px; width: 200px;}
-
-                }
-
-                ul {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-around;
-                    padding: 20px;
-
-                    li {
-                        text-transform: uppercase;
-
-                        b {text-transform: lowercase;}
-
-                        &.wrapper-product-color {
-                            display: flex;
-                            align-items: center;
-
-                            .product-details-color {
-                                width: 20px;
-                                height: 20px;
-                                border-radius: 50%;
-                                margin-left: 7px;
-                            }
-                        }
-                    }
-                }
-
-                .price {
-                    flex: 1;
-                    @include flex-center();
-                    flex-direction: column;
-                    margin-bottom: 30px;
-                    @media ($phone) {margin-bottom: 0;}
-
-                    .amount {
-                        @include flex-center();
-                        font-size: 24px;
-                        @media ($phone) {margin-bottom: 20px;}
-
-                        svg {
-                            cursor: pointer;
-                            margin: 5px;
-                        }
-                    }
-
-                    >span {
-                        font-size: 30px;
-                        font-weight: 200;
-                    }
-                }
-            }
-        }
-
         .summary {
             border: 2px solid #eee;
             border-radius: 10px;
@@ -148,6 +79,73 @@
                 text-transform: uppercase;
                 padding: 10px;
                 &:hover {background-color: teal;}
+            }
+        }
+    }
+
+    &__product {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-bottom: 2px solid #eeeeee;
+        &:nth-last-child(1) {border: none;}
+        @media ($phone) {grid-template-columns: repeat(3, 1fr);}
+        @media ($laptop) {grid-template-columns: 230px 1fr 300px;}
+
+        img {
+            @include img();
+            object-position: center;
+            height: 115px;
+            width: 115px;
+            @media ($phone) {height: 200px; width: 200px;}
+
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px;
+
+            li {
+                text-transform: uppercase;
+
+                b {text-transform: lowercase;}
+
+                &.wrapper-product-color {
+                    display: flex;
+                    align-items: center;
+
+                    .product-details-color {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin-left: 7px;
+                    }
+                }
+            }
+        }
+
+        .price {
+            flex: 1;
+            @include flex-center();
+            flex-direction: column;
+            margin-bottom: 30px;
+            @media ($phone) {margin-bottom: 0;}
+
+            .amount {
+                @include flex-center();
+                font-size: 24px;
+                @media ($phone) {margin-bottom: 20px;}
+
+                svg {
+                    cursor: pointer;
+                    margin: 5px;
+                }
+            }
+
+            >span {
+                font-size: 30px;
+                font-weight: 200;
             }
         }
     }

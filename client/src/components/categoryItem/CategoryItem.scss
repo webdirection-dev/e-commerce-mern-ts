@@ -31,8 +31,8 @@
             margin-bottom: 20px;
         }
 
-        button {
-            @include btn();
+        a {
+            @include link();
             color: gray;
             background-color: white;
             font-weight: 600;

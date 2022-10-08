@@ -1,12 +1,12 @@
 import React, {FC} from 'react'
-import './Product.scss'
-import {useProduct} from './useProduct'
+import './SingleProduct.scss'
+import {useSingleProduct} from './useSingleProduct'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
 
-const Product: FC = () => {
-    const {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale} = useProduct()
+const SingleProduct: FC = () => {
+    const {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale} = useSingleProduct()
 
     return(
         <div className='product'>
@@ -76,4 +76,4 @@ const Product: FC = () => {
     )
 }
 
-export default Product
+export default SingleProduct
