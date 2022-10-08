@@ -20,7 +20,7 @@ const Products: FC = () => {
                 productInfo.status === 'received' && productInfo.qty > 0 && filteredProducts.length > 0?
                     <div className='products'>
                         {
-                            filteredProducts && filteredProducts.map((i: IProductFromMongo) => (
+                            Array.isArray(filteredProducts) && filteredProducts.map((i: IProductFromMongo) => (
                                 <ProductItem key={i._id} {...i}/>
                             ))
                         }
