@@ -2,26 +2,22 @@ import {useEffect, useState} from "react"
 
 import {useAppDispatch, useAppSelector} from "../../store"
 import {getProducts, selectAllProduct, selectProductsInfo} from "./product-slice"
-import {selectOtherInfo} from "../other/other-slice"
 
 import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductProps} from "./Products"
 
-export const useProducts = () => {
+export const useProducts = ({category, filter, sort}: IProductProps) => {
     const dispatch = useAppDispatch()
-    const {category, filter, sort} = useAppSelector(state => selectOtherInfo(state))
-    // TODO: Сделать ресет для стейта Other
-    // console.log(category, filter, sort)
     const products = useAppSelector(state => selectAllProduct(state))
     const productInfo = useAppSelector(state => selectProductsInfo(state))
     const [filteredProducts, setFilteredProducts] = useState([] as IProductFromMongo[])
 
     useEffect(() => {
-        const path = category ? `/products?category=${category}` : '/products'
+        const path = category ? '/products?category='+category : '/products?random='+productInfo.random
         dispatch(getProducts(path))
     }, [category])
 
     useEffect(() => {
-
         if (category && filter) {
             Array.isArray(products) && setFilteredProducts(
                  products.filter(
@@ -40,6 +36,17 @@ export const useProducts = () => {
         //     setFilteredProducts(out)
         // } else setFilteredProducts(products)
     }, [category, products, filter])
+
+    useEffect(() => {
+        if (sort === 'newest') {
+            setFilteredProducts(prev =>
+                [...prev].sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))
+            )
+        }
+
+        if (sort === 'asc') setFilteredProducts( prev => [...prev].sort((a, b) => a.price - b.price))
+        if (sort === 'desc') setFilteredProducts( prev => [...prev].sort((a, b) => b.price - a.price))
+    }, [sort])
 
     return {productInfo, filteredProducts}
 }

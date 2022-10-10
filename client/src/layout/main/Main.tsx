@@ -7,7 +7,8 @@ import SingleProduct from "../../pages/singleProduct/SingleProduct"
 import Cart from "../../pages/cart/Cart"
 
 const Main: FC = () => {
-    return (
+
+    return(
         <main>
             <Routes>
                 <Route path="/" element={<Home />} />

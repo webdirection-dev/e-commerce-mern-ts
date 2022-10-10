@@ -59,6 +59,7 @@ router.get(
             const items =
                 req.query.new ? await Product.find().sort({createdAt: -1}).limit(5) :
                 req.query.category ? await Product.find({categories: {$in: [req.query.category]}}) :
+                req.query.random ? await Product.aggregate([{ $sample: { size: Number(req.query.random) } }]) :
                 await Product.find()
 
             res.status(200).json(items)

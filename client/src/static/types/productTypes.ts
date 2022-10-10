@@ -8,4 +8,5 @@ export interface IProductFromMongo {
     color: string[];
     price: number;
     inStock: boolean;
+    createdAt: string;
 }

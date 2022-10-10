@@ -3,7 +3,7 @@ export const categoriesData = [
         id: 1,
         img: 'https://is4.fwrdassets.com/images/p/fw/z/NHAM-WO42_V1.jpg',
         title: 'fall romance',
-        category: 'women'
+        category: 'fall'
     },
     {
         id: 2,
@@ -15,13 +15,13 @@ export const categoriesData = [
         id: 3,
         img: 'https://is4.fwrdassets.com/images/p/fw/z/HLSA-WS29_V1.jpg',
         title: 'fresh in cotton',
-        category: 'jeans'
+        category: 'cotton'
     },
     {
         id: 4,
         img: 'https://cdn.shopify.com/s/files/1/2185/2813/products/M3181R_04457_b1_s3_a2_1_m93_1500x.jpg?v=1659044186',
         title: 'just dropped',
-        category: 'women'
+        category: 'men'
     },
     {
         id: 5,

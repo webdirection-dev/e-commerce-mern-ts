@@ -2,7 +2,6 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
 
 import {productReducer} from "./features/products/product-slice"
-import {otherReducer} from "./features/other/other-slice"
 
 import axios, {AxiosStatic,  AxiosInstance} from 'axios'
 
@@ -13,7 +12,6 @@ export const axiosInstance = axios.create({
 const rootReducer = combineReducers({
     // auth: authReducer,
     productReducer,
-    otherReducer,
 });
 
 export const store = configureStore({

@@ -1,6 +1,5 @@
-import React, { FC } from 'react'
+import React, {FC} from 'react'
 import './Home.scss'
-import {useHome} from './useHome'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Slider from "../../components/slider/Slider"
@@ -10,20 +9,16 @@ import Newsletter from "../../components/newsletter/Newsletter"
 
 interface IHomeProps {}
 
-const Home: FC<IHomeProps> = () => {
-    const {} = useHome
-
-    return(
-        <div className='home'>
-            <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
-            <Slider auto={true}/>
-            <BreakLine txt='Categories'/>
-            <Categories />
-            <BreakLine txt='Popular Products'/>
-            <Products />
-            <Newsletter />
-        </div>
-    )
-}
+const Home: FC<IHomeProps> = () => (
+    <div className='home'>
+        <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
+        <Slider auto={true}/>
+        <BreakLine txt='Categories'/>
+        <Categories />
+        <BreakLine txt='Popular Products'/>
+        <Products />
+        <Newsletter />
+    </div>
+)
 
 export default Home

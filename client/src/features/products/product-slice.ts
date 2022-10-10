@@ -6,6 +6,7 @@ type TProductState = {
     status: string;
     error: null | string;
     products: IProductFromMongo[];
+    random: string;
 }
 
 export const getProducts = createAsyncThunk<
@@ -30,13 +31,21 @@ const initialState: TProductState = {
     status: 'idle', // loading | received | rejected
     error: null,
     products: [],
+    random: '8',
 }
 
 const productSlice = createSlice({
     name: '@@products',
     initialState,
     reducers: {
-        resetState: () => initialState
+        resetState: () => initialState,
+
+        setIndexes: (state, action) => {
+            return {
+                ...state,
+                indexes: action.payload
+            }
+        }
     },
 
     extraReducers: (builder) => {
@@ -58,13 +67,14 @@ const productSlice = createSlice({
     },
 });
 
-export const {resetState} = productSlice.actions
+export const {resetState, setIndexes} = productSlice.actions
 export const productReducer = productSlice.reducer;
 
 //selectors
 export const selectProductsInfo = (state: RootState) => ({
     status: state.productReducer.status,
     error: state.productReducer.error,
+    random: state.productReducer.random,
     qty: state.productReducer.products.length,
 });
 

@@ -7,12 +7,12 @@ import Products from "../../features/products/Products"
 import Newsletter from "../../components/newsletter/Newsletter"
 
 const Vitrine: FC = () => {
-    const {handleFilter, handleSort} = useVitrine()
+    const {path, filter, sort, handleFilter, setSort} = useVitrine()
 
     return(
         <div className='productList'>
             <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
-            <h1 className='productList__title'>Dresses</h1>
+            <h1 className='productList__title'>{path}</h1>
 
             <ul className='productList__filter'>
                 <li>
@@ -49,7 +49,7 @@ const Vitrine: FC = () => {
 
                     <select
                         name="sort"
-                        onChange={e => handleSort(e.target.value)}
+                        onChange={e => setSort(e.target.value)}
                     >
                         <option value="newest">Newest</option>
                         <option value="asc">Prise (asc)</option>
@@ -58,7 +58,7 @@ const Vitrine: FC = () => {
                 </li>
             </ul>
 
-            <Products />
+            <Products category={path} filter={filter} sort={sort}/>
             <Newsletter />
         </div>
     )

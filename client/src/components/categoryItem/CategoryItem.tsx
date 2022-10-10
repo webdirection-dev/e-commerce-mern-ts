@@ -1,8 +1,8 @@
-import React, {FC, useEffect} from 'react'
+import React, {FC} from 'react'
 import {Link} from "react-router-dom"
 import './CategoryItem.scss'
+import {useAppDispatch} from "../../store"
 import {resetState} from "../../features/products/product-slice"
-import {useAppDispatch} from "../../store";
 
 interface ICategoryItemProps {
     id: number,
