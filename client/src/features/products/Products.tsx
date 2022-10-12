@@ -1,4 +1,5 @@
 import React, {FC} from 'react'
+import {motion, AnimatePresence} from 'framer-motion'
 import {useProducts} from './useProducts'
 import './styles/Products.scss'
 
@@ -23,13 +24,15 @@ const Products: FC<IProductProps> = (props) => {
                 ? <img className={'preloader'} src={preloader} alt="preloader"/>
 
                 : productInfo.status === 'received' && productInfo.qty > 0 && filteredProducts.length > 0
-                ? <div className='products'>
-                        {
-                            Array.isArray(filteredProducts) && filteredProducts.map((i: IProductFromMongo) => (
-                                <ProductItem key={i._id} {...i}/>
-                            ))
-                        }
-                    </div>
+                ? <motion.div layout className='products'>
+                        <AnimatePresence>
+                            {
+                                Array.isArray(filteredProducts) && filteredProducts.map((i: IProductFromMongo) => (
+                                    <ProductItem key={i._id} {...i}/>
+                                ))
+                            }
+                        </AnimatePresence>
+                    </motion.div>
 
                 : <span className='product-alert'>Unfortunately, this catalogue does not provide a description of the contents.</span>
             }
