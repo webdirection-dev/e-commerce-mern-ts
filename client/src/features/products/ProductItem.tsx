@@ -1,13 +1,16 @@
 import React, { FC } from 'react'
+import {Link} from "react-router-dom"
 import './styles/ProductItem.scss'
 import {motion} from 'framer-motion'
 
 import { MdOutlineShoppingCart, MdSearch, MdFavoriteBorder } from "react-icons/md"
-
 import {IProductFromMongo} from "../../static/types/productTypes"
 
+interface IProductItem {
+    productItem: IProductFromMongo
+}
 
-const ProductItem: FC<IProductFromMongo> = ({img}) => (
+const ProductItem: FC<IProductItem> = ({productItem}) => (
     <motion.div
         animate={{opacity: 1}}
         initial={{opacity: 0}}
@@ -16,16 +19,19 @@ const ProductItem: FC<IProductFromMongo> = ({img}) => (
         layout
         className='productItem'
     >
-        <img src={img} alt=""/>
+        <img src={productItem.img} alt=""/>
 
         <div className="productItem__info">
             <button className="productItem__icon">
                 <MdOutlineShoppingCart />
             </button>
 
-            <button className="productItem__icon">
+            <Link
+                to={`/product/${productItem._id}`}
+                state={productItem}
+                className="productItem__icon">
                 <MdSearch />
-            </button>
+            </Link>
 
             <button className="productItem__icon">
                 <MdFavoriteBorder />

@@ -8,16 +8,11 @@ export const useVitrine = () => {
 
     const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
         const {name, value} = e.target
-        setFilter({
-            ...filter,
-            [name]: value
-        })
+        setFilter({...filter, [name]: value})
     }
 
-    useEffect(() => {
-        //позволит смотреть страницу с ее начала иначе её автоскролит вниз
-        window.scrollTo(0, 0);
-    }, [])
+    //позволит смотреть страницу с ее начала иначе её автоскролит вниз
+    useEffect(() => { window.scrollTo(0, 0) }, [])
 
     return {path, filter, sort, handleFilter, setSort}
 }

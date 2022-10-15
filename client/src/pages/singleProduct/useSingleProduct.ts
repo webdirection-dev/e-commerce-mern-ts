@@ -1,6 +1,7 @@
 import {MouseEvent, useEffect, useState} from "react"
 
 import { MdRemove, MdAdd } from "react-icons/md"
+import {useLocation} from "react-router-dom";
 
 const initialArea = {
     offsetLeft: 0,
@@ -18,6 +19,7 @@ const initialZoom = {
 const isMatchMedia = window.matchMedia('(min-width: 992px)').matches;
 
 export const useSingleProduct = () => {
+    const productItem = useLocation().state
     const [isClick, setIsClick] = useState(false)
     const [isZoom, setIsZoom] = useState(false)
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
@@ -89,5 +91,7 @@ export const useSingleProduct = () => {
         }
     }, [isZoom])
 
-    return {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale}
+    useEffect(() => { window.scrollTo(0, 0) }, [])
+
+    return {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale, productItem}
 }

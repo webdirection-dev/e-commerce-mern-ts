@@ -28,7 +28,7 @@ const Products: FC<IProductProps> = (props) => {
                         <AnimatePresence>
                             {
                                 Array.isArray(filteredProducts) && filteredProducts.map((i: IProductFromMongo) => (
-                                    <ProductItem key={i._id} {...i}/>
+                                    <ProductItem key={i._id} productItem={i}/>
                                 ))
                             }
                         </AnimatePresence>
