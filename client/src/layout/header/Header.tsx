@@ -2,13 +2,16 @@ import React, { FC } from 'react'
 import {Link} from "react-router-dom"
 import './header.scss'
 
-import {useAppDispatch} from "../../store"
+import {useAppDispatch, useAppSelector} from "../../store"
+import {resetState} from "../../features/products/product-slice"
+import {selectCartInfo} from "../../features/cart/cart-slice"
 
 import {MdSearch, MdOutlineShoppingCart} from 'react-icons/md'
 import Badge from '@mui/material/Badge'
 
 const Header: FC = () => {
     const dispatch = useAppDispatch()
+    const {quantity} = useAppSelector(store => selectCartInfo(store))
 
     return(
         <header className='header'>
@@ -21,7 +24,11 @@ const Header: FC = () => {
                 </div>
             </div>
 
-            <Link to='/' className='header__logo'>
+            <Link
+                to='/'
+                className='header__logo'
+                onClick={() => dispatch(resetState())}
+            >
                 <h1 >.STORE</h1>
             </Link>
 
@@ -29,14 +36,14 @@ const Header: FC = () => {
                 <button className='header__user-action'>REGISTER</button>
                 <button className='header__user-action'>SING IN</button>
 
-                <button className='header__user-action'>
-                    <Badge badgeContent={4} color="primary">
+                <Link to='/cart' className='header__user-action'>
+                    <Badge badgeContent={quantity} color="primary">
                         <MdOutlineShoppingCart
                             color="action"
                             style={{fontSize: '24px'}}
                         />
                     </Badge>
-                </button>
+                </Link>
             </div>
         </header>
     )

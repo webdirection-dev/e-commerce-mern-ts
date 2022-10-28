@@ -4,7 +4,7 @@ import {Routes, Route} from "react-router-dom"
 import Home from "../../pages/home/Home"
 import Vitrine from "../../pages/vitrine/Vitrine"
 import SingleProduct from "../../pages/singleProduct/SingleProduct"
-import Cart from "../../pages/cart/Cart"
+import Cart from "../../features/cart/Cart"
 
 const Main: FC = () => {
 

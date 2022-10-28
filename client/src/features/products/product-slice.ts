@@ -6,7 +6,16 @@ type TProductState = {
     status: string;
     error: null | string;
     products: IProductFromMongo[];
+    singleProduct: IProductFromMongo;
     random: string;
+}
+
+const initialState: TProductState = {
+    status: 'idle', // loading | received | rejected
+    error: null,
+    products: [],
+    singleProduct: {} as IProductFromMongo,
+    random: '8',
 }
 
 export const getProducts = createAsyncThunk<
@@ -27,12 +36,23 @@ export const getProducts = createAsyncThunk<
     }
 )
 
-const initialState: TProductState = {
-    status: 'idle', // loading | received | rejected
-    error: null,
-    products: [],
-    random: '8',
-}
+export const getSingleProduct = createAsyncThunk<
+    IProductFromMongo,
+    string,
+    { extra: DetailsExtra; rejectValue: string }
+    >(
+    '@@products/get-single-product',
+
+    async (id, { extra: { client }, rejectWithValue }) => {
+        // const user = JSON.parse(localStorage.getItem('user') as string) || null;
+        // const token = 'Bearer ' + user.accessToken;
+
+        return await client
+            .get('/products/find/'+id)
+            .then(({ data }) => data)
+            .catch((err) => rejectWithValue(err.message))
+    }
+)
 
 const productSlice = createSlice({
     name: '@@products',
@@ -53,6 +73,11 @@ const productSlice = createSlice({
             .addCase(getProducts.fulfilled, (state, action) => {
                 state.status = 'received'
                 state.products = action.payload
+            })
+
+            .addCase(getSingleProduct.fulfilled, (state, action) => {
+                state.status = 'received'
+                state.singleProduct = action.payload
             })
 
             .addMatcher(isPending, (state, action: PayloadAction<string>) => {
@@ -80,6 +105,7 @@ export const selectProductsInfo = (state: RootState) => ({
 
 export const selectAllProduct = (state: RootState) => state.productReducer.products
 export const selectProductById = (state: RootState, id: string) => state.productReducer.products.find((i) => i._id === id)
+export const selectSingleProduct = (state: RootState) => state.productReducer.singleProduct
 
 // //helpers
 function isError(action: AnyAction) {

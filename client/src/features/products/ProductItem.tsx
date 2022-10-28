@@ -28,8 +28,8 @@ const ProductItem: FC<IProductItem> = ({productItem}) => (
 
             <Link
                 to={`/product/${productItem._id}`}
-                state={productItem}
-                className="productItem__icon">
+                className="productItem__icon"
+            >
                 <MdSearch />
             </Link>
 

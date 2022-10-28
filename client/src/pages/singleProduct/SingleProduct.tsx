@@ -1,15 +1,36 @@
 import React, {FC} from 'react'
-import {useParams, useLocation} from "react-router-dom"
 import './SingleProduct.scss'
 import {useSingleProduct} from './useSingleProduct'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
+import {MdAdd, MdRemove} from "react-icons/md";
 
 const SingleProduct: FC = () => {
     const
-        {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale, productItem}
-    = useSingleProduct()
+        {
+            isMatchMedia,
+            isClick,
+            isZoom,
+            setIsZoom,
+
+            handlerClick,
+            handlerMouseMove,
+            handleClickButton,
+
+            magnifyingZoom,
+
+            MdRemove,
+            MdAdd,
+
+            classScale,
+            singleProduct,
+
+            quantity,
+            setQuantity,
+            setColor,
+            setSize,
+        } = useSingleProduct()
 
     return(
         <div className='product'>
@@ -24,53 +45,73 @@ const SingleProduct: FC = () => {
                     onMouseMove={e => handlerMouseMove(e)}
                     onMouseLeave={() => setIsZoom(false)}
                 >
-                    <img
-                        id='magnifying-img'
-                        src={productItem.img}
-                        alt="..."
-                        className={classScale}
-                        style={
-                            isClick && isZoom ?
-                                {transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}  :
-                                undefined
-                        }
-                    />
+                    {singleProduct._id && (
+                        <img
+                            id='magnifying-img'
+                            src={singleProduct.img}
+                            alt="..."
+                            className={classScale}
+                            style={
+                                isClick && isZoom ?
+                                    {transform: `translate(-${magnifyingZoom.clientX}%, -${magnifyingZoom.clientY}%) scale(${magnifyingZoom.scale})`}  :
+                                    undefined
+                            }
+                        />
+                    )}
                 </div>
 
                 <div className="info">
-                    <h1>{productItem.title}</h1>
-                    <p>{productItem.desc}</p>
-                    <span className='info-price'>$ {productItem.price}</span>
+                    {
+                        singleProduct._id && (
+                            <>
+                                <h1>{singleProduct.title}</h1>
+                                <p>{singleProduct.desc}</p>
+                                <span className='info-price'>$ {singleProduct.price}</span>
 
-                    <div className="container-filter">
-                        <div className="product-filter">
-                            <h2>Color</h2>
-                            {
-                                productItem.color.map((i: string) => <div key={i} className="product-color" style={{backgroundColor: i}}/>)
-                            }
-                        </div>
+                                <div className="container-filter">
+                                    <div className="product-filter">
+                                        <h2>Color</h2>
+                                        {
+                                            singleProduct.color.map((i: string) => {
+                                                return (
+                                                    <div
+                                                        key={i}
+                                                        className="product-color"
+                                                        style={{backgroundColor: i}}
+                                                        onClick={() => setColor(i)}
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </div>
 
-                        <div className="product-filter">
-                            <label>Size</label>
-                            <select name="product-size">
-                                {
-                                    productItem.size.map((i: string) => {
-                                        const sizes = {xs: 'XS', s: 'S', m: 'M', l: 'L', xl: 'XL'} as {[key: string]: string}
-                                        return <option key={i} value={i}>{sizes[i]}</option>
-                                    })
-                                }
-                            </select>
-                        </div>
-                    </div>
+                                    <div className="product-filter">
+                                        <label>Size</label>
+                                        <select name="product-size" onChange={(e) => setSize(e.target.value)}>
+                                            {
+                                                singleProduct.size.map((i: string) => {
+                                                    const sizes = {xs: 'XS', s: 'S', m: 'M', l: 'L', xl: 'XL'} as {[key: string]: string}
+                                                    return (
+                                                        <option key={i} value={i}>{sizes[i]}</option
+                                                        >
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    }
 
                     <div className="container-add">
                         <div className="product-amount">
-                            <MdRemove />
-                            <span>1</span>
-                            <MdAdd />
+                            <MdRemove onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}/>
+                            <span>{quantity}</span>
+                            <MdAdd onClick={() => setQuantity(quantity + 1)}/>
                         </div>
 
-                        <button>add to cart</button>
+                        <button onClick={handleClickButton}>add to cart</button>
                     </div>
                 </div>
             </div>

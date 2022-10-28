@@ -1,7 +1,9 @@
 import {MouseEvent, useEffect, useState} from "react"
-
+import {useLocation} from "react-router-dom"
+import {useAppDispatch, useAppSelector} from "../../store"
+import {getSingleProduct, selectSingleProduct} from "../../features/products/product-slice"
+import {addProductsToCart} from "../../features/cart/cart-slice"
 import { MdRemove, MdAdd } from "react-icons/md"
-import {useLocation} from "react-router-dom";
 
 const initialArea = {
     offsetLeft: 0,
@@ -19,12 +21,20 @@ const initialZoom = {
 const isMatchMedia = window.matchMedia('(min-width: 992px)').matches;
 
 export const useSingleProduct = () => {
-    const productItem = useLocation().state
+    const dispatch = useAppDispatch()
+    const singleProduct = useAppSelector(state => selectSingleProduct(state))
+    const location = useLocation().pathname.split('/').reverse()[0]
+
     const [isClick, setIsClick] = useState(false)
     const [isZoom, setIsZoom] = useState(false)
+
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
     const [magnifyingZoom, setMagnifyingZoom] = useState(initialZoom)
     const [classScale, setClassScale] = useState('click-scale')
+
+    const [quantity, setQuantity] = useState(1)
+    const [color, setColor] = useState('')
+    const [size, setSize] = useState('')
 
     const handlerClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (isMatchMedia) {
@@ -71,6 +81,21 @@ export const useSingleProduct = () => {
         }
     }
 
+    const handleClickButton = () => {
+        //update Cart
+        // dispatch(addProductsToCart())
+    }
+
+    useEffect(() => {
+        dispatch(getSingleProduct(location))
+    }, [location])
+
+    useEffect(() => {
+        //дефолтный выбор цвета и размера
+        if (singleProduct.color) setColor(singleProduct.color[0])
+        if (singleProduct.size) setSize(singleProduct.size[0])
+    }, [singleProduct])
+
     useEffect(() => {
         const area = document.getElementById('magnifying-area')
 
@@ -93,5 +118,27 @@ export const useSingleProduct = () => {
 
     useEffect(() => { window.scrollTo(0, 0) }, [])
 
-    return {isMatchMedia, isClick, isZoom, setIsZoom, handlerClick, handlerMouseMove, magnifyingZoom, MdRemove, MdAdd, classScale, productItem}
+    return {
+        isMatchMedia,
+        isClick,
+        isZoom,
+        setIsZoom,
+
+        handlerClick,
+        handlerMouseMove,
+        handleClickButton,
+
+        magnifyingZoom,
+
+        MdRemove,
+        MdAdd,
+
+        classScale,
+        singleProduct,
+
+        quantity,
+        setQuantity,
+        setColor,
+        setSize,
+    }
 }

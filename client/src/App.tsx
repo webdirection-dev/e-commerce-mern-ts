@@ -6,7 +6,6 @@ import {store} from './store'
 import Root from "./layout/Root"
 import Register from "./pages/authentification/Register"
 import Login from "./pages/authentification/Login"
-import {useEffect} from "react";
 
 const  App = () => {
     // let auth = false

@@ -2,6 +2,7 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
 
 import {productReducer} from "./features/products/product-slice"
+import {cartReducer} from "./features/cart/cart-slice"
 
 import axios, {AxiosStatic,  AxiosInstance} from 'axios'
 
@@ -12,6 +13,7 @@ export const axiosInstance = axios.create({
 const rootReducer = combineReducers({
     // auth: authReducer,
     productReducer,
+    cartReducer,
 });
 
 export const store = configureStore({

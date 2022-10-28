@@ -60,6 +60,7 @@
 
         &-action {
             @include btn();
+            color: black;
             font-size: 12px;
             margin-left: 5px;
             @media ($laptop) {font-size: 14px; margin-left: 25px;}
