@@ -2,20 +2,23 @@ import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/
 import { RootState, DetailsExtra } from '../../store'
 import {IProductFromMongo} from "../../static/types/productTypes"
 
+interface TProductToCart extends IProductFromMongo{
+    quantityThisProduct: number;
+    totalThisProduct: number;
+}
+
 type TCartState = {
     status: string;
     error: null | string;
-    products: [];
-    quantity: number;
-    total: number;
+    products: TProductToCart[];
+    quantityAllItems: number
 }
 
 const initialState: TCartState = {
     status: 'idle', // loading | received | rejected
     error: null,
     products: [],
-    quantity: 0,
-    total: 0,
+    quantityAllItems: 0
 }
 
 export const postCart = createAsyncThunk<
@@ -45,9 +48,39 @@ const cartSlice = createSlice({
         addProductsToCart: (state, action) => {
             return {
                 ...state,
-                quantity: state.quantity + 1,
-                products: action.payload.products,
-                total: state.total + action.payload.price
+                quantityAllItems: state.quantityAllItems + 1,
+                products: [...state.products, action.payload],
+            }
+        },
+
+        managerQuantityThisItem: (state, action) => {
+            const {_id, act} = action.payload
+
+            const out = state.products.map(i => {
+                if (i._id === _id) {
+                    if (act === 'dec' && i.quantityThisProduct > 0) {
+                        return (
+                            {
+                                ...i,
+                                quantityThisProduct: i.quantityThisProduct - 1
+                            }
+                        )
+                    }
+                    if (act === 'inc') {
+                        return (
+                            {
+                                ...i,
+                                quantityThisProduct: i.quantityThisProduct + 1
+                            }
+                        )
+                    }
+                }
+                return i
+            })
+
+            return {
+                ...state,
+                products: out,
             }
         }
     },
@@ -71,15 +104,15 @@ const cartSlice = createSlice({
     },
 });
 
-export const {resetState, addProductsToCart} = cartSlice.actions
+export const {resetState, addProductsToCart, managerQuantityThisItem} = cartSlice.actions
 export const cartReducer = cartSlice.reducer;
 
 //selectors
 export const selectCartInfo = (state: RootState) => ({
     status: state.cartReducer.status,
     error: state.cartReducer.error,
-    quantity: state.cartReducer.quantity,
-    total: state.cartReducer.total,
+    products: state.cartReducer.products,
+    quantityAllItems: state.cartReducer.quantityAllItems,
 });
 
 // //helpers

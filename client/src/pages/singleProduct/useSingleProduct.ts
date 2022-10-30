@@ -83,7 +83,15 @@ export const useSingleProduct = () => {
 
     const handleClickButton = () => {
         //update Cart
-        // dispatch(addProductsToCart())
+        dispatch(addProductsToCart(
+            {
+                ...singleProduct,
+                quantityThisProduct: quantity,
+                totalThisProduct: quantity * singleProduct.price,
+                color,
+                size,
+            }
+        ))
     }
 
     useEffect(() => {

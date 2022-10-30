@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge'
 
 const Header: FC = () => {
     const dispatch = useAppDispatch()
-    const {quantity} = useAppSelector(store => selectCartInfo(store))
+    const {quantityAllItems} = useAppSelector(store => selectCartInfo(store))
 
     return(
         <header className='header'>
@@ -37,7 +37,7 @@ const Header: FC = () => {
                 <button className='header__user-action'>SING IN</button>
 
                 <Link to='/cart' className='header__user-action'>
-                    <Badge badgeContent={quantity} color="primary">
+                    <Badge badgeContent={quantityAllItems} color="primary">
                         <MdOutlineShoppingCart
                             color="action"
                             style={{fontSize: '24px'}}

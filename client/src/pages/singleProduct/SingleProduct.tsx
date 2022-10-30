@@ -61,48 +61,50 @@ const SingleProduct: FC = () => {
                 </div>
 
                 <div className="info">
-                    {
-                        singleProduct._id && (
-                            <>
-                                <h1>{singleProduct.title}</h1>
-                                <p>{singleProduct.desc}</p>
-                                <span className='info-price'>$ {singleProduct.price}</span>
+                    <div className='info__about'>
+                        {
+                            singleProduct._id && (
+                                <>
+                                    <h1>{singleProduct.title}</h1>
+                                    <p>{singleProduct.desc}</p>
+                                    <span className='info-price'>$ {singleProduct.price}</span>
 
-                                <div className="container-filter">
-                                    <div className="product-filter">
-                                        <h2>Color</h2>
-                                        {
-                                            singleProduct.color.map((i: string) => {
-                                                return (
-                                                    <div
-                                                        key={i}
-                                                        className="product-color"
-                                                        style={{backgroundColor: i}}
-                                                        onClick={() => setColor(i)}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-
-                                    <div className="product-filter">
-                                        <label>Size</label>
-                                        <select name="product-size" onChange={(e) => setSize(e.target.value)}>
+                                    <div className="container-filter">
+                                        <div className="product-filter">
+                                            <h2>Color</h2>
                                             {
-                                                singleProduct.size.map((i: string) => {
-                                                    const sizes = {xs: 'XS', s: 'S', m: 'M', l: 'L', xl: 'XL'} as {[key: string]: string}
+                                                singleProduct.color.map((i: string) => {
                                                     return (
-                                                        <option key={i} value={i}>{sizes[i]}</option
-                                                        >
+                                                        <div
+                                                            key={i}
+                                                            className="product-color"
+                                                            style={{backgroundColor: i}}
+                                                            onClick={() => setColor(i)}
+                                                        />
                                                     )
                                                 })
                                             }
-                                        </select>
+                                        </div>
+
+                                        <div className="product-filter">
+                                            <label>Size</label>
+                                            <select name="product-size" onChange={(e) => setSize(e.target.value)}>
+                                                {
+                                                    singleProduct.size.map((i: string) => {
+                                                        const sizes = {xs: 'XS', s: 'S', m: 'M', l: 'L', xl: 'XL'} as {[key: string]: string}
+                                                        return (
+                                                            <option key={i} value={i}>{sizes[i]}</option
+                                                            >
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </>
-                        )
-                    }
+                                </>
+                            )
+                        }
+                    </div>
 
                     <div className="container-add">
                         <div className="product-amount">
