@@ -4,7 +4,6 @@ import {IProductFromMongo} from "../../static/types/productTypes"
 
 interface TProductToCart extends IProductFromMongo{
     quantityThisProduct: number;
-    totalThisProduct: number;
 }
 
 type TCartState = {
