@@ -3,6 +3,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit'
 
 import {productReducer} from "./features/products/product-slice"
 import {cartReducer} from "./features/cart/cart-slice"
+import {wishlistReducer} from "./features/wishlist/wishlist-slice"
 
 import axios, {AxiosStatic,  AxiosInstance} from 'axios'
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     // auth: authReducer,
     productReducer,
     cartReducer,
+    wishlistReducer,
 });
 
 export const store = configureStore({

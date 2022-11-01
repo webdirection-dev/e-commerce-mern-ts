@@ -13,7 +13,7 @@ const Cart = () => {
             <BreakLine txt='Super Deal! Free Shipping on Orders Over $50' fs={14}/>
 
             <div className="wrapper">
-                <h1>your bag</h1>
+                <h1>your bag {products.length < 1 ? 'is empty' : ''}</h1>
 
                 <div className="cart__header">
                     <button>continue shopping</button>

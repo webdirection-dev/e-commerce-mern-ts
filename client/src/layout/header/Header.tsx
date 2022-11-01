@@ -1,17 +1,25 @@
-import React, { FC } from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {Link} from "react-router-dom"
 import './header.scss'
 
 import {useAppDispatch, useAppSelector} from "../../store"
 import {resetState} from "../../features/products/product-slice"
 import {selectCartInfo} from "../../features/cart/cart-slice"
+import {selectWishlistInfo} from "../../features/wishlist/wishlist-slice"
 
-import {MdSearch, MdOutlineShoppingCart} from 'react-icons/md'
+import {MdSearch, MdFavoriteBorder, MdOutlineShoppingCart, MdFavorite} from 'react-icons/md'
 import Badge from '@mui/material/Badge'
 
 const Header: FC = () => {
     const dispatch = useAppDispatch()
     const {quantityAllItems} = useAppSelector(store => selectCartInfo(store))
+    const {itemsLength} = useAppSelector(store => selectWishlistInfo(store))
+    const [isWishlist, setWishlist] = useState(false)
+
+    useEffect(() => {
+        if (itemsLength > 0) setWishlist(true)
+        else setWishlist(false)
+    }, [itemsLength])
 
     return(
         <header className='header'>
@@ -35,6 +43,14 @@ const Header: FC = () => {
             <div className='header__user'>
                 <button className='header__user-action'>REGISTER</button>
                 <button className='header__user-action'>SING IN</button>
+
+                <Link to='/wishlist' className='header__user-action'>
+                    {
+                        isWishlist
+                            ? <MdFavorite style={{fontSize: '24px', color: 'red'}}/>
+                            : <MdFavoriteBorder style={{fontSize: '24px'}}/>
+                    }
+                </Link>
 
                 <Link to='/cart' className='header__user-action'>
                     <Badge badgeContent={quantityAllItems} color="primary">

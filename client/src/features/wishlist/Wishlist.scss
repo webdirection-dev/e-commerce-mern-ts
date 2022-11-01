@@ -1,0 +1,90 @@
+@import '../../index';
+
+.wishlist {
+    min-height: calc(100vh - 60px - 230.5px);
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        @media ($tablet) {padding: 20px 15%;}
+
+        h1 {
+            font-weight: 300;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: white;
+        border: 2px solid #eeeeee;
+        margin-top: 20px;
+        cursor: grab;
+        @media ($phone) {grid-template-columns: repeat(3, 1fr);}
+        @media ($laptop) {grid-template-columns: 230px 1fr 300px;}
+
+        img {
+            @include img();
+            object-position: center;
+            height: 115px;
+            width: 115px;
+            @media ($phone) {height: 200px; width: 200px;}
+
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px;
+
+            li {
+                text-transform: uppercase;
+                b {text-transform: lowercase;}
+            }
+        }
+
+        .wrapper-color {
+            display: flex;
+            align-items: center;
+
+            .color {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                margin-left: 5px;
+            }
+        }
+
+
+        .price {
+            flex: 1;
+            @include flex-center();
+            margin-bottom: 30px;
+            @media ($phone) {margin-bottom: 0;}
+
+            >span {
+                font-size: 30px;
+                font-weight: 200;
+            }
+
+            >svg, >a {
+                font-size: 35px;
+                color: #eeeeee;
+                margin-left: 15px;
+                cursor: pointer;
+                transition: all .5s ease;
+                &:hover {color: black}
+            }
+
+            >a {
+                display: flex;
+                align-items: center;
+                margin-left: 40px;
+            }
+        }
+    }
+}
