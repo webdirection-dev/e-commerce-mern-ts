@@ -1,11 +1,16 @@
 import React, { FC } from 'react'
+import {useNavigate} from "react-router-dom"
 import './Auth.scss'
+import {useAppDispatch} from "../../store"
+import {singIn} from "../../features/auth/auth-slice"
 import {useBgSmaller} from '../../static/hooks/useBgSmaller'
 
 import {bgLogin} from "../../static/img"
 import {Link} from "react-router-dom";
 
 const Login: FC = () => {
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const {src, className} = useBgSmaller(bgLogin)
 
     return(
@@ -18,7 +23,13 @@ const Login: FC = () => {
                     <input type="password" placeholder='password'/>
                 </form>
 
-                <button className='login-btn'>login</button>
+                <button
+                    className='login-btn'
+                    onClick={() => {
+                        navigate('/')
+                        dispatch(singIn())
+                    }}
+                >login</button>
                 <a href="#">do not you remember the password?</a>
                 <Link to='/register'>create a new account</Link>
             </div>

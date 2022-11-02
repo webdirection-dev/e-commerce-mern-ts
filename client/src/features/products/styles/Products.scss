@@ -1,11 +1,22 @@
 @import '../../../index';
 
 .products {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
-    @media ($tablet) {grid-template-columns: repeat(2, 1fr);}
-    @media ($laptop) {grid-template-columns: repeat(3, 1fr);}
-    @media ($projector) {grid-template-columns: repeat(4, 1fr);}
+    position: relative;
+
+    &__wrapper {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        @media ($tablet) {grid-template-columns: repeat(2, 1fr);}
+        @media ($laptop) {grid-template-columns: repeat(3, 1fr);}
+        @media ($projector) {grid-template-columns: repeat(4, 1fr);}
+    }
+
+    &__popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
 }

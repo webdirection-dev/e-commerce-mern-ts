@@ -25,7 +25,6 @@ const WishlistItem: FC<IWishlistItem> = ({item, removeFromList}) => {
         <Reorder.Item
             key={_id}
             className="wishlist__item"
-
             value={item}
             whileDrag={{
                 scale: 1.1,

@@ -1,12 +1,14 @@
-import React, {FC} from 'react'
 import './SingleProduct.scss'
 import {useSingleProduct} from './useSingleProduct'
 
 import BreakLine from "../../components/breakLine/BreakLine"
 import Newsletter from "../../components/newsletter/Newsletter"
-import {MdAdd, MdRemove} from "react-icons/md";
+import {MdAdd, MdFavorite, MdFavoriteBorder, MdRemove} from "react-icons/md"
+import {addToWishlist, selectFindById} from "../../features/wishlist/wishlist-slice"
+import {useAppDispatch, useAppSelector} from "../../store";
+import React, {useState} from "react";
 
-const SingleProduct: FC = () => {
+const SingleProduct = () => {
     const
         {
             isMatchMedia,
@@ -31,6 +33,9 @@ const SingleProduct: FC = () => {
             setColor,
             setSize,
         } = useSingleProduct()
+
+    const dispatch = useAppDispatch()
+    const {isUnique} = useAppSelector(store => selectFindById(store, singleProduct._id))
 
     return(
         <div className='product'>
@@ -113,7 +118,18 @@ const SingleProduct: FC = () => {
                             <MdAdd onClick={() => setQuantity(quantity + 1)}/>
                         </div>
 
-                        <button onClick={handleClickButton}>add to cart</button>
+                        <button className='btn-add-to-card' onClick={handleClickButton}>add to cart</button>
+
+                        <button
+                            className="btn-add-to-wishlist"
+                            onClick={() => dispatch(addToWishlist(singleProduct))}
+                        >
+                            {
+                                isUnique
+                                    ? <MdFavorite style={{color: 'red'}}/>
+                                    : <MdFavoriteBorder />
+                            }
+                        </button>
                     </div>
                 </div>
             </div>

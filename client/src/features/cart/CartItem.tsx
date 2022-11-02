@@ -1,17 +1,20 @@
 import React, {FC} from "react"
-import {MdAdd, MdRemove} from "react-icons/md"
+import {MdAdd, MdRemove, MdDeleteOutline} from "react-icons/md"
 
 import {useAppDispatch} from "../../store"
-import {managerQuantityThisItem} from "./cart-slice"
+import {managerQuantityThisItem, removeProductFromCart} from "./cart-slice"
 
 import {IObjectStrings} from "../../static/types/otherTypes"
+import {Link} from "react-router-dom";
 
 const CartItem: FC<IObjectStrings> = ({_id, img, title, color, size, quantityThisProduct, price}) => {
     const dispatch = useAppDispatch()
 
     return(
         <div key={_id} className="cart__product">
-            <img src={img} alt={title}/>
+            <Link to={'/product/'+_id}>
+                <img src={img} alt={title}/>
+            </Link>
 
             <ul>
                 <li><b>product:</b> {title}</li>
@@ -32,6 +35,10 @@ const CartItem: FC<IObjectStrings> = ({_id, img, title, color, size, quantityThi
                 </div>
 
                 <span>$ {+price * +quantityThisProduct}</span>
+            </div>
+
+            <div className='cart__remove' onClick={() => dispatch(removeProductFromCart(_id))}>
+                <MdDeleteOutline />
             </div>
         </div>
     )

@@ -4,9 +4,10 @@ import {useCart} from './useCart'
 
 import CartItem from "./CartItem"
 import BreakLine from "../../components/breakLine/BreakLine"
+import {Link} from "react-router-dom";
 
 const Cart = () => {
-    const {products, totalCart} = useCart()
+    const {products, totalCart, productsLength, itemsLength} = useCart()
 
     return(
         <div className='cart'>
@@ -19,8 +20,8 @@ const Cart = () => {
                     <button>continue shopping</button>
 
                     <div className="description">
-                        <p>shopping bag(2)</p>
-                        <p>your wishlist(0)</p>
+                        <p>shopping bag({productsLength})</p>
+                        <Link to='/wishlist'>your wishlist({itemsLength})</Link>
                     </div>
 
                     <button style={{backgroundColor: 'black', color: 'white'}}>checkout now</button>

@@ -1,0 +1,29 @@
+@import 'src/index';
+
+.popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(4, 21, 40, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    &__content {
+        position: relative;
+        width: 320px;
+        height: 284px;
+        background-color: #FFFFFF;
+        padding: 10px;
+        overflow: hidden;
+        @media ($tablet) {
+            padding: 40px;
+        }
+    }
+    &__close {
+        position: absolute;
+        right: 17px;
+        top: 17px;
+        cursor: pointer;
+    }
+}

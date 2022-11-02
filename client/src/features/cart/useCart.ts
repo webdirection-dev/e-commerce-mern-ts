@@ -1,10 +1,11 @@
+import {useEffect, useState} from "react"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {selectCartInfo} from "./cart-slice"
-import {useEffect, useState} from "react";
+import {selectWishlistInfo} from "../wishlist/wishlist-slice"
 
 export const useCart = () => {
-    const dispatch = useAppDispatch()
-    const {products} = useAppSelector(store => selectCartInfo(store))
+    const {products, productsLength} = useAppSelector(store => selectCartInfo(store))
+    const {itemsLength} = useAppSelector(store => selectWishlistInfo(store))
     const [totalCart, setTotalCart] = useState(0)
 
     useEffect(() => {
@@ -12,5 +13,5 @@ export const useCart = () => {
         setTotalCart(out)
     }, [products])
 
-    return {products, totalCart}
+    return {products, totalCart, productsLength, itemsLength}
 }

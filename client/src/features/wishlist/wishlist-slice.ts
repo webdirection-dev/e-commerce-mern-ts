@@ -17,7 +17,9 @@ const wishlistSlice = createSlice({
         resetState: () => initialState,
 
         addToWishlist: (state, action) => {
-            return { items: [...state.items, action.payload] }
+            const isUnique = state.items.find(i => i._id === action.payload._id)
+            if (!isUnique || state.items.length === 0) return { items: [...state.items, action.payload] }
+            else return { items: state.items.filter(i => i._id !== action.payload._id) }
         },
 
         removeFromWishlist: (state, action) => {
@@ -33,4 +35,8 @@ export const wishlistReducer = wishlistSlice.reducer;
 export const selectWishlistInfo = (state: RootState) => ({
     items: state.wishlistReducer.items,
     itemsLength: state.wishlistReducer.items.length,
+})
+
+export const selectFindById = (state: RootState, id: string) => ({
+    isUnique: state.wishlistReducer.items.find(i => i._id === id)
 })

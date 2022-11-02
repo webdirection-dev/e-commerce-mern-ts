@@ -13,6 +13,7 @@ import bgLog from './bgLogin.jpg'
 import bgLogMini from './bgLogin-mini.jpg'
 
 import load from './preloader.gif'
+import iconSelected from './iconSelected.svg'
 
 export const slider = {
     imgNormal: [slider1, slider2, slider3],
@@ -30,3 +31,4 @@ export const bgLogin = {
 }
 
 export const preloader = load
+export const closeIcon = iconSelected

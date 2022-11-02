@@ -33,7 +33,9 @@
         .description {
             display: none;
             @media ($phone) {display: flex;}
-            p {
+            p, a {
+                @include link();
+                color: black;
                 text-transform: capitalize;
                 text-decoration: underline;
                 margin: 0 10px;
@@ -88,8 +90,8 @@
         grid-template-columns: repeat(2, 1fr);
         border-bottom: 2px solid #eeeeee;
         &:nth-last-child(1) {border: none;}
-        @media ($phone) {grid-template-columns: repeat(3, 1fr);}
-        @media ($laptop) {grid-template-columns: 230px 1fr 300px;}
+        @media ($phone) {grid-template-columns: repeat(4, 1fr);}
+        @media ($laptop) {grid-template-columns: 230px 1fr 200px 100px;}
 
         img {
             @include img();
@@ -148,5 +150,11 @@
                 font-weight: 200;
             }
         }
+    }
+
+    &__remove {
+        display: flex;
+        align-items: center;
+        svg {font-size: 24px; cursor: pointer}
     }
 }

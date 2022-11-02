@@ -44,7 +44,7 @@ const Header: FC = () => {
                 <button className='header__user-action'>REGISTER</button>
                 <button className='header__user-action'>SING IN</button>
 
-                <Link to='/wishlist' className='header__user-action'>
+                <Link to='/wishlist' className='header__user-action' onClick={() => dispatch(resetState())}>
                     {
                         isWishlist
                             ? <MdFavorite style={{fontSize: '24px', color: 'red'}}/>
@@ -52,7 +52,7 @@ const Header: FC = () => {
                     }
                 </Link>
 
-                <Link to='/cart' className='header__user-action'>
+                <Link to='/cart' className='header__user-action' onClick={() => dispatch(resetState())}>
                     <Badge badgeContent={quantityAllItems} color="primary">
                         <MdOutlineShoppingCart
                             color="action"

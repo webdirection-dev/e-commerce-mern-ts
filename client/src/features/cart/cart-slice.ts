@@ -52,6 +52,14 @@ const cartSlice = createSlice({
             }
         },
 
+        removeProductFromCart: (state, action) => {
+            return {
+                ...state,
+                quantityAllItems: state.quantityAllItems - 1,
+                products: state.products.filter(i => i._id !== action.payload)
+            }
+        },
+
         managerQuantityThisItem: (state, action) => {
             const {_id, act} = action.payload
 
@@ -103,7 +111,7 @@ const cartSlice = createSlice({
     },
 });
 
-export const {resetState, addProductsToCart, managerQuantityThisItem} = cartSlice.actions
+export const {resetState, addProductsToCart, removeProductFromCart, managerQuantityThisItem} = cartSlice.actions
 export const cartReducer = cartSlice.reducer;
 
 //selectors
@@ -111,6 +119,7 @@ export const selectCartInfo = (state: RootState) => ({
     status: state.cartReducer.status,
     error: state.cartReducer.error,
     products: state.cartReducer.products,
+    productsLength: state.cartReducer.products.length,
     quantityAllItems: state.cartReducer.quantityAllItems,
 });
 
