@@ -4,8 +4,9 @@ import './styles/ProductItem.scss'
 import {motion} from 'framer-motion'
 import {useAppDispatch, useAppSelector} from "../../store"
 import {addToWishlist, selectFindById} from "../wishlist/wishlist-slice"
+import {setProductForPopup} from "./product-slice"
 
-import { MdOutlineShoppingCart, MdSearch, MdFavoriteBorder, MdFavorite } from "react-icons/md"
+import { MdAddShoppingCart, MdSearch, MdFavoriteBorder, MdFavorite } from "react-icons/md"
 import {IProductFromMongo} from "../../static/types/productTypes"
 
 interface IProductItem {
@@ -33,10 +34,13 @@ const ProductItem: FC<IProductItem> = ({productItem, handlePopup}) => {
                     to={`/product/${productItem._id}`}
                     className="productItem__icon"
                 >
-                    <MdOutlineShoppingCart />
+                    <MdAddShoppingCart />
                 </Link>
 
-                <button className="productItem__icon" onClick={() => handlePopup('hidden')}>
+                <button className="productItem__icon" onClick={() => {
+                    dispatch(setProductForPopup(productItem))
+                    handlePopup('hidden')
+                }}>
                     <MdSearch />
                 </button>
 

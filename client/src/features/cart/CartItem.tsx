@@ -7,7 +7,7 @@ import {managerQuantityThisItem, removeProductFromCart} from "./cart-slice"
 import {IObjectStrings} from "../../static/types/otherTypes"
 import {Link} from "react-router-dom";
 
-const CartItem: FC<IObjectStrings> = ({_id, img, title, color, size, quantityThisProduct, price}) => {
+const CartItem: FC<IObjectStrings> = ({_id, localId, img, title, color, size, quantityThisProduct, price}) => {
     const dispatch = useAppDispatch()
 
     return(
@@ -29,15 +29,15 @@ const CartItem: FC<IObjectStrings> = ({_id, img, title, color, size, quantityThi
 
             <div className="price">
                 <div className="amount">
-                    <MdRemove onClick={ () => dispatch(managerQuantityThisItem({_id, act: 'dec'})) }/>
+                    <MdRemove onClick={ () => dispatch(managerQuantityThisItem({localId, act: 'dec'})) }/>
                     <span>{quantityThisProduct}</span>
-                    <MdAdd onClick={ () => dispatch(managerQuantityThisItem({_id, act: 'inc'})) }/>
+                    <MdAdd onClick={ () => dispatch(managerQuantityThisItem({localId, act: 'inc'})) }/>
                 </div>
 
                 <span>$ {+price * +quantityThisProduct}</span>
             </div>
 
-            <div className='cart__remove' onClick={() => dispatch(removeProductFromCart(_id))}>
+            <div className='cart__remove' onClick={() => dispatch(removeProductFromCart(localId))}>
                 <MdDeleteOutline />
             </div>
         </div>

@@ -3,6 +3,7 @@
 .product {
     .wrapper {
         display: flex;
+        height: calc(100vh - 30px - 58px);
         padding: 10px;
         flex-direction: column;
         @media ($tablet) {

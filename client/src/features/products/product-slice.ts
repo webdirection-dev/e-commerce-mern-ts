@@ -7,6 +7,7 @@ type TProductState = {
     error: null | string;
     products: IProductFromMongo[];
     singleProduct: IProductFromMongo;
+    productForPopup: IProductFromMongo;
     random: string;
 }
 
@@ -15,6 +16,7 @@ const initialState: TProductState = {
     error: null,
     products: [],
     singleProduct: {} as IProductFromMongo,
+    productForPopup: {} as IProductFromMongo,
     random: '8',
 }
 
@@ -60,10 +62,17 @@ const productSlice = createSlice({
     reducers: {
         resetState: () => initialState,
 
-        setIndexes: (state, action) => {
+        resetProductForPopup: (state) => {
             return {
                 ...state,
-                indexes: action.payload
+                productForPopup: {}
+            }
+        },
+
+        setProductForPopup: (state, action) => {
+            return {
+                ...state,
+                productForPopup: action.payload
             }
         }
     },
@@ -92,7 +101,7 @@ const productSlice = createSlice({
     },
 });
 
-export const {resetState, setIndexes} = productSlice.actions
+export const {resetState, setProductForPopup, resetProductForPopup} = productSlice.actions
 export const productReducer = productSlice.reducer;
 
 //selectors
@@ -106,6 +115,7 @@ export const selectProductsInfo = (state: RootState) => ({
 export const selectAllProduct = (state: RootState) => state.productReducer.products
 export const selectProductById = (state: RootState, id: string) => state.productReducer.products.find((i) => i._id === id)
 export const selectSingleProduct = (state: RootState) => state.productReducer.singleProduct
+export const selectProductForPopup = (state: RootState) => state.productReducer.productForPopup
 
 // //helpers
 function isError(action: AnyAction) {

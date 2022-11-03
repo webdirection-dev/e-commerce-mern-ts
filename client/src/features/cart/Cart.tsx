@@ -4,10 +4,11 @@ import {useCart} from './useCart'
 
 import CartItem from "./CartItem"
 import BreakLine from "../../components/breakLine/BreakLine"
-import {Link} from "react-router-dom";
+import {Link} from "react-router-dom"
 
 const Cart = () => {
     const {products, totalCart, productsLength, itemsLength} = useCart()
+
 
     return(
         <div className='cart'>
@@ -29,7 +30,7 @@ const Cart = () => {
 
                 <div className="cart__footer">
                     <div className="cart__products">
-                        { products && products.map(i => <CartItem key={i._id} {...i}/>) }
+                        { products && products.map(i => <CartItem key={i.localId} {...i}/>) }
                     </div>
 
                     <div className="summary">

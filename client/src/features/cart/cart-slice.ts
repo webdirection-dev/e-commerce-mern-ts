@@ -4,13 +4,14 @@ import {IProductFromMongo} from "../../static/types/productTypes"
 
 interface TProductToCart extends IProductFromMongo{
     quantityThisProduct: number;
+    localId: number;
 }
 
 type TCartState = {
     status: string;
     error: null | string;
     products: TProductToCart[];
-    quantityAllItems: number
+    quantityAllItems: number;
 }
 
 const initialState: TCartState = {
@@ -45,10 +46,14 @@ const cartSlice = createSlice({
         resetState: () => initialState,
 
         addProductsToCart: (state, action) => {
+            const out = {
+                ...action.payload,
+                localId: action.payload._id + Math.random()
+            }
             return {
                 ...state,
                 quantityAllItems: state.quantityAllItems + 1,
-                products: [...state.products, action.payload],
+                products: [...state.products, out],
             }
         },
 
@@ -56,15 +61,15 @@ const cartSlice = createSlice({
             return {
                 ...state,
                 quantityAllItems: state.quantityAllItems - 1,
-                products: state.products.filter(i => i._id !== action.payload)
+                products: state.products.filter(i => i.localId !== action.payload)
             }
         },
 
         managerQuantityThisItem: (state, action) => {
-            const {_id, act} = action.payload
+            const {localId, act} = action.payload
 
             const out = state.products.map(i => {
-                if (i._id === _id) {
+                if (i.localId === localId) {
                     if (act === 'dec' && i.quantityThisProduct > 0) {
                         return (
                             {

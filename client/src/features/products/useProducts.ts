@@ -11,6 +11,12 @@ export const useProducts = ({category, filter, sort}: IProductProps) => {
     const products = useAppSelector(state => selectAllProduct(state))
     const productInfo = useAppSelector(state => selectProductsInfo(state))
     const [filteredProducts, setFilteredProducts] = useState([] as IProductFromMongo[])
+    const [isPopup, setIsPopup] = useState(false)
+
+    const handlePopup = (act: string) => {
+        document.body.style.overflow = `${act}`
+        setIsPopup(!isPopup)
+    }
 
     useEffect(() => {
         const path = category ? '/products?category='+category : '/products?random='+productInfo.random
@@ -48,5 +54,5 @@ export const useProducts = ({category, filter, sort}: IProductProps) => {
         if (sort === 'desc') setFilteredProducts( prev => [...prev].sort((a, b) => b.price - a.price))
     }, [sort])
 
-    return {productInfo, filteredProducts}
+    return {productInfo, filteredProducts, isPopup, handlePopup}
 }

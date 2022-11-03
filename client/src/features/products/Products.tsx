@@ -1,13 +1,13 @@
-import React, {FC, useState} from 'react'
+import React, {FC} from 'react'
 import {motion, AnimatePresence} from 'framer-motion'
 import {useProducts} from './useProducts'
 import './styles/Products.scss'
 
 import Popup from "../../components/popup/Popup"
 import ProductItem from "./ProductItem"
-import {IProductFromMongo} from "../../static/types/productTypes"
-
 import {preloader} from "../../static/img"
+
+import {IProductFromMongo} from "../../static/types/productTypes"
 
 export interface IProductProps {
     category?: string;
@@ -16,14 +16,7 @@ export interface IProductProps {
 }
 
 const Products: FC<IProductProps> = (props) => {
-    const [isPopup, setIsPopup] = useState(false)
-    const {productInfo, filteredProducts} = useProducts({...props})
-
-    const handlePopup = (act: string) => {
-        console.log(act)
-        document.body.style.overflow = `${act}`
-        setIsPopup(!isPopup)
-    }
+    const {productInfo, filteredProducts, isPopup, handlePopup} = useProducts({...props})
 
     return(
         <div className='products'>
@@ -45,9 +38,7 @@ const Products: FC<IProductProps> = (props) => {
                 : <span className='product-alert'>Unfortunately, this catalogue does not provide a description of the contents.</span>
             }
 
-            <div className="products__popup" style={{display: isPopup ? 'block' : 'none'}}>
-                <Popup isPopup={isPopup} handlePopup={handlePopup}/>
-            </div>
+            <Popup isPopup={isPopup} handlePopup={handlePopup}/>
         </div>
     )
 }
