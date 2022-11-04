@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useState} from 'react'
 import {motion, AnimatePresence} from 'framer-motion'
 import {useProducts} from './useProducts'
 import './styles/Products.scss'
@@ -8,6 +8,7 @@ import ProductItem from "./ProductItem"
 import {preloader} from "../../static/img"
 
 import {IProductFromMongo} from "../../static/types/productTypes"
+import AppSnackbar from "../../components/appSnackbar/AppSnackbar";
 
 export interface IProductProps {
     category?: string;
@@ -17,6 +18,7 @@ export interface IProductProps {
 
 const Products: FC<IProductProps> = (props) => {
     const {productInfo, filteredProducts, isPopup, handlePopup} = useProducts({...props})
+    const [isOpenWishlist, setIsOpenWishlist] = useState(false)
 
     return(
         <div className='products'>
@@ -29,7 +31,7 @@ const Products: FC<IProductProps> = (props) => {
                         <AnimatePresence>
                             {
                                 Array.isArray(filteredProducts) && filteredProducts.map((i: IProductFromMongo) => (
-                                    <ProductItem key={i._id} productItem={i} handlePopup={handlePopup}/>
+                                    <ProductItem key={i._id} productItem={i} handlePopup={handlePopup} setIsOpenWishlist={setIsOpenWishlist}/>
                                 ))
                             }
                         </AnimatePresence>
@@ -39,6 +41,7 @@ const Products: FC<IProductProps> = (props) => {
             }
 
             <Popup isPopup={isPopup} handlePopup={handlePopup}/>
+            <AppSnackbar isOpen={isOpenWishlist} setIsOpen={setIsOpenWishlist} txt='wishlist'/>
         </div>
     )
 }

@@ -50,3 +50,12 @@ body {
 .MuiBadge-colorSecondary {
     background-color: #f48fb1 !important;
 }
+
+.alert-wishlist {
+    background-color: #f48fb1 !important;
+    color: white !important;
+
+    .MuiAlert-icon {
+        color: white !important;
+    }
+}

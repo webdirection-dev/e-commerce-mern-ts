@@ -27,6 +27,8 @@ export const useSingleProduct = () => {
 
     const [isClick, setIsClick] = useState(false)
     const [isZoom, setIsZoom] = useState(false)
+    const [isOpenCart, setIsOpenCart] = useState(false)
+    const [isOpenWishlist, setIsOpenWishlist] = useState(false)
 
     const [magnifyingArea, setMagnifyingArea] = useState(initialArea)
     const [magnifyingZoom, setMagnifyingZoom] = useState(initialZoom)
@@ -131,6 +133,10 @@ export const useSingleProduct = () => {
         isClick,
         isZoom,
         setIsZoom,
+        isOpenCart,
+        setIsOpenCart,
+        isOpenWishlist,
+        setIsOpenWishlist,
 
         handlerClick,
         handlerMouseMove,

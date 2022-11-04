@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, Dispatch, SetStateAction} from 'react'
 import {Link} from "react-router-dom"
 import './styles/ProductItem.scss'
 import {motion} from 'framer-motion'
@@ -12,9 +12,10 @@ import {IProductFromMongo} from "../../static/types/productTypes"
 interface IProductItem {
     productItem: IProductFromMongo;
     handlePopup:  (act: string) => void;
+    setIsOpenWishlist: Dispatch<SetStateAction<boolean>>;
 }
 
-const ProductItem: FC<IProductItem> = ({productItem, handlePopup}) => {
+const ProductItem: FC<IProductItem> = ({productItem, handlePopup, setIsOpenWishlist}) => {
     const dispatch = useAppDispatch()
     const {isUnique} = useAppSelector(store => selectFindById(store, productItem._id))
 
@@ -46,7 +47,10 @@ const ProductItem: FC<IProductItem> = ({productItem, handlePopup}) => {
 
                 <button
                     className="productItem__icon"
-                    onClick={() => dispatch(addToWishlist(productItem))}
+                    onClick={() => {
+                        dispatch(addToWishlist(productItem))
+                        if (!isUnique) setIsOpenWishlist(true)
+                    }}
                 >
                     {
                         isUnique

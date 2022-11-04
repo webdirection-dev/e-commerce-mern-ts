@@ -8,8 +8,8 @@ import {MdAdd, MdFavorite, MdFavoriteBorder, MdRemove} from "react-icons/md"
 import {addToWishlist, selectFindById} from "../../features/wishlist/wishlist-slice"
 import {selectProductsInfo} from "../../features/products/product-slice"
 
+import AppSnackbar from "../../components/appSnackbar/AppSnackbar"
 import {preloader} from "../../static/img"
-import React from "react";
 
 const SingleProduct = () => {
     const
@@ -18,6 +18,10 @@ const SingleProduct = () => {
             isClick,
             isZoom,
             setIsZoom,
+            isOpenCart,
+            setIsOpenCart,
+            isOpenWishlist,
+            setIsOpenWishlist,
 
             handlerClick,
             handlerMouseMove,
@@ -124,11 +128,20 @@ const SingleProduct = () => {
                                     <MdAdd onClick={() => setQuantity(quantity + 1)}/>
                                 </div>
 
-                                <button className='btn-add-to-card' onClick={handleClickButton}>add to cart</button>
+                                <button
+                                    className='btn-add-to-card'
+                                    onClick={() => {
+                                        handleClickButton()
+                                        setIsOpenCart(true)
+                                    }}
+                                >add to cart</button>
 
                                 <button
                                     className="btn-add-to-wishlist"
-                                    onClick={() => dispatch(addToWishlist(singleProduct))}
+                                    onClick={() => {
+                                        dispatch(addToWishlist(singleProduct))
+                                        if (!isUnique) setIsOpenWishlist(true)
+                                    }}
                                 >
                                     {
                                         isUnique
@@ -145,6 +158,8 @@ const SingleProduct = () => {
             </div>
 
             <Newsletter />
+            <AppSnackbar isOpen={isOpenCart} setIsOpen={setIsOpenCart} txt='cart'/>
+            <AppSnackbar isOpen={isOpenWishlist} setIsOpen={setIsOpenWishlist} txt='wishlist'/>
         </div>
     )
 }
