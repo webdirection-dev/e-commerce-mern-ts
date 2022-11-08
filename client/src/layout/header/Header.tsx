@@ -6,7 +6,7 @@ import {useHeader} from "./useHeader"
 
 const Header = () => {
     const {
-        isWishlist, itemsLength, quantityAllItems, handleReset, MdSearch, MdFavoriteBorder, MdOutlineShoppingCart, MdFavorite
+        auth, isWishlist, itemsLength, quantityAllItems, handleReset, handleSingOut, MdSearch, MdFavoriteBorder, MdOutlineShoppingCart, MdFavorite
     } = useHeader()
 
     return(
@@ -25,8 +25,13 @@ const Header = () => {
             </Link>
 
             <div className='header__user'>
-                <button className='header__user-action'>REGISTER</button>
-                <button className='header__user-action'>SING IN</button>
+                {auth
+                    ? <button className='header__user-action' onClick={handleSingOut}>SING OUT</button>
+                    : <>
+                        <Link to='/register' className='header__user-action'>REGISTER</Link>
+                        <Link to='/login' className='header__user-action'>SING IN</Link>
+                    </>
+                }
 
                 <Link to='/wishlist' className='header__user-action' onClick={handleReset}>
                     <Badge badgeContent={itemsLength} color="secondary">

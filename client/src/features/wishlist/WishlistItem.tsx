@@ -2,7 +2,7 @@ import React, {FC} from "react"
 import {useAppDispatch} from "../../store"
 import {removeFromWishlist} from "./wishlist-slice"
 import {MdOutlineRemoveRedEye, MdDeleteOutline} from "react-icons/md"
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 import {Link} from "react-router-dom"
 import {Reorder} from 'framer-motion'
 

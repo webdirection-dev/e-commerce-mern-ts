@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import { RootState } from '../../store'
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 
 type TWishlistState = {
     items: IProductFromMongo[];

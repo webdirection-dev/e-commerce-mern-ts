@@ -3,7 +3,7 @@ import {useEffect, useState} from "react"
 import {useAppDispatch, useAppSelector} from "../../store"
 import {getProducts, selectAllProduct, selectProductsInfo} from "./product-slice"
 
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 import {IProductProps} from "./Products"
 
 export const useProducts = ({category, filter, sort}: IProductProps) => {

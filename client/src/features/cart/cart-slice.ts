@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 
 interface TProductToCart extends IProductFromMongo{
     quantityThisProduct: number;

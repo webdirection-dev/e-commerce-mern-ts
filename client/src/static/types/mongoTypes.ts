@@ -10,3 +10,10 @@ export interface IProductFromMongo {
     inStock: boolean;
     createdAt: string;
 }
+
+export interface IUserFromMongo {
+    _id: string;
+    username: string;
+    email: string;
+    isAdmin: boolean;
+}

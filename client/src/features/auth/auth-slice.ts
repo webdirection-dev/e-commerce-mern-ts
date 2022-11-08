@@ -1,56 +1,49 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
+import {IUserFromMongo} from "../../static/types/mongoTypes"
 
 type TAuthState = {
     status: string;
     error: null | string;
-    auth: boolean;
+    currentUser: IUserFromMongo;
 }
 
 const initialState: TAuthState = {
     status: 'idle', // loading | received | rejected
     error: null,
-    auth: true,
+    currentUser: {} as IUserFromMongo,
 }
 
 export const getAuth = createAsyncThunk<
-    boolean,
-    string,
+    IUserFromMongo,
+    {email: string, password: string},
     { extra: DetailsExtra; rejectValue: string }
     >(
     '@@auth/get-auth',
 
-    async (path, { extra: { client }, rejectWithValue }) => {
+    async (credentials, { extra: { client }, rejectWithValue }) => {
         // const user = JSON.parse(localStorage.getItem('user') as string) || null;
         // const token = 'Bearer ' + user.accessToken;
 
         return await client
-            .get(path)
+            .post('/auth/login', credentials)
             .then(({ data }) => data)
             .catch((err) => rejectWithValue(err.message))
     }
 )
 
-const authSlice = createSlice({
+const userSlice = createSlice({
     name: '@@auth',
     initialState,
     reducers: {
-        resetState: () => initialState,
-
-        singIn: (state) => {
-            return { ...state, auth: true }
-        },
-
-        singOut: (state) => {
-            return { ...state, auth: false }
-        }
+        singOut: () => initialState,
     },
 
     extraReducers: (builder) => {
         builder
             .addCase(getAuth.fulfilled, (state, action) => {
                 state.status = 'received'
-                state.auth = action.payload
+                state.currentUser = action.payload
             })
 
             .addMatcher(isPending, (state, action: PayloadAction<string>) => {
@@ -65,21 +58,21 @@ const authSlice = createSlice({
     },
 });
 
-export const {resetState, singIn, singOut} = authSlice.actions
-export const authReducer = authSlice.reducer;
+export const {singOut} = userSlice.actions
+export const authReducer = userSlice.reducer;
 
 //selectors
 export const selectAuthInfo = (state: RootState) => ({
     status: state.authReducer.status,
     error: state.authReducer.error,
-    auth: state.authReducer.auth,
+    auth: !!state.authReducer.currentUser.email,
 });
 
 // //helpers
 function isError(action: AnyAction) {
-    return action.type.endsWith('rejected')
+    return action.type.endsWith('get-auth/rejected')
 }
 
 function isPending(action: AnyAction) {
-    return action.type.endsWith('pending')
+    return action.type.endsWith('get-auth/pending')
 }

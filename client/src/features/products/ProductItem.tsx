@@ -7,7 +7,7 @@ import {addToWishlist, selectFindById} from "../wishlist/wishlist-slice"
 import {setProductForPopup} from "./product-slice"
 
 import { MdAddShoppingCart, MdSearch, MdFavoriteBorder, MdFavorite } from "react-icons/md"
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 
 interface IProductItem {
     productItem: IProductFromMongo;

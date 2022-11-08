@@ -4,11 +4,11 @@ import {useCart} from './useCart'
 
 import CartItem from "./CartItem"
 import BreakLine from "../../components/breakLine/BreakLine"
+import Stripe from "../../components/stripe/Stripe"
 import {Link} from "react-router-dom"
 
 const Cart = () => {
     const {products, totalCart, productsLength, itemsLength} = useCart()
-
 
     return(
         <div className='cart'>
@@ -38,19 +38,19 @@ const Cart = () => {
 
                         <div className="details">
                             <h3>subtotal</h3>
-                            <span>$ {totalCart}</span>
+                            <div>$ {totalCart}</div>
 
                             <h3>estimated shipping</h3>
-                            <span>$ 5.90</span>
+                            <div>$ 5.90</div>
 
                             <h3>shipping discount</h3>
-                            <span>$ -5.90</span>
+                            <div>$ -5.90</div>
 
                             <h3 className='details__total'>total</h3>
-                            <span className='details__total'>$ {totalCart + 5.90 - 5.90}</span>
+                            <div className='details__total'>$ {totalCart}</div>
                         </div>
 
-                        <button>checkout now</button>
+                        <Stripe amount={totalCart}/>
                     </div>
                 </div>
             </div>

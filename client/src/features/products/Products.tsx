@@ -7,7 +7,7 @@ import Popup from "../../components/popup/Popup"
 import ProductItem from "./ProductItem"
 import {preloader} from "../../static/img"
 
-import {IProductFromMongo} from "../../static/types/productTypes"
+import {IProductFromMongo} from "../../static/types/mongoTypes"
 import AppSnackbar from "../../components/appSnackbar/AppSnackbar";
 
 export interface IProductProps {

@@ -64,12 +64,17 @@
                 margin: 30px 0;
 
                 h3 {font-weight: normal;}
-                span {justify-self: flex-end;}
+                div {justify-self: flex-end; display: inline}
 
                 .details__total {
                     font-size: 24px;
                     font-weight: 500;
                 }
+            }
+
+            span {
+                display: flex;
+                justify-content: center;
             }
 
             button {
@@ -79,6 +84,7 @@
                 background-color: black;
                 font-weight: 600;
                 text-transform: uppercase;
+                margin: 0 !important;
                 padding: 10px;
                 &:hover {background-color: teal;}
             }

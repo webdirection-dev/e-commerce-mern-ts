@@ -14,6 +14,8 @@ const cartRoot = require('./routes/cart')
 const orderRoot = require('./routes/order')
 const stripeRoot = require('./routes/stripe')
 
+// console.log('test')
+
 mongoose
     .connect(process.env.MONGO_URL, mongoSetting)
     .then(() => console.log('DB Connection Success!'))
