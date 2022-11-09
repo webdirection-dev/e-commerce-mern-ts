@@ -1,0 +1,111 @@
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    outline: none !important;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body[data-theme='dark'] {
+    --color-general: #01b075;
+
+    --colors-text: #ffffff;
+    --colors-text-active: #ffffff;
+    --colors-text-nav: gray;
+    --color-hover-txt: rgba(255, 255, 255, 0.86);
+    --colors-title: #01b075;
+    --colors-popup-txt: #01b075;
+
+    --colors-bg: #202125;
+    --colors-bg-sub: #16171b;
+    --colors-bg-active: #01b075;
+    --colors-bg-edit: rgba(1, 176, 117, 0.8);
+    --colors-bg-newItem-media: #202125;
+    --colors-bg-newItem-input: rgba(220, 220, 220, 0.15);
+    --colors-bg-popup: rgba(28, 27, 27, 0.6);
+
+    --colors-border: #202125;
+    --colors-border-switch-theme: #01b075;
+    --colors-border-switch-theme2: whitesmoke;
+    --colors-border-search: gray;
+    --colors-border-datatable: #202125;
+
+    --color-logo: #747579;
+    --colors-alert: #ff4838;
+
+    --colors-chart-grid: rgba(228, 228, 228, 0.219);
+
+    --colors-icon: #747579;
+    --colors-icon-active: white;
+
+    --box-shadow-nav: none;
+    --box-shadow-widget: none;
+    --box-shadow-popup: -7px 5px 5px -5px rgba(201, 201, 201, 0.6);
+}
+
+body[data-theme='light'] {
+    --color-general: #70b85c;
+
+    --colors-text: #808080;
+    --colors-text-active: black;
+    --colors-text-nav: #555555;
+    --color-hover-txt: black;
+    --colors-title: #6439ff;
+    --colors-popup-txt: black;
+
+    --colors-bg: #ffffff;
+    --colors-bg-active: rgba(112, 184, 92, 0.41);
+    --colors-bg-edit: rgba(100, 57, 255, 0.8);
+    --colors-bg-newItem-media: rgba(220, 220, 220, 0.15);
+    --colors-bg-popup: rgba(255, 253, 253, 0.46);
+
+    --colors-border: rgb(228, 225, 225);
+    --colors-border-switch-theme: #333333;
+    --colors-border-switch-theme2: #01b075;
+    --colors-border-search: lightgray;
+    --colors-border-datatable: rgb(228, 225, 225);
+
+    --color-logo: #6439ff;
+    --colors-alert: #ff4838;
+
+    --colors-chart-grid: rgb(228, 225, 225);
+
+    --colors-icon: #c8dead;
+    --colors-icon-active: #70b85c;
+
+    --colors-bc-btn-display: #70b85c;
+
+    --box-shadow-nav: -7px 5px 5px -5px rgba(201, 201, 201, 0.6);
+    --box-shadow-widget: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    --box-shadow-popup: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+}
+
+body {
+    margin: 0;
+    font-family: var(--family);
+    font-weight: var(--fw-light);
+    color: var(--colors-text);
+    background-color: var(--colors-bg-sub);
+}
+
+hr {
+    height: 0;
+    border: 0.5px solid var(--colors-border);
+}
+
+input {
+    background-color: var(--colors-bg-sub);
+    border-color: var(--colors-border-search);
+    caret-color: gray;
+    &::placeholder {
+        color: gray;
+    }
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,126 @@
+.datatable {
+    height: 600px;
+    padding: 20px;
+
+    .datagrid{
+        color: var(--color-hover-txt);
+        border-color: var(--colors-border);
+        background-color: var(--colors-bg);
+    }
+
+    .cellWithImg {
+        display: flex;
+        align-items: center;
+
+        .cellImg {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+    }
+
+    .cellWithStatus {
+        display: block;
+        width: 63px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+
+        &.Approved {
+            color: green;
+            background-color: rgba(0, 128, 0, .151);
+        }
+
+        &.Pending {
+            color: rgb(238, 125, 54);
+            background-color: rgba(218, 165, 32, 0.2);
+        }
+
+        &.Rejected {
+            color: crimson;
+            background-color: rgba(255, 0, 0, 0.2);
+        }
+    }
+
+    .cellAction {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .viewButton {
+            width: 43px;
+            text-align: center;
+            color: var(--colors-title);
+            border: 1px solid var(--colors-title);
+            border-radius: 5px;
+            padding: 2px 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: white;
+                background-color: var(--colors-title);
+            }
+        }
+
+        .deleteButton {
+            width: 43px;
+            text-align: center;
+            color: crimson;
+            border: 1px solid crimson;
+            border-radius: 5px;
+            padding: 2px 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: white;
+                background-color: crimson;
+            }
+        }
+    }
+}
+
+.datatableTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    //width: 100%;
+    font-size: 24px;
+    color: gray;
+    padding: 20px 20px 0;
+    //margin-bottom: 10px;
+
+    .link {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--colors-title);
+        border: 1px solid var(--colors-title);
+        border-radius: 5px;
+        padding: 5px;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--colors-title);
+            color: white;
+        }
+    }
+}
+
+.MuiDataGrid-cell {
+    border-color: var(--colors-chart-grid) !important;
+}
+
+.datatable div:not(.MuiDataGrid-cell) {
+    border-color: var(--colors-border-datatable);
+}
+
+.MuiTablePagination-displayedRows {
+    color: var(--color-hover-txt) !important;
+}
+
+.MuiTablePagination-actions button {
+    color: var(--color-hover-txt) !important;
+}
+

@@ -1,0 +1,85 @@
+.navbar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: calc(100vw - (100vw / 7));
+    height: 50px;
+    font-size: 14px;
+    color: var(--colors-text-nav);
+    background-color: var(--colors-bg);
+    border-bottom: 0.5px solid var(--colors-border);
+    border-left: 0.5px solid var(--colors-border);
+    -webkit-box-shadow: var(--box-shadow-nav);
+    -moz-box-shadow: var(--box-shadow-nav);
+    box-shadow: var(--box-shadow-nav);
+    z-index: 1000;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+
+        .search {
+            display: flex;
+            align-items: center;
+            border: 0.5px solid var(--colors-border-search);
+            padding: 3px;
+
+            input {
+                border: none;
+                outline: none;
+                background-color: transparent;
+
+                &::placeholder {
+                    font-size: 12px;
+                }
+            }
+
+            .icon {
+                font-size: 24px;
+            }
+        }
+
+        .items {
+            display: flex;
+            align-items: center;
+
+            .item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                cursor: pointer;
+
+                .icon {
+                    font-size: 20px;
+                }
+
+                .avatar {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .counter {
+                    position: absolute;
+                    top: -5px;
+                    right: -7px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 15px;
+                    height: 15px;
+                    font-size: 10px;
+                    font-weight: bold;
+                    color: white;
+                    background-color: red;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+.moviesList {
+    margin-top: 50px;
+    width: 100%;
+    overflow: hidden;
+
+    .top, .bottom {
+        -webkit-box-shadow: var(--box-shadow-widget);
+        box-shadow: var(--box-shadow-widget);
+        background-color: var(--colors-bg);
+        margin: 20px;
+    }
+
+    .top {
+        .title {
+            color: lightgray;
+            font-size: 20px;
+            padding: 20px;
+        }
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            .left, .right {
+                display: flex;
+                flex-direction: column;
+                width: 45%;
+            }
+        }
+
+        form {
+            .formInput {
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid gray;
+                    color: var(--colors-text);
+                    margin-bottom: 25px;
+                }
+
+                label {
+                    display: block;
+                    margin-bottom: 5px;
+                }
+            }
+
+            .select {
+                label {
+                    margin-bottom: 5px;
+                }
+
+                select {
+                    width: 100%;
+                    background-color: var(--colors-bg-sub);
+                    color: var(--colors-text);
+                    border: 1px solid gray;
+                    padding: 10px;
+                }
+            }
+        }
+
+        button {
+            width: 150px;
+            color: white;
+            font-weight: bold;
+            background-color: rgba(112, 184, 92, 0.8);
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(112, 184, 92, 0.9);
+            }
+
+            //&.disabled {
+            //    background-color: transparent;
+            //    color: var(--colors-text);
+            //    border: 1px solid var(--colors-text);
+            //    cursor: auto;
+            //}
+        }
+    }
+}

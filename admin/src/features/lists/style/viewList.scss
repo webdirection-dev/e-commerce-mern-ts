@@ -1,0 +1,80 @@
+.moviesListCard {
+    position: relative;
+    display: inline-flex;
+    margin: 20px;
+    -webkit-box-shadow: var(--box-shadow-widget);
+    box-shadow: var(--box-shadow-widget);
+    background-color: var(--colors-bg);
+
+    .current {
+        background-color: var(--colors-bg-newItem-media);
+        padding: 10px;
+
+        div {
+            margin-top: 10px;
+
+            .key {
+                font-weight: 700;
+                margin-right: 5px;
+            }
+
+            .value {
+                font-size: 14px;
+            }
+        }
+
+        button {
+            color: white;
+            background-color: var(--colors-title);
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            padding: 3px 10px;
+            cursor: pointer;
+
+            &:hover {
+                color: white;
+                background-color: var(--colors-bg-edit);
+            }
+        }
+    }
+
+    .updateContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px;
+        margin-left: 50px;
+        padding: 10px;
+
+        select, input {
+            border: 1px solid gray;
+            color: var(--colors-text);
+            background-color: var(--colors-bg-sub);
+        }
+
+        button {
+            color: white;
+            background-color: var(--colors-title);
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            padding: 3px 10px;
+            cursor: pointer;
+
+            &:hover {
+                color: white;
+                background-color: var(--colors-bg-edit);
+            }
+        }
+    }
+
+    form.hide {
+        display: none;
+    }
+}

@@ -1,0 +1,10 @@
+.app {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+
+    .container {
+        width: calc(100vw - (100vw / 7));
+        margin-left: calc(100vw / 7);
+    }
+}

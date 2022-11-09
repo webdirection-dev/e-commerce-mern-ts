@@ -1,0 +1,20 @@
+.chart {
+    flex: 4;
+    color: gray;
+    background-color: var(--colors-bg);
+    -webkit-box-shadow: var(--box-shadow-widget);
+    box-shadow: var(--box-shadow-widget);
+    padding: 10px;
+
+    .title {
+        //margin-bottom: 20px;
+    }
+
+    .chartGrid {
+        stroke: var(--colors-chart-grid);
+    }
+
+    .recharts-responsive-container {
+        height: 0px;
+    }
+}
