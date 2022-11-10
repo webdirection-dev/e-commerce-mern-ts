@@ -1,7 +1,17 @@
-import {useLogin} from "./use-login"
+import React, {useState} from "react"
+import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
+import {getAuth, selectAuthInfo} from "../../features/auth/auth-slice"
 
 const LoginForm = () => {
-    const {status, email, setEmail, password, setPassword, handleLogin} = useLogin()
+    const dispatch = useAppDispatch()
+    const {status} = useAppSelector(store => selectAuthInfo(store))
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleLogin = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault()
+        dispatch(getAuth({email, password}))
+    }
 
     return(
         <form className="loginForm">

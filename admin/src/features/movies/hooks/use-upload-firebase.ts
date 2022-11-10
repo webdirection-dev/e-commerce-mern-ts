@@ -5,8 +5,8 @@ import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 import {useAppDispatch} from "../../../hooks/hookRedux"
 import {createMovie} from "../movies-slice"
 
-import {noImg} from '../../../static-data/img'
-import {movieInputs} from "../../../static-data/data/form-source"
+import {noImg} from '../../../static/img'
+import {movieInputs} from "../../../static/data/form-source"
 
 const quantityInputs = movieInputs.data.length + movieInputs.loadingMedia.length
 

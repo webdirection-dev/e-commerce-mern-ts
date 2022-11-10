@@ -1,6 +1,6 @@
 import React from 'react';
 import './chart.scss';
-import { IDataForRender } from '../../static-data/data/stat-data';
+import { IDataForRender } from '../../static/data/stat-data';
 
 import {
     AreaChart,

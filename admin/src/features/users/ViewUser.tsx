@@ -1,21 +1,18 @@
-import React from 'react';
+import React from 'react'
 import './style/editUser.scss';
-import { IUserRows } from '../../types/types';
-import Chart from '../../components/chart/Chart';
-import Table from '../../components/table/Table';
+import { IUserRows } from '../../types/types'
+import Chart from '../../components/chart/Chart'
+import Table from '../../components/table/Table'
 
-import { MdOutlineDriveFolderUpload } from 'react-icons/md';
-import spinner from '../../static-data/img/spinner.svg';
+import { MdOutlineDriveFolderUpload } from 'react-icons/md'
+import spinner from '../../static/img/spinner.svg'
 
-import { useUpdateUser } from './hooks/use-update-user';
+import { useUpdateUser } from './hooks/use-update-user'
 
-interface IUserCard {
-    item: IUserRows;
-    titleCard: string;
-}
+interface IUserCard {item: IUserRows; titleCard: string}
 
 const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
-    const { _id, username, profilePic, status, email, isAdmin } = item;
+    const { _id, username, profilePic, status, email, isAdmin } = item
 
     const {
         imgUrl,
@@ -219,7 +216,7 @@ const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
                 <Table />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default ViewUser;
+export default ViewUser

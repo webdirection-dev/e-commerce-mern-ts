@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom"
 import {useAppDispatch} from "../../../hooks/hookRedux"
 import {createUser} from "../users-slice"
 
-import {noImg} from '../../../static-data/img'
+import {noImg} from '../../../static/img'
 
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 import {storage} from "../../../configs/firebase"

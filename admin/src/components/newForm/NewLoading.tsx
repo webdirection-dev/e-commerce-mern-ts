@@ -1,7 +1,7 @@
 import React from "react"
 import {MdOutlineDriveFolderUpload, MdCheck} from "react-icons/md"
 
-import {movieInputs} from "../../static-data/data/form-source"
+import {movieInputs} from "../../static/data/form-source"
 import {IFiles} from "../../features/movies/hooks/use-upload-firebase"
 
 interface IPropsLoading {

@@ -3,7 +3,7 @@ import './style/user.scss'
 
 import {useUsers} from "./hooks/use-users"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
-import spinner from "../../static-data/img/spinner.svg";
+import spinner from "../../static/img/spinner.svg";
 
 const NewUser: React.FC = () => {
     const {

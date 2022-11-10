@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { MONTHS, IDataForRender } from '../../../static-data/data/stat-data';
+import { MONTHS, IDataForRender } from '../../../static/data/stat-data';
 
 import { useAppSelector } from '../../../hooks/hookRedux';
-import { selectStats } from '../../../features/users/users-slice';
+import { selectUsersInfo } from '../../../features/users/users-slice';
 
 export const useGetStat = () => {
-    const data = useAppSelector((state) => selectStats(state));
+    const {statsUsers} = useAppSelector((state) => selectUsersInfo(state));
     const [userStat, setUserStat] = useState([] as IDataForRender[]);
 
     useEffect(() => {
-        data.map((i) => {
+        statsUsers.map((i) => {
             setUserStat((prev) => [
                 ...prev,
                 {
@@ -18,7 +18,7 @@ export const useGetStat = () => {
                 },
             ]);
         });
-    }, [data]);
+    }, [statsUsers]);
 
     return { userStat };
 };

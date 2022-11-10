@@ -15,16 +15,8 @@ function App() {
     return (
         <>
             <Routes>
-                <Route
-                    path='/'
-                    element={!auth && <Navigate to='/login' replace={true} />}
-                />
-                <Route
-                    path='/login'
-                    element={
-                        auth ? <Navigate to='/' replace={true} /> : <Login />
-                    }
-                />
+                <Route path='/' element={!auth && <Navigate to='/login' replace={true} />} />
+                <Route path='/login' element={auth ? <Navigate to='/' replace={true} /> : <Login />} />
                 <Route path='*' element={!auth && <NotFond />} />
             </Routes>
 
@@ -39,7 +31,7 @@ function App() {
                 </div>
             )}
         </>
-    )
+    );
 }
 
-export default App
+export default App;

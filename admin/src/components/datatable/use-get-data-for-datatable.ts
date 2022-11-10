@@ -3,15 +3,15 @@ import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
 import {defaultAvatar, storage} from "../../configs/firebase"
 import {deleteObject, ref} from "firebase/storage"
 
-import {selectAllUsers, removeUser} from "../../features/users/users-slice"
+import {selectUsersInfo, removeUser} from "../../features/users/users-slice"
 import {selectAllMovies, removeMovie} from "../../features/movies/movies-slice"
 
 import {selectAllMoviesLists, removeMoviesList} from "../../features/lists/movies-list-slice"
-import {userColumns, moviesColumns, listsColumns} from "../../static-data/data/datatable-data"
+import {userColumns, moviesColumns, listsColumns} from "../../static/data/datatable-data"
 
 export const useGetDataForDatatable = (type: string) => {
     const dispatch = useAppDispatch()
-    const users = useAppSelector(state => selectAllUsers(state))
+    const {allUsers} = useAppSelector(state => selectUsersInfo(state))
     const movies = useAppSelector(state => selectAllMovies(state))
     const lists = useAppSelector(state => selectAllMoviesLists(state))
 
@@ -21,7 +21,7 @@ export const useGetDataForDatatable = (type: string) => {
         type === 'list' ? listsColumns : []
 
     const rows =
-        type === 'user' ? users :
+        type === 'user' ? allUsers :
         type === 'movie' ? movies :
         type === 'list' ? lists : []
 
@@ -31,7 +31,7 @@ export const useGetDataForDatatable = (type: string) => {
         if (type === 'user') {
             dispatch(removeUser(id))
 
-            const user = users.find(i => i._id === id)
+            const user = allUsers.find(i => i._id === id)
             if (user) await deleteAvatarFromFirebase(user.profilePic)
         }
 

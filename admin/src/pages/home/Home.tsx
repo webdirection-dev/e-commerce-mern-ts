@@ -1,23 +1,22 @@
-import React from 'react';
-import './home.scss';
+import './home.scss'
 
-import Widget from '../../components/widget/Widget';
-import Featured from '../../components/featured/Featured';
-import Chart from '../../components/chart/Chart';
-import Table from '../../components/table/Table';
-import WidgetSm from '../../components/widgetSm/WidgetSm';
+import Widget from '../../components/widget/Widget'
+import Featured from '../../components/featured/Featured'
+import Chart from '../../components/chart/Chart'
+import Table from '../../components/table/Table'
+import WidgetSm from '../../components/widgetSm/WidgetSm'
 
-import { useGetStat } from './hooks/use-get-stat';
-import { useGetWidgetdata } from './hooks/use-get-widgetdata';
+import { useGetStat } from './hooks/use-get-stat'
+import { useGetWidgetdata } from './hooks/use-get-widgetdata'
 
-const Home: React.FC = () => {
+const Home = () => {
     const { userStat } = useGetStat();
-    const { users, movies, lists } = useGetWidgetdata();
+    const { allUsers, movies, lists } = useGetWidgetdata();
 
     return (
         <div className='home'>
             <div className='widgets'>
-                <Widget type='users' counter={users.length} />
+                <Widget type='users' counter={allUsers.length} />
                 <Widget type='movies' counter={movies.length} />
                 <Widget type='lists' counter={lists.length} />
                 <Widget type='balance' />
@@ -34,8 +33,8 @@ const Home: React.FC = () => {
             {/*</div>*/}
 
             <div className='userStatWidgets'>
-                <WidgetSm />
-                <WidgetSm />
+                <WidgetSm whatUsers='new'/>
+                <WidgetSm whatUsers='all'/>
                 {/* <WidgetLg /> */}
             </div>
 

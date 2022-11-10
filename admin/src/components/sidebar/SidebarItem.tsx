@@ -1,11 +1,10 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
-
 import {useAppDispatch} from "../../hooks/hookRedux"
 import {singOut} from "../../features/auth/auth-slice"
 
-import {titleSidebarItem, ISidebarItem} from "../../static-data/data/sidebar-data"
+import {titleSidebarItem, ISidebarItem} from "../../static/data/sidebar-data"
 
 const SidebarItem: React.FC<ISidebarItem> = (props) => {
     const navigate = useNavigate()

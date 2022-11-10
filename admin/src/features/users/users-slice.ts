@@ -4,6 +4,7 @@ import { IUser } from '../../types/types'
 
 type UserType = {[key: string]: string}
 type StatsType = {[key: string]: number}
+interface IUpdateUser {_id: string; items: {}}
 
 type TUserState = {
     status: string;
@@ -14,9 +15,13 @@ type TUserState = {
     stats: StatsType[];
 }
 
-interface IUpdateUser {
-    _id: string;
-    items: {};
+const initialState: TUserState = {
+    status: 'idle', // loading | received | rejected
+    error: null,
+    users: [],
+    user: {},
+    newUsers: [],
+    stats: [],
 }
 
 export const loadUsers = createAsyncThunk<
@@ -33,41 +38,14 @@ export const loadUsers = createAsyncThunk<
                     authorization: 'Bearer ' + token,
                 },
             })
-            .then(({ data }) => {
-                return data;
-            })
+            .then(({ data }) => data)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
-    }
-);
-
-export const getUserById = createAsyncThunk<
-    IUser,
-    string,
-    { extra: DetailsExtra; rejectValue: string }
->(
-    '@@users/get-by-id-users',
-
-    async (id, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('user') as string);
-
-        return await client
-            .get('/users/find/' + id, {
-                headers: {
-                    authorization: 'Bearer ' + user.accessToken,
-                },
             })
-            .then(({ data }) => {
-                return data;
-            })
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            });
     }
-);
+)
 
-export const sortUsersByNew = createAsyncThunk<
+export const getNewUsers = createAsyncThunk<
     UserType[],
     string,
     { extra: DetailsExtra; rejectValue: string }
@@ -81,21 +59,42 @@ export const sortUsersByNew = createAsyncThunk<
                     authorization: 'Bearer ' + token,
                 },
             })
-            .then(({ data }) => {
-                return data;
-            })
+            .then(({ data }) => data)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
+            })
     }
-);
+)
+
+export const getUserById = createAsyncThunk<
+    IUser,
+    string,
+    { extra: DetailsExtra; rejectValue: string }
+    >(
+    '@@users/get-user-by-id',
+
+    async (id, { extra: { client }, rejectWithValue }) => {
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+
+        return await client
+            .get('/users/find/' + id, {
+                headers: {
+                    authorization: 'Bearer ' + user.accessToken,
+                },
+            })
+            .then(({ data }) => data)
+            .catch((err) => {
+                return rejectWithValue(err.message);
+            })
+    }
+)
 
 export const loadStats = createAsyncThunk<
     StatsType[],
     string,
     { extra: DetailsExtra; rejectValue: string }
 >(
-    '@@users/stats-users',
+    '@@users/load-stats',
 
     async (token, { extra: { client }, rejectWithValue }) => {
         return await client
@@ -104,24 +103,22 @@ export const loadStats = createAsyncThunk<
                     authorization: 'Bearer ' + token,
                 },
             })
-            .then(({ data }) => {
-                return data;
-            })
+            .then(({ data }) => data)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
+            })
     }
-);
+)
 
 export const createUser = createAsyncThunk<
     IUser,
     {},
     { extra: DetailsExtra; rejectValue: string }
 >(
-    '@@users/create-users',
+    '@@users/create-user',
 
     async (newUser, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('user') as string);
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
         return await client
             .post('/auth/register', newUser, {
@@ -129,24 +126,22 @@ export const createUser = createAsyncThunk<
                     authorization: 'Bearer ' + user.accessToken,
                 },
             })
-            .then(({ data }) => {
-                return data;
-            })
+            .then(({ data }) => data)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
+            })
     }
-);
+)
 
 export const updateUser = createAsyncThunk<
     IUser,
     IUpdateUser,
     { extra: DetailsExtra; rejectValue: string }
 >(
-    '@@users/update-users',
+    '@@users/update-user',
 
     async ({ _id, items }, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('user') as string);
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
         return await client
             .put('/users/' + _id, items, {
@@ -154,24 +149,22 @@ export const updateUser = createAsyncThunk<
                     authorization: 'Bearer ' + user.accessToken,
                 },
             })
-            .then(({ data }) => {
-                return data;
-            })
+            .then(({ data }) => data)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
+            })
     }
-);
+)
 
 export const removeUser = createAsyncThunk<
     string,
     string,
     { extra: DetailsExtra; rejectValue: string }
 >(
-    '@@users/remove-users',
+    '@@users/remove-user',
 
     async (id, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('user') as string);
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
         return await client
             .delete('/users/' + id, {
@@ -179,23 +172,12 @@ export const removeUser = createAsyncThunk<
                     authorization: 'Bearer ' + user.accessToken,
                 },
             })
-            .then(() => {
-                return id;
-            })
+            .then(() => id)
             .catch((err) => {
                 return rejectWithValue(err.message);
-            });
+            })
     }
-);
-
-const initialState: TUserState = {
-    status: 'idle', // loading | received | rejected
-    error: null,
-    users: [],
-    user: {},
-    newUsers: [],
-    stats: [],
-};
+)
 
 const usersSlice = createSlice({
     name: '@@users',
@@ -218,7 +200,7 @@ const usersSlice = createSlice({
                 state.user = action.payload;
             })
 
-            .addCase(sortUsersByNew.fulfilled, (state, action) => {
+            .addCase(getNewUsers.fulfilled, (state, action) => {
                 state.status = 'received';
                 state.newUsers = action.payload;
             })
@@ -256,7 +238,7 @@ const usersSlice = createSlice({
                 );
             })
 
-            .addMatcher(isPending, (state, action: PayloadAction<string>) => {
+            .addMatcher(isPending, (state) => {
                 state.error = null;
                 state.status = 'loading';
             })
@@ -264,28 +246,29 @@ const usersSlice = createSlice({
             .addMatcher(isError, (state, action: PayloadAction<string>) => {
                 state.error = action.payload;
                 state.status = 'rejected';
-            });
+            })
     },
-});
+})
 
-export const { clearUserId } = usersSlice.actions;
-export const usersReducer = usersSlice.reducer;
+export const { clearUserId } = usersSlice.actions
+export const usersReducer = usersSlice.reducer
 
 //selectors
 export const selectUsersInfo = (state: RootState) => ({
     status: state.usersReducer.status,
     error: state.usersReducer.error,
     qty: state.usersReducer.users.length,
-});
-export const selectAllUsers = (state: RootState) => state.usersReducer.users;
-export const selectUserById = (state: RootState) => state.usersReducer.user;
-export const selectNewUsers = (state: RootState) => state.usersReducer.newUsers;
-export const selectStats = (state: RootState) => state.usersReducer.stats;
+    allUsers: state.usersReducer.users,
+    newUsers: state.usersReducer.newUsers,
+    userById: state.usersReducer.user,
+    statsUsers: state.usersReducer.stats,
+})
 
 // //helpers
 function isError(action: AnyAction) {
-    return action.type.endsWith('users/rejected');
+    return action.type.endsWith('rejected') && action.type.startsWith('@@users')
 }
+
 function isPending(action: AnyAction) {
-    return action.type.endsWith('users/pending');
+    return action.type.endsWith('pending') && action.type.startsWith('@@users')
 }

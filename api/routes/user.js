@@ -28,7 +28,7 @@ router.put(
 //DELETE USER
 router.delete(
     '/:id',
-    verifyTokenAndAuthorisation, //middleware
+    verifyTokenAndAdmin, //middleware
     async (req, res) => {
         try {
             await User.findByIdAndDelete(req.params.id)
@@ -37,10 +37,10 @@ router.delete(
     }
 )
 
-//GET USERS
+//GET USER
 router.get(
     '/find/:id',
-    verifyTokenAndAdmin, //middleware
+    verifyTokenAndAuthorisation, //middleware
     async (req, res) => {
         try {
             const user  = await User.findById(req.params.id)
@@ -53,7 +53,7 @@ router.get(
 //GET ALL USERS
 router.get(
     '/',
-    verifyTokenAndAdmin, //middleware
+    verifyTokenAndAuthorisation, //middleware
     async (req, res) => {
         const query = req.query.new
 
@@ -70,7 +70,7 @@ router.get(
 //GET USER STATS
 router.get(
     '/stats',
-    verifyTokenAndAdmin, //middleware
+    verifyTokenAndAuthorisation, //middleware
     async (req, res) => {
         const date = new Date()
         const lastYear = new Date(date.setFullYear(date.getFullYear() -1))

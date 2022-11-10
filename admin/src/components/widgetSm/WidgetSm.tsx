@@ -1,18 +1,21 @@
 import './widgetSm.scss'
-
 import { useAppSelector } from '../../hooks/hookRedux'
-import { selectNewUsers } from '../../features/users/users-slice'
+import { selectUsersInfo } from '../../features/users/users-slice'
 
 import WidgetSmItem from './WidgetSmItem'
+import {FC} from "react";
 
-const WidgetSm = () => {
-    const newUsers = useAppSelector((state) => selectNewUsers(state));
+interface IWidgetSmUser {whatUsers: string}
+
+const WidgetSm: FC<IWidgetSmUser> = ({whatUsers}) => {
+    const {allUsers, newUsers} = useAppSelector((state) => selectUsersInfo(state))
+    const arrUsers = whatUsers === 'new' ? newUsers : allUsers
 
     return (
         <div className='widgetSm'>
-            <span className='widgetSmTitle'>New Join Members</span>
+            <span className='widgetSmTitle'>{whatUsers === 'new' ? 'New Join Members' : `All Users (${allUsers.length})`}</span>
             <ul>
-                {newUsers.map((i) => (
+                {arrUsers.map((i) => (
                     <WidgetSmItem key={i._id} {...i} />
                 ))}
             </ul>

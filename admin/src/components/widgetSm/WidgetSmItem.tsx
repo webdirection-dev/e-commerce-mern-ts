@@ -9,14 +9,21 @@ const WidgetSmItem: React.FC<{ [key: string]: string }> = (props) => {
     const { _id, profilePic, username } = props;
 
     return (
-        <li className='widgetSmListItem' onClick={() => dispatch(clearUserId())} >
+        <li
+            className='widgetSmListItem'
+            onClick={() => dispatch(clearUserId())}
+        >
             <img className='widgetSmImg' src={profilePic} alt='img' />
 
             <div className='widgetSmUser'>
                 <span className='widgetSmUsername'>{username}</span>
             </div>
 
-            <Link to={'/users/' + _id} className='widgetSmButton'>
+            <Link
+                to={'/users/' + _id}
+                className='widgetSmButton'
+                // state={{ props }}
+            >
                 <MdVisibility className='widgetSmIcon' />
                 Display
             </Link>

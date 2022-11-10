@@ -1,4 +1,3 @@
-import React  from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import {useAppSelector} from "../hooks/hookRedux"
 import {selectAuthInfo} from "../features/auth/auth-slice"
@@ -14,11 +13,10 @@ import NewList from '../features/lists/NewList'
 
 import NotFond from '../pages/notFound/NotFond'
 
-import { movieInputs } from '../static-data/data/form-source'
+import { movieInputs } from '../static/data/form-source'
 
-const Main: React.FC = () => {
+const Main = () => {
     const {auth} = useAppSelector(store => selectAuthInfo(store))
-
     return (
         <div className='main'>
             <Routes>
@@ -34,9 +32,7 @@ const Main: React.FC = () => {
                     <Route path='movies'>
                         <Route index element={<List type='movie' />} />
                         <Route path=':movieId' element={<Single />} />
-                        <Route
-                            path='new'
-                            element={<NewMovie inputs={movieInputs} />}
+                        <Route path='new' element={<NewMovie inputs={movieInputs} />}
                         />
                     </Route>
 
@@ -55,4 +51,4 @@ const Main: React.FC = () => {
     )
 }
 
-export default Main
+export default Main;

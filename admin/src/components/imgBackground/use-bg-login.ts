@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {bgLogin} from "../../static-data/img"
+import {bgLogin} from "../../static/img"
 
 const {imgMini, imgNormal} = bgLogin
 const random = Number(

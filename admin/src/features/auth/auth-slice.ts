@@ -55,9 +55,9 @@ const userSlice = createSlice({
             .addMatcher(isError, (state, action: PayloadAction<string>) => {
                 state.error = action.payload
                 state.status = 'rejected'
-            });
+            })
     },
-});
+})
 
 export const {singOut} = userSlice.actions
 export const authReducer = userSlice.reducer;
@@ -68,13 +68,13 @@ export const selectAuthInfo = (state: RootState) => ({
     error: state.authReducer.error,
     currentUser: state.authReducer.currentUser && state.authReducer.currentUser,
     auth: state.authReducer.currentUser && !!state.authReducer.currentUser.email,
-});
+})
 
 // //helpers
 function isError(action: AnyAction) {
-    return action.type.endsWith('auth/rejected')
+    return action.type.endsWith('rejected') && action.type.startsWith('@@auth')
 }
 
 function isPending(action: AnyAction) {
-    return action.type.endsWith('auth/pending')
+    return action.type.endsWith('pending') && action.type.startsWith('@@auth')
 }

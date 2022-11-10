@@ -1,9 +1,9 @@
 import React from 'react';
 import './style/viewMovie.scss';
 
-import { MdCheck, MdOutlineDriveFolderUpload, MdPublish } from 'react-icons/md';
-import { movieInputs } from '../../static-data/data/form-source';
-import spinner from '../../static-data/img/spinner.svg';
+import { MdCheck, MdOutlineDriveFolderUpload } from 'react-icons/md';
+import { movieInputs } from '../../static/data/form-source';
+import spinner from '../../static/img/spinner.svg';
 
 import { useUpdateMovie } from './hooks/use-update-movie';
 

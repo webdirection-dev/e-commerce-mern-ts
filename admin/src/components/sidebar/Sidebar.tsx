@@ -3,7 +3,7 @@ import './sidebar.scss'
 
 import SidebarItem from "./SidebarItem"
 
-import {sidebarData} from "../../static-data/data/sidebar-data"
+import {sidebarData} from "../../static/data/sidebar-data"
 import {useLocation} from "react-router-dom";
 
 interface IAside {

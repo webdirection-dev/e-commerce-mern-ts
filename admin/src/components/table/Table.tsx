@@ -1,7 +1,7 @@
 import React from "react"
 import './table.scss'
 
-import {tableData} from "../../static-data/data/table-data"
+import {tableData} from "../../static/data/table-data"
 import {Table as MyTable, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material'
 
 const Table: React.FC = () => {

@@ -1,8 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit"
 import {rootReducer} from "./features"
 
-import axios, {AxiosStatic,  AxiosInstance} from 'axios'
-
+import axios, {AxiosStatic,  AxiosInstance} from 'axios';
 export const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL
 })
