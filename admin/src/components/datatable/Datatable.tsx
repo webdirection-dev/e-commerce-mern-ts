@@ -24,7 +24,7 @@ const Datatable: React.FC<IDatatableProps> = ({ type }) => {
                         <Link
                             style={{ textDecoration: 'none' }}
                             to={`/${type + 's'}/` + params.row._id}
-                            state={{ props: params.row }}
+                            state={{ propsFromDataTable: {data: params.row} }}
                         >
                             <div className='viewButton'>View</div>
                         </Link>

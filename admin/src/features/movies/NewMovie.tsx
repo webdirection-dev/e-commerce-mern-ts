@@ -5,7 +5,7 @@ import NewLoading from "../../components/newForm/NewLoading"
 import NewItem from "../../components/newForm/NewItem"
 import PopupSubmitMovie from "./PopupSubmitMovie"
 
-import {INewFormInput} from "../../types/types"
+import {INewFormInput} from "../../static/types/types"
 
 import {useUploadFirebase} from "./hooks/use-upload-firebase"
 

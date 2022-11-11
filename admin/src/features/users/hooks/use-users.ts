@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
 
-import {useAppDispatch} from "../../../hooks/hookRedux"
+import {useAppDispatch} from "../../../static/hooks/hookRedux"
 import {createUser} from "../users-slice"
 
 import {noImg} from '../../../static/img'
 
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
-import {storage} from "../../../configs/firebase"
+import {storage} from "../../../static/configs/firebase"
 
 interface INewUser {
     [key: string]: string

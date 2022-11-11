@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { storage, defaultAvatar } from '../../../configs/firebase';
+import { storage, defaultAvatar } from '../../../static/configs/firebase';
 import {
     deleteObject,
     getDownloadURL,
@@ -15,10 +15,10 @@ import {
     TypeInfoAboutItem,
 } from '../../movies/hooks/use-upload-firebase';
 
-import { useAppDispatch } from '../../../hooks/hookRedux';
+import { useAppDispatch } from '../../../static/hooks/hookRedux';
 import { updateUser } from '../users-slice';
 
-import { IObjSrting } from '../../../types/types';
+import { IObjSrting } from '../../../static/types/types';
 
 export const useUpdateUser = (
     profilePic: string,

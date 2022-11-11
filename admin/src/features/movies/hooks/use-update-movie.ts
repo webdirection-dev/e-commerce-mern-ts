@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
-import {storage} from "../../../configs/firebase"
+import {storage} from "../../../static/configs/firebase"
 
 import {useNavigate} from "react-router-dom"
-import {useAppDispatch} from "../../../hooks/hookRedux"
+import {useAppDispatch} from "../../../static/hooks/hookRedux"
 import {updateMovie} from "../movies-slice"
 
 import {IFiles, TypeInfoAboutItem, IUpload, TFile} from "./use-upload-firebase"

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MONTHS, IDataForRender } from '../../../static/data/stat-data';
 
-import { useAppSelector } from '../../../hooks/hookRedux';
+import { useAppSelector } from '../../../static/hooks/hookRedux';
 import { selectUsersInfo } from '../../../features/users/users-slice';
 
 export const useGetStat = () => {

@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../hooks/hookRedux';
+import { useAppSelector } from '../../../static/hooks/hookRedux';
 import { selectUsersInfo } from '../../../features/users/users-slice';
 import { selectAllMovies } from '../../../features/movies/movies-slice';
 import { selectAllMoviesLists } from '../../../features/lists/movies-list-slice';

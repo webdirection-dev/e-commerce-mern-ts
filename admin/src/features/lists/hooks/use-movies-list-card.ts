@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {useNavigate} from "react-router-dom"
 
-import {useAppDispatch, useAppSelector} from "../../../hooks/hookRedux"
+import {useAppDispatch, useAppSelector} from "../../../static/hooks/hookRedux"
 import {updateMoviesList} from "../movies-list-slice"
 import {selectAllMovies} from "../../movies/movies-slice"
 

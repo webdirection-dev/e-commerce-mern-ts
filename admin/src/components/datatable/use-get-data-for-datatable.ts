@@ -1,6 +1,6 @@
-import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
+import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 
-import {defaultAvatar, storage} from "../../configs/firebase"
+import {defaultAvatar, storage} from "../../static/configs/firebase"
 import {deleteObject, ref} from "firebase/storage"
 
 import {selectUsersInfo, removeUser} from "../../features/users/users-slice"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdOutlineDriveFolderUpload } from 'react-icons/md';
-import { INewItemInput } from '../../types/types';
+import { INewItemInput } from '../../static/types/types';
 
 interface IPropsNewInput extends INewItemInput {
     handleChangeText: (

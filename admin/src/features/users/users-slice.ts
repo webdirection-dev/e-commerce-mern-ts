@@ -1,8 +1,6 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
-import { IUser } from '../../types/types'
-
-type UserType = {[key: string]: string}
+import { IUser } from '../../static/types/types'
 type StatsType = {[key: string]: number}
 interface IUpdateUser {_id: string; items: {}}
 
@@ -11,7 +9,7 @@ type TUserState = {
     error: null | string;
     users: IUser[];
     user: IUser | {};
-    newUsers: UserType[];
+    newUsers: IUser[];
     stats: StatsType[];
 }
 
@@ -46,7 +44,7 @@ export const loadUsers = createAsyncThunk<
 )
 
 export const getNewUsers = createAsyncThunk<
-    UserType[],
+    IUser[],
     string,
     { extra: DetailsExtra; rejectValue: string }
 >(

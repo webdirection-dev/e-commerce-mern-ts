@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
+import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 import {getAuth, selectAuthInfo} from "../../features/auth/auth-slice"
 
 const LoginForm = () => {

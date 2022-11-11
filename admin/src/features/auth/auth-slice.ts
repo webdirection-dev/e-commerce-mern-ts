@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
-import {IUser} from "../../types/types"
+import {IUser} from "../../static/types/types"
 
 type TAuthState = {
     status: string;

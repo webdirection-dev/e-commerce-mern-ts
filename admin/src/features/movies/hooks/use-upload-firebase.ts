@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react"
-import {storage} from "../../../configs/firebase"
+import {storage} from "../../../static/configs/firebase"
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 
-import {useAppDispatch} from "../../../hooks/hookRedux"
+import {useAppDispatch} from "../../../static/hooks/hookRedux"
 import {createMovie} from "../movies-slice"
 
 import {noImg} from '../../../static/img'

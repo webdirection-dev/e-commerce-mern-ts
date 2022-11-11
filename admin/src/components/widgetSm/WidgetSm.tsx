@@ -1,5 +1,5 @@
 import './widgetSm.scss'
-import { useAppSelector } from '../../hooks/hookRedux'
+import { useAppSelector } from '../../static/hooks/hookRedux'
 import { selectUsersInfo } from '../../features/users/users-slice'
 
 import WidgetSmItem from './WidgetSmItem'
@@ -16,7 +16,7 @@ const WidgetSm: FC<IWidgetSmUser> = ({whatUsers}) => {
             <span className='widgetSmTitle'>{whatUsers === 'new' ? 'New Join Members' : `All Users (${allUsers.length})`}</span>
             <ul>
                 {arrUsers.map((i) => (
-                    <WidgetSmItem key={i._id} {...i} />
+                    <WidgetSmItem key={i._id} item={i} />
                 ))}
             </ul>
         </div>

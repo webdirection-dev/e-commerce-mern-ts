@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
-import {useAppDispatch} from "../../hooks/hookRedux"
+import {useAppDispatch} from "../../static/hooks/hookRedux"
 import {singOut} from "../../features/auth/auth-slice"
 
 import {titleSidebarItem, ISidebarItem} from "../../static/data/sidebar-data"

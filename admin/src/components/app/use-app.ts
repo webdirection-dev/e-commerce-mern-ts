@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 
-import {useAppDispatch, useAppSelector} from "../../hooks/hookRedux"
+import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 import {loadStats, loadUsers, getNewUsers} from "../../features/users/users-slice"
 
 import {useChangeTheme} from "./use-change-theme"

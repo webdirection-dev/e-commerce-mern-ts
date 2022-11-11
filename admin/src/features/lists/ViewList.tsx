@@ -3,7 +3,7 @@ import React from 'react';
 import './style/viewList.scss';
 
 import { useMoviesListCard } from './hooks/use-movies-list-card';
-import { IList } from '../../types/types';
+import { IList } from '../../static/types/types';
 
 interface IMoviesListCard {
     item: IList;

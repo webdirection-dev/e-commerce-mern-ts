@@ -1,12 +1,17 @@
-import React from 'react';
-import { useAppDispatch } from '../../hooks/hookRedux';
-import { clearUserId } from '../../features/users/users-slice';
-import { MdVisibility } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { useAppDispatch } from '../../static/hooks/hookRedux'
+import { clearUserId } from '../../features/users/users-slice'
+import { MdVisibility } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import {IUser} from "../../static/types/types"
 
-const WidgetSmItem: React.FC<{ [key: string]: string }> = (props) => {
+interface IPropsWidgetSmItem {
+    item: IUser
+}
+
+const WidgetSmItem: React.FC<IPropsWidgetSmItem> = ({item}) => {
     const dispatch = useAppDispatch();
-    const { _id, profilePic, username } = props;
+    const { _id, profilePic, username } = item;
 
     return (
         <li
@@ -22,7 +27,7 @@ const WidgetSmItem: React.FC<{ [key: string]: string }> = (props) => {
             <Link
                 to={'/users/' + _id}
                 className='widgetSmButton'
-                // state={{ props }}
+                state={{ propsFromWidgetSmall: {data: item} }}
             >
                 <MdVisibility className='widgetSmIcon' />
                 Display

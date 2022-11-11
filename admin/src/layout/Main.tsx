@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
-import {useAppSelector} from "../hooks/hookRedux"
+import {useAppSelector} from "../static/hooks/hookRedux"
 import {selectAuthInfo} from "../features/auth/auth-slice"
 
 import Login from '../pages/login/Login'

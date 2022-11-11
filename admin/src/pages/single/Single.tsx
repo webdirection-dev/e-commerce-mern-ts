@@ -6,23 +6,23 @@ import ViewMovie from '../../features/movies/ViewMovie';
 import ViewList from '../../features/lists/ViewList';
 
 import { useGetSingleData } from './use-get-single-data';
-import { IUserRows, IMovie, IList } from '../../types/types';
+import { IUserRows, IMovie, IList } from '../../static/types/types';
 
 const Single: React.FC = () => {
-    const { titleCard, props } = useGetSingleData()
+    const { titleCard, dataCard } = useGetSingleData()
 
     return (
         <div className='single'>
             {titleCard === 'User' && (
-                <ViewUser item={props as IUserRows} titleCard={titleCard} />
+                <ViewUser item={dataCard as IUserRows} titleCard={titleCard} />
             )}
 
             {titleCard === 'Movie' && (
-                <ViewMovie item={props as IMovie} titleCard={titleCard} />
+                <ViewMovie item={dataCard as IMovie} titleCard={titleCard} />
             )}
 
             {titleCard === 'List' && (
-                <ViewList item={props as IList} titleCard={titleCard} />
+                <ViewList item={dataCard as IList} titleCard={titleCard} />
             )}
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react'
 import './style/editUser.scss';
-import { IUserRows } from '../../types/types'
+import { IUserRows } from '../../static/types/types'
 import Chart from '../../components/chart/Chart'
 import Table from '../../components/table/Table'
 

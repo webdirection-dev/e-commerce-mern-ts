@@ -7,7 +7,7 @@ import spinner from '../../static/img/spinner.svg';
 
 import { useUpdateMovie } from './hooks/use-update-movie';
 
-import { IMovie } from '../../types/types';
+import { IMovie } from '../../static/types/types';
 interface IUserCard {
     item: IMovie;
     titleCard: string;
