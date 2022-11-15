@@ -29,7 +29,7 @@ const Login = () => {
                     <Link to='/register'>create a new account</Link>
                 </div>
 
-                <img id='auth__img' src={src} alt="..." className={className + ' login-bg'}/>
+                <img src={src} alt="..." className={className + ' auth__img login-bg'}/>
             </section>
 
             <div className="auth-logo">

@@ -31,7 +31,7 @@ const Register: FC = () => {
                     <button>create</button>
                 </div>
 
-                <img src={src} alt="..." className={className}/>
+                <img src={src} alt="..." className={className + ' auth__img'}/>
             </section>
 
             <div className="auth-logo">
