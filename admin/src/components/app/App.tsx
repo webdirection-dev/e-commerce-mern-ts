@@ -17,7 +17,7 @@ function App() {
             <Routes>
                 <Route path='/' element={!auth && <Navigate to='/login' replace={true} />} />
                 <Route path='/login' element={auth ? <Navigate to='/' replace={true} /> : <Login />} />
-                <Route path='*' element={!auth && <NotFond />} />
+                <Route path='*' element={!auth && <Login />} />
             </Routes>
 
             {auth && (
