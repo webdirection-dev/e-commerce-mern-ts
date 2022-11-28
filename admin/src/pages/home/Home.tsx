@@ -1,10 +1,12 @@
 import './home.scss'
 
-import Widget from '../../components/widget/Widget'
 import Featured from '../../components/featured/Featured'
 import Chart from '../../components/chart/Chart'
 import Table from '../../components/table/Table'
+
+import Widget from '../../components/widget/Widget'
 import WidgetSm from '../../components/widgetSm/WidgetSm'
+import WidgetLarge from "../../components/widgetLarge/WidgetLarge"
 
 import { useGetStat } from './hooks/use-get-stat'
 import { useGetWidgetdata } from './hooks/use-get-widgetdata'
@@ -34,8 +36,8 @@ const Home = () => {
 
             <div className='userStatWidgets'>
                 <WidgetSm whatUsers='new'/>
-                <WidgetSm whatUsers='all'/>
-                {/* <WidgetLg /> */}
+                {/*<WidgetSm whatUsers='all'/>*/}
+                 <WidgetLarge />
             </div>
 
             <div className='listContainer'>

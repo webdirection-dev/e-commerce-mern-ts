@@ -9,7 +9,7 @@ interface IPropsWidgetSmItem {
     item: IUser
 }
 
-const WidgetSmItem: React.FC<IPropsWidgetSmItem> = ({item}) => {
+const WidgetLargeItem: React.FC<IPropsWidgetSmItem> = ({item}) => {
     const dispatch = useAppDispatch();
     const { _id, profilePic, username } = item;
 
@@ -33,4 +33,4 @@ const WidgetSmItem: React.FC<IPropsWidgetSmItem> = ({item}) => {
     );
 };
 
-export default WidgetSmItem;
+export default WidgetLargeItem;

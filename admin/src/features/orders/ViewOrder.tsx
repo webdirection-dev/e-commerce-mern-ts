@@ -1,5 +1,5 @@
 import React from 'react'
-import './style/editUser.scss';
+import './style/editOrder.scss';
 import { IUserRows } from '../../static/types/types'
 import Chart from '../../components/chart/Chart'
 import Table from '../../components/table/Table'
@@ -7,11 +7,11 @@ import Table from '../../components/table/Table'
 import { MdOutlineDriveFolderUpload } from 'react-icons/md'
 import spinner from '../../static/img/spinner.svg'
 
-import { useUpdateUser } from './hooks/use-update-user'
+import { useUpdateOrder } from './hooks/use-update-order'
 
 interface IUserCard {item: IUserRows; titleCard: string}
 
-const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
+const ViewOrder: React.FC<IUserCard> = ({ item, titleCard }) => {
     const { _id, username, profilePic, status, email, isAdmin } = item
 
     const {
@@ -27,7 +27,7 @@ const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
         handleChange,
         handleUpdate,
         handleReset,
-    } = useUpdateUser(profilePic, status, isAdmin);
+    } = useUpdateOrder(profilePic, status, isAdmin);
 
     return (
         <>
@@ -82,7 +82,7 @@ const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
 
                                 <div className='detailItem'>
                                     <span className='itemKey'>Status:</span>
-                                    <span className='itemValue'>Verified</span>
+                                    <span className='itemValue'>{status}</span>
                                 </div>
                             </div>
                         </div>
@@ -219,4 +219,4 @@ const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
     )
 }
 
-export default ViewUser
+export default ViewOrder

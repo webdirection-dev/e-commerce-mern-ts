@@ -15,6 +15,29 @@ export interface IUser {
     accessToken?: string;
 }
 
+//orders from MongoDB
+export interface IOrder {
+    _id: string;
+    createdAt: string;
+    email: string;
+    isAdmin: string;
+    password: string;
+    profilePic: string;
+    updatedAt: string;
+    username: string;
+    accessToken?: string;
+}
+
+
+
+
+
+
+
+
+
+
+//todo удалить лишние типы
 //movies from MongoDB
 export interface IMovie {
     _id: string | number;
