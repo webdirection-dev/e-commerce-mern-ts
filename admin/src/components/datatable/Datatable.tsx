@@ -39,7 +39,7 @@ const Datatable: React.FC<IDatatableProps> = ({ type }) => {
                 );
             },
         },
-    ];
+    ]
 
     return (
         <>
@@ -62,7 +62,7 @@ const Datatable: React.FC<IDatatableProps> = ({ type }) => {
                 />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Datatable;
+export default Datatable

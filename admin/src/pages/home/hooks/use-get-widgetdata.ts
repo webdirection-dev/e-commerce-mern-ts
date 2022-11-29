@@ -1,12 +1,10 @@
-import { useAppSelector } from '../../../static/hooks/hookRedux';
-import { selectUsersInfo } from '../../../features/users/users-slice';
-import { selectAllMovies } from '../../../features/movies/movies-slice';
-import { selectAllMoviesLists } from '../../../features/lists/movies-list-slice';
+import { useAppSelector } from '../../../static/hooks/hookRedux'
+import { selectUsersInfo } from '../../../features/users/users-slice'
+import {selectOrdersInfo} from "../../../features/orders/orders-slice"
 
-export const useGetWidgetdata = () => {
-    const {allUsers} = useAppSelector((state) => selectUsersInfo(state));
-    const movies = useAppSelector((state) => selectAllMovies(state));
-    const lists = useAppSelector((state) => selectAllMoviesLists(state));
+export const useGetWidgetData = () => {
+    const {qty: usersQty} = useAppSelector((state) => selectUsersInfo(state))
+    const {qty: ordersQty} = useAppSelector((state) => selectOrdersInfo(state))
 
-    return { allUsers, movies, lists };
-};
+    return {usersQty, ordersQty}
+}

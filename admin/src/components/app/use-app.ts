@@ -2,6 +2,7 @@ import {useEffect, useState} from "react"
 
 import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 import {loadStats, loadUsers, getNewUsers} from "../../features/users/users-slice"
+import {loadOrders} from "../../features/orders/orders-slice"
 
 import {useChangeTheme} from "./use-change-theme"
 import {selectAuthInfo} from "../../features/auth/auth-slice"
@@ -19,6 +20,7 @@ export const useApp = () => {
             dispatch(loadUsers(token))
             dispatch(getNewUsers(token))
             dispatch(loadStats(token))
+            dispatch(loadOrders(token))
         }
     }, [currentUser])
 

@@ -22,25 +22,10 @@ export const widgetsData = [
         ),
     },
     {
-        type: 'movies',
-        title: 'MOVIES',
+        type: 'orders',
+        title: 'ORDERS',
         isMoney: false,
-        link: 'View all movies',
-        icon: (
-            <MdOutlineShoppingCart
-                className='icon'
-                style={{
-                    color: '#ee7d36',
-                    backgroundColor: 'rgba(218, 165, 32, .2)',
-                }}
-            />
-        ),
-    },
-    {
-        type: 'lists',
-        title: 'LISTS',
-        isMoney: false,
-        link: 'View net lists',
+        link: 'View net orders',
         icon: (
             <MdOutlineMonetizationOn
                 className='icon'

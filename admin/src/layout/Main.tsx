@@ -6,14 +6,8 @@ import Login from '../pages/login/Login'
 import Home from '../pages/home/Home'
 import List from '../pages/list/List'
 import Single from '../pages/single/Single'
-
 import NewUser from '../features/users/NewUser'
-import NewMovie from '../features/movies/NewMovie'
-import NewList from '../features/lists/NewList'
-
 import NotFond from '../pages/notFound/NotFond'
-
-import { movieInputs } from '../static/data/form-source'
 
 const Main = () => {
     const {auth} = useAppSelector(store => selectAuthInfo(store))
@@ -29,17 +23,9 @@ const Main = () => {
                         <Route path='new' element={<NewUser />} />
                     </Route>
 
-                    <Route path='movies'>
-                        <Route index element={<List type='movie' />} />
-                        <Route path=':movieId' element={<Single />} />
-                        <Route path='new' element={<NewMovie inputs={movieInputs} />}
-                        />
-                    </Route>
-
-                    <Route path='lists'>
-                        <Route index element={<List type='list' />} />
-                        <Route path=':listId' element={<Single />} />
-                        <Route path='new' element={<NewList title='List' />} />
+                    <Route path='orders'>
+                        <Route index element={<List type='order' />} />
+                        <Route path=':orderId' element={<Single />} />
                     </Route>
                 </Route>
 

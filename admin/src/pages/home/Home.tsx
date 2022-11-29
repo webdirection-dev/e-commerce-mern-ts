@@ -9,30 +9,30 @@ import WidgetSm from '../../components/widgetSm/WidgetSm'
 import WidgetLarge from "../../components/widgetLarge/WidgetLarge"
 
 import { useGetStat } from './hooks/use-get-stat'
-import { useGetWidgetdata } from './hooks/use-get-widgetdata'
+import { useGetWidgetData } from './hooks/use-get-widgetdata'
 
 const Home = () => {
-    const { userStat } = useGetStat();
-    const { allUsers, movies, lists } = useGetWidgetdata();
+    const {userStat} = useGetStat()
+    const {usersQty, ordersQty} = useGetWidgetData()
 
     return (
         <div className='home'>
             <div className='widgets'>
-                <Widget type='users' counter={allUsers.length} />
-                <Widget type='movies' counter={movies.length} />
-                <Widget type='lists' counter={lists.length} />
+                <Widget type='users' counter={usersQty} />
+                <Widget type='movies' counter={17} />
+                <Widget type='orders' counter={ordersQty} />
                 <Widget type='balance' />
             </div>
 
-            {/*<div className='charts'>*/}
-            {/*    <Featured />*/}
-            {/*    <Chart*/}
-            {/*        aspect={2 / 1}*/}
-            {/*        title='User Analytics'*/}
-            {/*        userStat={userStat}*/}
-            {/*        myDataKey='New Users'*/}
-            {/*    />*/}
-            {/*</div>*/}
+            <div className='charts'>
+                <Featured />
+                <Chart
+                    aspect={2 / 1}
+                    title='User Analytics'
+                    userStat={userStat}
+                    myDataKey='New Users'
+                />
+            </div>
 
             <div className='userStatWidgets'>
                 <WidgetSm whatUsers='new'/>

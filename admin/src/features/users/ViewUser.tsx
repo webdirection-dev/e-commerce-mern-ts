@@ -1,6 +1,6 @@
 import React from 'react'
 import './style/editUser.scss';
-import { IUserRows } from '../../static/types/types'
+import {IUser} from '../../static/types/typesMongo'
 import Chart from '../../components/chart/Chart'
 import Table from '../../components/table/Table'
 
@@ -9,7 +9,7 @@ import spinner from '../../static/img/spinner.svg'
 
 import { useUpdateUser } from './hooks/use-update-user'
 
-interface IUserCard {item: IUserRows; titleCard: string}
+interface IUserCard {item: IUser; titleCard: string}
 
 const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
     const { _id, username, profilePic, status, email, isAdmin } = item

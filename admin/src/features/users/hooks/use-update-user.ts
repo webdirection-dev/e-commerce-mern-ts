@@ -1,50 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../../static/hooks/hookRedux'
+import { updateUser } from '../users-slice'
 
-import { storage, defaultAvatar } from '../../../static/configs/firebase';
-import {
-    deleteObject,
-    getDownloadURL,
-    ref,
-    uploadBytesResumable,
-} from 'firebase/storage';
+import { storage, defaultAvatar } from '../../../static/configs/firebase'
+import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 
-import {
-    IUpload,
-    TFile,
-    TypeInfoAboutItem,
-} from '../../movies/hooks/use-upload-firebase';
+import { IObjString } from '../../../static/types/typesMongo'
+import {TFile, IUpload} from "../../../static/types/typesFirebase"
 
-import { useAppDispatch } from '../../../static/hooks/hookRedux';
-import { updateUser } from '../users-slice';
+export const useUpdateUser = (profilePic: string, status: string, isAdmin: string) => {
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
-import { IObjSrting } from '../../../static/types/types';
+    const [isEdit, setIsEdit] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isAllReady, setIsAllReady] = useState(false)
+    const [isUploaded, setIsUploaded] = useState(false)
 
-export const useUpdateUser = (
-    profilePic: string,
-    status: string,
-    isAdmin: string
-) => {
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
-    const [isEdit, setIsEdit] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isAllReady, setIsAllReady] = useState(false);
-    const [isUploaded, setIsUploaded] = useState(false);
-
-    const [updUser, setUpdUser] = useState({
-        status,
-        isAdmin: String(isAdmin),
-    } as IObjSrting);
-    const [newImg, setNewImg] = useState({ localFile: {}, path: '' });
-    const [updateId, setUpdateId] = useState('');
-    const [userAvatar, setUserAvatar] = useState('' as string | File);
-    const [snapshot, setSnapshot] = useState([] as TypeInfoAboutItem);
+    const [updUser, setUpdUser] = useState({status, isAdmin: String(isAdmin)} as IObjString)
+    const [newImg, setNewImg] = useState({ localFile: {}, path: '' })
+    const [updateId, setUpdateId] = useState('')
+    const [userAvatar, setUserAvatar] = useState('' as string | File)
+    const [snapshot, setSnapshot] = useState([] as {[key: string]: string | number}[])
 
     const imgUrl = userAvatar
         ? URL.createObjectURL(userAvatar as Blob | MediaSource)
-        : profilePic;
+        : profilePic
 
     const handleUserAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -52,7 +34,7 @@ export const useUpdateUser = (
         if (localFile !== null) {
             setUserAvatar(localFile[0]);
         }
-    };
+    }
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -63,7 +45,7 @@ export const useUpdateUser = (
             ...updUser,
             [name]: value,
         });
-    };
+    }
 
     const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -75,7 +57,7 @@ export const useUpdateUser = (
                 path: value[0].name,
             });
         }
-    };
+    }
 
     const deleteFirebase = async () => {
         if (profilePic !== defaultAvatar) {
@@ -86,7 +68,7 @@ export const useUpdateUser = (
                     console.error(error);
                 });
         } else return;
-    };
+    }
 
     const upload = (user: IUpload) => {
         setIsLoading(true);
@@ -164,7 +146,7 @@ export const useUpdateUser = (
                 });
             }
         );
-    };
+    }
 
     const uploadFirebase = async () => {
         await upload({
@@ -172,7 +154,7 @@ export const useUpdateUser = (
             label: 'profilePic',
             path: newImg.path,
         });
-    };
+    }
 
     const handleUpdate = async (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -191,18 +173,18 @@ export const useUpdateUser = (
                 navigate('../');
             }
         } else navigate('../');
-    };
+    }
 
     const handleReset = () => {
         navigate('../');
-    };
+    }
 
     useEffect(() => {
         if (isUploaded) {
             dispatch(updateUser({ _id: updateId, items: updUser }));
             navigate('../');
         }
-    }, [isUploaded]);
+    }, [isUploaded])
 
     useEffect(() => {
         let counter = 0;
@@ -224,7 +206,7 @@ export const useUpdateUser = (
         )
             setIsAllReady(true);
         else setIsAllReady(false);
-    }, [updUser, newImg]);
+    }, [updUser, newImg])
 
     return {
         imgUrl,
@@ -239,5 +221,5 @@ export const useUpdateUser = (
         handleChange,
         handleUpdate,
         handleReset,
-    };
-};
+    }
+}

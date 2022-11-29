@@ -4,26 +4,23 @@ import {defaultAvatar, storage} from "../../static/configs/firebase"
 import {deleteObject, ref} from "firebase/storage"
 
 import {selectUsersInfo, removeUser} from "../../features/users/users-slice"
-import {selectAllMovies, removeMovie} from "../../features/movies/movies-slice"
+import {selectOrdersInfo} from "../../features/orders/orders-slice"
 
-import {selectAllMoviesLists, removeMoviesList} from "../../features/lists/movies-list-slice"
-import {userColumns, moviesColumns, listsColumns} from "../../static/data/datatable-data"
+import {userColumns, ordersColumns} from "../../static/data/datatable-data"
 
 export const useGetDataForDatatable = (type: string) => {
+    console.log(type)
     const dispatch = useAppDispatch()
     const {allUsers} = useAppSelector(state => selectUsersInfo(state))
-    const movies = useAppSelector(state => selectAllMovies(state))
-    const lists = useAppSelector(state => selectAllMoviesLists(state))
+    const {orders} = useAppSelector(state => selectOrdersInfo(state))
 
     const columns =
         type === 'user' ? userColumns :
-        type === 'movie' ? moviesColumns :
-        type === 'list' ? listsColumns : []
+        type === 'order' ? ordersColumns : []
 
     const rows =
         type === 'user' ? allUsers :
-        type === 'movie' ? movies :
-        type === 'list' ? lists : []
+        type === 'order' ? orders : []
 
     const title = type[0].toUpperCase() + type.slice(1)
 
@@ -34,20 +31,6 @@ export const useGetDataForDatatable = (type: string) => {
             const user = allUsers.find(i => i._id === id)
             if (user) await deleteAvatarFromFirebase(user.profilePic)
         }
-
-        if (type === 'movie') {
-            dispatch(removeMovie(id))
-
-            const movie = movies.find(i => i._id === id)
-            if (movie) await deleteAvatarFromFirebase(movie.img)
-            if (movie) await deleteAvatarFromFirebase(movie.imgSm)
-            if (movie) await deleteAvatarFromFirebase(movie.imgTitle)
-            if (movie) await deleteAvatarFromFirebase(movie.trailer)
-            if (movie) await deleteAvatarFromFirebase(movie.video)
-        }
-
-        if (type === 'list') dispatch(removeMoviesList(id))
-
     }
 
     return {columns, rows, title, deleteItem}

@@ -1,14 +1,14 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
-import { IUser } from '../../static/types/types'
+import { IOrder } from '../../static/types/typesMongo'
 
 interface IUpdateUser {_id: string; items: {}}
 
 type TOrdersState = {
     status: string;
     error: null | string;
-    orders: IUser[];
-    order: IUser | {};
+    orders: IOrder[];
+    order: IOrder | {};
 }
 
 const initialState: TOrdersState = {
@@ -19,7 +19,7 @@ const initialState: TOrdersState = {
 }
 
 export const loadOrders = createAsyncThunk<
-    IUser[],
+    IOrder[],
     string,
     { extra: DetailsExtra; rejectValue: string }
 >(
@@ -252,7 +252,7 @@ export const selectOrdersInfo = (state: RootState) => ({
     status: state.ordersReducer.status,
     error: state.ordersReducer.error,
     qty: state.ordersReducer.orders.length,
-    allOrders: state.ordersReducer.orders,
+    orders: state.ordersReducer.orders,
     orderById: state.ordersReducer.order
 })
 

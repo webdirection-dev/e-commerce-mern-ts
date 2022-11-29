@@ -4,9 +4,9 @@ import { useAppSelector, useAppDispatch } from '../../static/hooks/hookRedux'
 import { selectUsersInfo, getUserById } from '../../features/users/users-slice'
 
 import {isEmptyObject} from "../../static/helpers/functionsForObjects"
-import { IList, IMovie, IUserRows, IUser } from '../../static/types/types'
+import {IUser } from '../../static/types/typesMongo'
 
-type TPropsCard = IMovie | IUserRows | IList | IUser
+type TPropsCard = IUser
 interface IItemData {titleCard: string; dataCard: TPropsCard}
 interface IPropsFromDataTable {propsFromDataTable: {data: TPropsCard}}
 interface IPropsFromWidgetSmall {propsFromWidgetSmall: {data: TPropsCard}}
@@ -23,21 +23,16 @@ export const useGetSingleData = () => {
 
     useEffect(() => {
         if (location.state && location.state.propsFromDataTable) {
-            console.log('propsFromDataTable')
             const {propsFromDataTable}  = location.state as IPropsFromDataTable
             setData({titleCard, dataCard: propsFromDataTable.data})
         }
 
         if (location.state && location.state.propsFromWidgetSmall) {
-            console.log('propsFromWidgetSmall')
             const {propsFromWidgetSmall}  = location.state as IPropsFromWidgetSmall
             setData({titleCard, dataCard: propsFromWidgetSmall.data})
         }
 
         if (!location.state.propsFromDataTable && !location.state.propsFromWidgetSmall) {
-            console.log('fetch')
-
-            // todo проверить фетчинг при обновлении страницы на сервере
             dispatch(getUserById(id))
         }
     }, [])

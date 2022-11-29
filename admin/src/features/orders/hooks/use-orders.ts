@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
 
 import {useAppDispatch} from "../../../static/hooks/hookRedux"
-import {createUser} from "../orders-slice"
+// import {} from "../orders-slice"
 
 import {noImg} from '../../../static/img'
 
@@ -117,7 +117,7 @@ export const useOrders = () => {
         if (newImg.path !== '') {
             handleUpload()
         } else {
-            dispatch(createUser(newUser))
+            // dispatch(createUser(newUser))
             navigate('../')
         }
     }
@@ -133,7 +133,7 @@ export const useOrders = () => {
 
     useEffect(() => {
         if (isUploaded) {
-            dispatch(createUser(newUser))
+            // dispatch(createUser(newUser))
             navigate('../')
         }
     }, [isUploaded])

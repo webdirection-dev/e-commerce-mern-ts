@@ -35,14 +35,9 @@ export const sidebarData = [
         link: '/users',
     },
     {
-        title: 'Movies',
-        icon: <MdPlayCircleOutline className='icon'/>,
-        link: '/movies',
-    },
-    {
-        title: 'lists',
+        title: 'Orders',
         icon: <MdFeaturedPlayList className='icon'/>,
-        link: '/lists',
+        link: '/orders',
     },
     {
         title: 'Delivery',

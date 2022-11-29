@@ -1,36 +1,27 @@
 import React from 'react'
-import { useAppDispatch } from '../../static/hooks/hookRedux'
-import { clearUserId } from '../../features/users/users-slice'
 import { MdVisibility } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import {IUser} from "../../static/types/types"
+import {IOrder} from "../../static/types/typesMongo"
 
 interface IPropsWidgetSmItem {
-    item: IUser
+    item: IOrder
 }
 
-const WidgetLargeItem: React.FC<IPropsWidgetSmItem> = ({item}) => {
-    const dispatch = useAppDispatch();
-    const { _id, profilePic, username } = item;
+const WidgetLargeItem: React.FC<IPropsWidgetSmItem> = ({item}) => (
+    <li className='widgetSmListItem' >
+        <span className='widgetSmUsername'>{item.userId}</span>
+        <span className='widgetSmUsername'>${item.amount}</span>
+        <span className='widgetSmUsername'>{item.createdAt}</span>
 
-    return (
-        <li className='widgetSmListItem' onClick={() => dispatch(clearUserId())} >
-            <img className='widgetSmImg' src={profilePic} alt='img' />
+        <Link
+            to={'/orders/' + item._id}
+            className='widgetSmButton'
+            state={{ propsFromWidgetSmall: {data: item} }}
+        >
+            <MdVisibility className='widgetSmIcon' />
+            Status
+        </Link>
+    </li>
+)
 
-            <div className='widgetSmUser'>
-                <span className='widgetSmUsername'>{username}</span>
-            </div>
-
-            <Link
-                to={'/users/' + _id}
-                className='widgetSmButton'
-                state={{ propsFromWidgetSmall: {data: item} }}
-            >
-                <MdVisibility className='widgetSmIcon' />
-                Display
-            </Link>
-        </li>
-    );
-};
-
-export default WidgetLargeItem;
+export default WidgetLargeItem
