@@ -1,58 +1,49 @@
-.widgetSm{
-    flex: 1;
-    -webkit-box-shadow: var(--box-shadow-widget);
-    box-shadow: var(--box-shadow-widget);
-    background-color: var(--colors-bg);
-    padding: 20px;
-    margin-right: 20px;
+.widgetLg-table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-    .widgetSmTitle{
-        font-size: 16px;
-        font-weight: 400;
+.widgetLg-table th {
+    //text-align: left;
+    background-color: #04AA6D;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.widgetLg-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.widgetLgButton {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: var(--colors-title);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.widgetLgStatus {
+    width: 63px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+
+    &.approved {
+        color: green;
+        background-color: rgba(0, 128, 0, .151);
     }
 
-    .widgetSmImg{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
+    &.pending {
+        color: rgb(238, 125, 54);
+        background-color: rgba(218, 165, 32, 0.2);
     }
 
-    .widgetSmListItem{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 20px 0;
-    }
-
-    .widgetSmUser{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .widgetSmUsername{
-        font-weight: 600;
-    }
-
-    .widgetSmButton{
-        display: flex;
-        align-items: center;
-        border-radius: 10px;
-        padding: 7px 10px;
-        background-color: transparent;
-        color: var(--colors-title);
-        border: 1px solid var(--colors-title);
-        text-decoration: none;
-        cursor: pointer;
-
-        &:hover {
-            background-color: var(--colors-title);
-            color: white;
-        }
-    }
-
-    .widgetSmIcon{
-        font-size: 16px !important;
-        margin-right: 5px;
+    &.rejected {
+        color: crimson;
+        background-color: rgba(255, 0, 0, 0.2);
     }
 }

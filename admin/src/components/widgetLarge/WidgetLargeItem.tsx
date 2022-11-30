@@ -1,5 +1,6 @@
 import React from 'react'
-import { MdVisibility } from 'react-icons/md'
+import {format} from "timeago.js"
+import { MdInfoOutline } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import {IOrder} from "../../static/types/typesMongo"
 
@@ -8,20 +9,21 @@ interface IPropsWidgetSmItem {
 }
 
 const WidgetLargeItem: React.FC<IPropsWidgetSmItem> = ({item}) => (
-    <li className='widgetSmListItem' >
-        <span className='widgetSmUsername'>{item.userId}</span>
-        <span className='widgetSmUsername'>${item.amount}</span>
-        <span className='widgetSmUsername'>{item.createdAt}</span>
-
-        <Link
-            to={'/orders/' + item._id}
-            className='widgetSmButton'
-            state={{ propsFromWidgetSmall: {data: item} }}
-        >
-            <MdVisibility className='widgetSmIcon' />
-            Status
-        </Link>
-    </li>
+    <tr>
+        <td className='widgetSmUsername'>{item.userId}</td>
+        <td className='widgetSmUsername' style={{textAlign: 'center'}}>${item.amount}</td>
+        <td className='widgetSmUsername' style={{textAlign: 'center'}}><span className={`widgetLgStatus ${item.status}`}>{item.status}</span></td>
+        <td className='widgetSmUsername'>{format(item.createdAt)}</td>
+        <td className='widgetSmUsername' style={{textAlign: 'center'}}>
+            <Link
+                to={'/orders/' + item._id}
+                className=' widgetLgButton'
+                state={{ propsFromWidgetSmall: {data: item} }}
+            >
+                <MdInfoOutline className='widgetSmIcon' />
+            </Link>
+        </td>
+    </tr>
 )
 
 export default WidgetLargeItem

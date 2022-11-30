@@ -5,11 +5,11 @@ import {deleteObject, ref} from "firebase/storage"
 
 import {selectUsersInfo, removeUser} from "../../features/users/users-slice"
 import {selectOrdersInfo} from "../../features/orders/orders-slice"
+import {loadStats} from "../../features/users/users-slice"
 
 import {userColumns, ordersColumns} from "../../static/data/datatable-data"
 
 export const useGetDataForDatatable = (type: string) => {
-    console.log(type)
     const dispatch = useAppDispatch()
     const {allUsers} = useAppSelector(state => selectUsersInfo(state))
     const {orders} = useAppSelector(state => selectOrdersInfo(state))
@@ -27,6 +27,7 @@ export const useGetDataForDatatable = (type: string) => {
     const deleteItem = async (id: string) => {
         if (type === 'user') {
             dispatch(removeUser(id))
+            dispatch(loadStats(''))
 
             const user = allUsers.find(i => i._id === id)
             if (user) await deleteAvatarFromFirebase(user.profilePic)

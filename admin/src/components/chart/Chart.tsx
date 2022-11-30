@@ -20,7 +20,6 @@ interface IChart {
 }
 
 const Chart: React.FC<IChart> = ({ aspect, title, userStat, myDataKey }) => {
-    console.log(userStat)
     return (
         <div className='chart'>
             <div className='title'>{title}</div>

@@ -30,10 +30,12 @@ export const loadUsers = createAsyncThunk<
     '@@users/load-users',
 
     async (token, { extra: { client }, rejectWithValue }) => {
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const tokenOut = token === '' ? user.accessToken : token
         return await client
             .get('/users', {
                 headers: {
-                    authorization: 'Bearer ' + token,
+                    authorization: 'Bearer ' + tokenOut,
                 },
             })
             .then(({ data }) => data)
@@ -51,10 +53,12 @@ export const getNewUsers = createAsyncThunk<
     '@@users/sort-users',
 
     async (token, { extra: { client }, rejectWithValue }) => {
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const tokenOut = token === '' ? user.accessToken : token
         return await client
             .get('/users?new=true', {
                 headers: {
-                    authorization: 'Bearer ' + token,
+                    authorization: 'Bearer ' + tokenOut,
                 },
             })
             .then(({ data }) => data)
@@ -95,10 +99,12 @@ export const loadStats = createAsyncThunk<
     '@@users/load-stats',
 
     async (token, { extra: { client }, rejectWithValue }) => {
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const tokenOut = token === '' ? user.accessToken : token
         return await client
             .get('/users/stats', {
                 headers: {
-                    authorization: 'Bearer ' + token,
+                    authorization: 'Bearer ' + tokenOut,
                 },
             })
             .then(({ data }) => data)
@@ -189,61 +195,61 @@ const usersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(loadUsers.fulfilled, (state, action) => {
-                state.status = 'received';
-                state.users = action.payload;
+                state.status = 'received'
+                state.users = action.payload
             })
 
             .addCase(getUserById.fulfilled, (state, action) => {
-                state.status = 'received';
-                state.user = action.payload;
+                state.status = 'received'
+                state.user = action.payload
             })
 
             .addCase(getNewUsers.fulfilled, (state, action) => {
-                state.status = 'received';
-                state.newUsers = action.payload;
+                state.status = 'received'
+                state.newUsers = action.payload
             })
 
             .addCase(loadStats.fulfilled, (state, action) => {
                 const data = action.payload.sort(
                     (a: StatsType, b: StatsType) => a['_id'] - b['_id']
-                );
+                )
 
-                state.status = 'received';
-                state.stats = data;
+                state.status = 'received'
+                state.stats = data
             })
 
             .addCase(createUser.fulfilled, (state, action) => {
-                state.status = 'received';
+                state.status = 'received'
                 state.users = [
                     ...state.users.reverse(),
                     action.payload,
-                ].reverse();
+                ].reverse()
             })
 
             .addCase(updateUser.fulfilled, (state, action) => {
-                state.status = 'received';
+                state.status = 'received'
                 const out = state.users
                     .filter((i) => i._id !== action.payload._id)
-                    .reverse();
-                out.push(action.payload);
-                state.users = out.reverse();
+                    .reverse()
+                out.push(action.payload)
+                state.users = out.reverse()
             })
 
             .addCase(removeUser.fulfilled, (state, action) => {
-                state.status = 'received';
+                state.status = 'received'
                 state.users = state.users.filter(
                     (i) => i._id !== action.payload
-                );
+                )
             })
 
             .addMatcher(isPending, (state) => {
-                state.error = null;
-                state.status = 'loading';
+                state.error = null
+                state.status = 'loading'
             })
 
             .addMatcher(isError, (state, action: PayloadAction<string>) => {
-                state.error = action.payload;
-                state.status = 'rejected';
+                state.error = action.payload
+                state.status = 'rejected'
             })
     },
 })

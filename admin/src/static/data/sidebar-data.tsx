@@ -44,11 +44,11 @@ export const sidebarData = [
         icon: <MdLocalShipping className='icon'/>,
         link: '/delivery',
     },
-    {
-        title: 'Stats',
-        icon: <MdInsertChart className='icon'/>,
-        link: '/stats',
-    },
+    // {
+    //     title: 'Stats',
+    //     icon: <MdInsertChart className='icon'/>,
+    //     link: '/stats',
+    // },
     {
         title: 'Notification',
         icon: <MdNotificationsNone className='icon'/>,

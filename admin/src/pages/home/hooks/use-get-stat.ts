@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import { MONTHS, IDataForRender } from '../../../static/data/stat-data';
+import { useEffect, useState } from 'react'
+import { MONTHS, IDataForRender } from '../../../static/data/stat-data'
 
-import { useAppSelector } from '../../../static/hooks/hookRedux';
-import { selectUsersInfo } from '../../../features/users/users-slice';
+import { useAppSelector } from '../../../static/hooks/hookRedux'
+import { selectUsersInfo } from '../../../features/users/users-slice'
 
 export const useGetStat = () => {
-    const {statsUsers} = useAppSelector((state) => selectUsersInfo(state));
-    const [userStat, setUserStat] = useState([] as IDataForRender[]);
+    const {statsUsers} = useAppSelector((state) => selectUsersInfo(state))
+    const [userStat, setUserStat] = useState([] as IDataForRender[])
 
     useEffect(() => {
-        statsUsers.map((i) => {
-            setUserStat((prev) => [
-                ...prev,
-                {
-                    name: MONTHS[i._id - 1],
-                    'New Users': i.total,
-                },
-            ]);
-        });
-    }, [statsUsers]);
+        const out = [] as IDataForRender[]
 
-    return { userStat };
-};
+        statsUsers.forEach(i => {
+            out.push({
+                name: MONTHS[i._id - 1],
+                'New Users': i.total,
+            })
+        })
+
+        setUserStat(out)
+    }, [statsUsers])
+
+    return { userStat }
+}
