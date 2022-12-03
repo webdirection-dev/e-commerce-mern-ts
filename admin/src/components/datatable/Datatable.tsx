@@ -44,10 +44,8 @@ const Datatable: React.FC<IDatatableProps> = ({ type }) => {
     return (
         <>
             <div className='datatableTitle'>
-                Add New {title}
-                <Link to={`/${title.toLowerCase()}s/new`} className='link'>
-                    Add New
-                </Link>
+                {title}s({rows.length})
+                {(title === 'User' || title === 'Product') && <Link to={`/${title.toLowerCase()}s/new`} className='link'>Add New</Link>}
             </div>
 
             <div className='datatable'>

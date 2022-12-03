@@ -4,16 +4,13 @@ import {useNavigate} from "react-router-dom"
 import {useAppDispatch} from "../../../static/hooks/hookRedux"
 import {createUser} from "../users-slice"
 
-import {noImg} from '../../../static/img'
-
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
 import {storage} from "../../../static/configs/firebase"
+import {defaultAvatar} from "../../../static/configs/firebase"
 
-interface INewUser {
-    [key: string]: string
-}
+import {IObjString} from "../../../static/types/typeAnother"
 
-const init: INewUser = {
+const init: IObjString = {
     isAdmin: 'false',
     status: 'Approved',
 }
@@ -30,7 +27,7 @@ export const useUsers = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isUploaded, setIsUploaded] = useState(false)
 
-    const imgUrl = userAvatar ? URL.createObjectURL(userAvatar as Blob | MediaSource) : noImg
+    const imgUrl = userAvatar ? URL.createObjectURL(userAvatar as Blob | MediaSource) : defaultAvatar
 
     const handleUserAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
@@ -74,8 +71,7 @@ export const useUsers = () => {
 
             async (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
                 const elem = snapshot.ref.fullPath
                     .split('/')[1]
@@ -108,7 +104,7 @@ export const useUsers = () => {
                         setIsUploaded(true)
                     })
             }
-        );
+        )
     }
 
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

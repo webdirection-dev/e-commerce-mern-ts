@@ -2,6 +2,8 @@ const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const CryptoJS = require('crypto-js')
 const User = require('../models/User')
+const defaultAvatar =
+    'https://firebasestorage.googleapis.com/v0/b/e-commerce-7aed7.appspot.com/o/static%2Fno-user-image.gif?alt=media&token=7cd23976-12f3-4a24-a6fb-9e0a22276ffa'
 
 //REGISTER
 router.post(
@@ -10,6 +12,7 @@ router.post(
             username: req.body.username,
             email: req.body.email,
             password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SECRET).toString(),
+            profilePic: req.body.profilePic || defaultAvatar
         })
 
         try {

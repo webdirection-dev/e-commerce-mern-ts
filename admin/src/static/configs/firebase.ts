@@ -2,16 +2,16 @@ import {initializeApp} from "firebase/app"
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC2UKBbNIZoCrGk4rAVjq3CRyepCP1NE-4",
-    authDomain: "netflix-a1cac.firebaseapp.com",
-    projectId: "netflix-a1cac",
-    storageBucket: "netflix-a1cac.appspot.com",
-    messagingSenderId: "688945813951",
-    appId: "1:688945813951:web:3decf8acd133f8a453e90a",
-    measurementId: "G-RVJB2316C3"
+    apiKey: "AIzaSyBcSJJUVP7Jb-SUfZ_BBoYCHjUToV5fov8",
+    authDomain: "e-commerce-7aed7.firebaseapp.com",
+    projectId: "e-commerce-7aed7",
+    storageBucket: "e-commerce-7aed7.appspot.com",
+    messagingSenderId: "955506594811",
+    appId: "1:955506594811:web:ce97b844e3e581a5eab15e"
 }
 
 initializeApp(firebaseConfig)
 export const storage = getStorage()
 
-export const defaultAvatar = 'https://firebasestorage.googleapis.com/v0/b/netflix-a1cac.appspot.com/o/static-img%2Fdefault-img.png?alt=media&token=4225ef0f-46ac-4246-9131-a260a09c7b0d'
+export const defaultAvatar =
+    'https://firebasestorage.googleapis.com/v0/b/e-commerce-7aed7.appspot.com/o/static%2Fno-user-image.gif?alt=media&token=7cd23976-12f3-4a24-a6fb-9e0a22276ffa'

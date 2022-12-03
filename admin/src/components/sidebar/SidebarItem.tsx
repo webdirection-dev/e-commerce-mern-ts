@@ -18,7 +18,7 @@ const SidebarItem: React.FC<ISidebarItem> = (props) => {
         <>
             {index === 0 ? titleSidebarItem[0] : null}
             {index === 1 ? titleSidebarItem[1] : null}
-            {index === 4 ? titleSidebarItem[2] : null}
+            {index === 5 ? titleSidebarItem[2] : null}
             {index === 7 ? titleSidebarItem[3] : null}
             {index === 10 ? titleSidebarItem[4] : null}
 

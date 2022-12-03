@@ -1,7 +1,8 @@
 import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
 import { IUser } from '../../static/types/typesMongo'
-type StatsType = {[key: string]: number}
+import {TStats} from "../../static/types/typeAnother"
+
 interface IUpdateUser {_id: string; items: {}}
 
 type TUserState = {
@@ -10,7 +11,7 @@ type TUserState = {
     users: IUser[];
     user: IUser | {};
     newUsers: IUser[];
-    stats: StatsType[];
+    stats: TStats[];
 }
 
 const initialState: TUserState = {
@@ -32,16 +33,11 @@ export const loadUsers = createAsyncThunk<
     async (token, { extra: { client }, rejectWithValue }) => {
         const user = JSON.parse(localStorage.getItem('currentUser') as string)
         const tokenOut = token === '' ? user.accessToken : token
+
         return await client
-            .get('/users', {
-                headers: {
-                    authorization: 'Bearer ' + tokenOut,
-                },
-            })
+            .get('/users', {headers: {authorization: 'Bearer ' + tokenOut}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -56,15 +52,9 @@ export const getNewUsers = createAsyncThunk<
         const user = JSON.parse(localStorage.getItem('currentUser') as string)
         const tokenOut = token === '' ? user.accessToken : token
         return await client
-            .get('/users?new=true', {
-                headers: {
-                    authorization: 'Bearer ' + tokenOut,
-                },
-            })
+            .get('/users?new=true', {headers: {authorization: 'Bearer ' + tokenOut}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -79,20 +69,14 @@ export const getUserById = createAsyncThunk<
         const user = JSON.parse(localStorage.getItem('currentUser') as string)
 
         return await client
-            .get('/users/find/' + id, {
-                headers: {
-                    authorization: 'Bearer ' + user.accessToken,
-                },
-            })
+            .get('/users/find/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
 export const loadStats = createAsyncThunk<
-    StatsType[],
+    TStats[],
     string,
     { extra: DetailsExtra; rejectValue: string }
 >(
@@ -102,15 +86,9 @@ export const loadStats = createAsyncThunk<
         const user = JSON.parse(localStorage.getItem('currentUser') as string)
         const tokenOut = token === '' ? user.accessToken : token
         return await client
-            .get('/users/stats', {
-                headers: {
-                    authorization: 'Bearer ' + tokenOut,
-                },
-            })
+            .get('/users/stats', {headers: {authorization: 'Bearer ' + tokenOut}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -122,18 +100,12 @@ export const createUser = createAsyncThunk<
     '@@users/create-user',
 
     async (newUser, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('currentUser') as string);
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
 
         return await client
-            .post('/auth/register', newUser, {
-                headers: {
-                    authorization: 'Bearer ' + user.accessToken,
-                },
-            })
+            .post('/auth/register', newUser, {headers: {authorization: 'Bearer ' + user.accessToken}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -148,15 +120,9 @@ export const updateUser = createAsyncThunk<
         const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
         return await client
-            .put('/users/' + _id, items, {
-                headers: {
-                    authorization: 'Bearer ' + user.accessToken,
-                },
-            })
+            .put('/users/' + _id, items, {headers: {authorization: 'Bearer ' + user.accessToken}})
             .then(({ data }) => data)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -171,15 +137,9 @@ export const removeUser = createAsyncThunk<
         const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
         return await client
-            .delete('/users/' + id, {
-                headers: {
-                    authorization: 'Bearer ' + user.accessToken,
-                },
-            })
+            .delete('/users/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
             .then(() => id)
-            .catch((err) => {
-                return rejectWithValue(err.message);
-            })
+            .catch((err) => {return rejectWithValue(err.message)})
     }
 )
 
@@ -211,7 +171,7 @@ const usersSlice = createSlice({
 
             .addCase(loadStats.fulfilled, (state, action) => {
                 const data = action.payload.sort(
-                    (a: StatsType, b: StatsType) => a['_id'] - b['_id']
+                    (a: TStats, b: TStats) => a['_id'] - b['_id']
                 )
 
                 state.status = 'received'

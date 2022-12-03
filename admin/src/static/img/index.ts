@@ -12,9 +12,6 @@ import bgMini4 from './4-mini.png'
 import bgMini5 from './5-mini.png'
 import bgMini6 from './6-mini.png'
 
-import noImage from './no-images.png'
-export const noImg = noImage
-
 export const bgLogin = {
     imgNormal: [ bg1, bg2, bg3, bg4, bg5, bg6, ],
     imgMini: [ bgMini1, bgMini2, bgMini3, bgMini4, bgMini5, bgMini6, ],

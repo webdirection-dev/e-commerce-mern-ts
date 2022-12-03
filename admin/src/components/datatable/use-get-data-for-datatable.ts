@@ -3,24 +3,27 @@ import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 import {defaultAvatar, storage} from "../../static/configs/firebase"
 import {deleteObject, ref} from "firebase/storage"
 
-import {selectUsersInfo, removeUser} from "../../features/users/users-slice"
+import {loadStats, selectUsersInfo, removeUser} from "../../features/users/users-slice"
 import {selectOrdersInfo} from "../../features/orders/orders-slice"
-import {loadStats} from "../../features/users/users-slice"
+import {removeProduct, selectProductInfo} from "../../features/products/products-slice"
 
-import {userColumns, ordersColumns} from "../../static/data/datatable-data"
+import {usersColumns, ordersColumns, productsColumns} from "../../static/data/datatable-data"
 
 export const useGetDataForDatatable = (type: string) => {
     const dispatch = useAppDispatch()
     const {allUsers} = useAppSelector(state => selectUsersInfo(state))
     const {orders} = useAppSelector(state => selectOrdersInfo(state))
+    const {products} = useAppSelector(state => selectProductInfo(state))
 
     const columns =
-        type === 'user' ? userColumns :
-        type === 'order' ? ordersColumns : []
+        type === 'user' ? usersColumns :
+        type === 'order' ? ordersColumns :
+        type === 'product' ? productsColumns : []
 
     const rows =
         type === 'user' ? allUsers :
-        type === 'order' ? orders : []
+        type === 'order' ? orders :
+        type === 'product' ? products : []
 
     const title = type[0].toUpperCase() + type.slice(1)
 
@@ -31,6 +34,14 @@ export const useGetDataForDatatable = (type: string) => {
 
             const user = allUsers.find(i => i._id === id)
             if (user) await deleteAvatarFromFirebase(user.profilePic)
+        }
+
+        if (type === 'product') {
+            dispatch(removeProduct(id))
+            // dispatch(loadStats(''))
+
+            const product = products.find(i => i._id === id)
+            if (product) await deleteAvatarFromFirebase(product.img)
         }
     }
 

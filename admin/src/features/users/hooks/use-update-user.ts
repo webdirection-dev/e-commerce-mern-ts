@@ -6,7 +6,7 @@ import { updateUser } from '../users-slice'
 import { storage, defaultAvatar } from '../../../static/configs/firebase'
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 
-import { IObjString } from '../../../static/types/typesMongo'
+import {IObjString} from "../../../static/types/typeAnother"
 import {TFile, IUpload} from "../../../static/types/typesFirebase"
 
 export const useUpdateUser = (profilePic: string, status: string, isAdmin: string) => {

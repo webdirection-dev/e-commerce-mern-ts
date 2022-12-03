@@ -30,9 +30,9 @@ export const sidebarData = [
         link: '/',
     },
     {
-        title: 'Users',
-        icon: <MdPersonOutline className='icon'/>,
-        link: '/users',
+        title: 'Products',
+        icon: <MdInsertChart className='icon'/>,
+        link: '/products',
     },
     {
         title: 'Orders',
@@ -40,15 +40,15 @@ export const sidebarData = [
         link: '/orders',
     },
     {
+        title: 'Users',
+        icon: <MdPersonOutline className='icon'/>,
+        link: '/users',
+    },
+    {
         title: 'Delivery',
         icon: <MdLocalShipping className='icon'/>,
         link: '/delivery',
     },
-    // {
-    //     title: 'Stats',
-    //     icon: <MdInsertChart className='icon'/>,
-    //     link: '/stats',
-    // },
     {
         title: 'Notification',
         icon: <MdNotificationsNone className='icon'/>,

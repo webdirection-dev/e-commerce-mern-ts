@@ -27,6 +27,11 @@ const Main = () => {
                         <Route index element={<List type='order' />} />
                         <Route path=':orderId' element={<Single />} />
                     </Route>
+
+                    <Route path='products'>
+                        <Route index element={<List type='product' />} />
+                        <Route path=':productId' element={<Single />} />
+                    </Route>
                 </Route>
 
                 <Route path='login' element={auth ? <Navigate to='/' replace={true} /> : <Login />} />

@@ -1,7 +1,3 @@
-export interface IObjString {
-    [key: string]: string;
-}
-
 //users from MongoDB
 export interface IUser {
     _id: string;
@@ -25,4 +21,17 @@ export interface IOrder {
     amount: number,
     address: {},
     status: string,
+}
+
+export interface IProduct {
+    _id: string;
+    createdAt: string;
+    title: string;
+    desc: string;
+    img: string;
+    categories: [];
+    size: [];
+    color: [];
+    price: number;
+    inStock: boolean;
 }
