@@ -1,12 +1,24 @@
 const router = require('express').Router()
 const Product = require('../models/Product')
 const {verifyTokenAndAdmin} = require('./verifyToken')
-
+const defaultPicProduct =
+    'https://firebasestorage.googleapis.com/v0/b/e-commerce-7aed7.appspot.com/o/static%2Fno-img.png?alt=media&token=494c1cb3-d196-44fe-be1a-66718764459b'
 //CREATE PRODUCT
 router.post(
     '/',
     verifyTokenAndAdmin,
     async (req, res) => {
+        // const newProduct = new Product({
+        //     ...req.body,
+        //     img: req.body.profilePic || defaultPicProduct
+        // })
+        //
+        // try {
+        //     const savedUser = await newUser.save()
+        //     res.status(201).json(savedUser)
+        // }
+        // catch (err) { res.status(500).json(err) }
+
         const out = await new Product(req.body).save()
         try {res.status(201).json(out)}
         catch (err) { res.status(500).json(err) }

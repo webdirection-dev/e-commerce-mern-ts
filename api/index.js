@@ -27,7 +27,7 @@ app.use(express.json())
 app.use('/api/auth', authRoot)
 app.use('/api/users', userRoot)
 app.use('/api/products', productRoot)
-app.use('/api/carts', cartRoot)
+app.use('/api/cart', cartRoot)
 app.use('/api/orders', orderRoot)
 app.use('/api/checkout', stripeRoot)
 

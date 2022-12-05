@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../../static/hooks/hookRedux"
 
-import {defaultAvatar, storage} from "../../static/configs/firebase"
+import {defaultAvatar, noImg, storage} from "../../static/configs/firebase"
 import {deleteObject, ref} from "firebase/storage"
 
 import {loadStats, selectUsersInfo, removeUser} from "../../features/users/users-slice"
@@ -49,12 +49,10 @@ export const useGetDataForDatatable = (type: string) => {
 }
 
 async function deleteAvatarFromFirebase (urlImg: string) {
-    if (urlImg !== defaultAvatar) {
+    if (urlImg !== defaultAvatar && urlImg !== noImg) {
         const desertRef = ref(storage, urlImg);
         await deleteObject(desertRef)
             .then(() => {})
-            .catch((error) => {
-                console.error(error)
-            });
+            .catch((error) => {console.error(error)})
     } else return
 }

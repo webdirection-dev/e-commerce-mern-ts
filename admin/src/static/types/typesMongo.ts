@@ -1,4 +1,4 @@
-//users from MongoDB
+//from MongoDB
 export interface IUser {
     _id: string;
     createdAt: string;
@@ -12,7 +12,6 @@ export interface IUser {
     status: string;
 }
 
-//orders from MongoDB
 export interface IOrder {
     _id: string;
     createdAt: string;
@@ -34,4 +33,11 @@ export interface IProduct {
     color: [];
     price: number;
     inStock: boolean;
+}
+
+export interface ICart {
+    _id: string;
+    createdAt: string;
+    userId: string;
+    products: {}[];
 }

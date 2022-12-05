@@ -7,6 +7,7 @@ import Home from '../pages/home/Home'
 import List from '../pages/list/List'
 import Single from '../pages/single/Single'
 import NewUser from '../features/users/NewUser'
+import NewProduct from "../features/products/NewProduct"
 import NotFond from '../pages/notFound/NotFond'
 
 const Main = () => {
@@ -31,6 +32,7 @@ const Main = () => {
                     <Route path='products'>
                         <Route index element={<List type='product' />} />
                         <Route path=':productId' element={<Single />} />
+                        <Route path='new' element={<NewProduct />} />
                     </Route>
                 </Route>
 

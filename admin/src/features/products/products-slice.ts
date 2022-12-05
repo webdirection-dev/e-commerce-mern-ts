@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/
 import { RootState, DetailsExtra } from '../../store'
 import {IProduct} from '../../static/types/typesMongo'
 import {TStats} from "../../static/types/typeAnother"
+import {log} from "util";
 
 type TProductsState = {
     status: string;
@@ -57,7 +58,7 @@ export const createProduct = createAsyncThunk<
     '@@products/create-product',
 
     async (newProduct, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('currentUser') as string);
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
 
         return await client
             .post('/products', newProduct, {headers: {authorization: 'Bearer ' + user.accessToken}})
@@ -90,14 +91,21 @@ export const removeProduct = createAsyncThunk<
 >(
     '@@products/remove-product',
 
-    async (id, { extra: { client }, rejectWithValue }) => {
-        const user = JSON.parse(localStorage.getItem('currentUser') as string);
-
-        return await client
-            .delete('/products/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
-            .then(() => id)
-            .catch((err) => {return rejectWithValue(err.message)})
+    //заглушка
+    () => {
+        console.log('product has ben deleted')
+        return ''
     }
+
+    // рабочий метод удаления продукта
+    // async (id, { extra: { client }, rejectWithValue }) => {
+    //     const user = JSON.parse(localStorage.getItem('currentUser') as string);
+    //
+    //     return await client
+    //         .delete('/products/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
+    //         .then(() => id)
+    //         .catch((err) => {return rejectWithValue(err.message)})
+    // }
 )
 
 const productsSlice = createSlice({

@@ -15,3 +15,6 @@ export const storage = getStorage()
 
 export const defaultAvatar =
     'https://firebasestorage.googleapis.com/v0/b/e-commerce-7aed7.appspot.com/o/static%2Fno-user-image.gif?alt=media&token=7cd23976-12f3-4a24-a6fb-9e0a22276ffa'
+
+export const noImg =
+    'https://firebasestorage.googleapis.com/v0/b/e-commerce-7aed7.appspot.com/o/static%2Fno-img.png?alt=media&token=494c1cb3-d196-44fe-be1a-66718764459b'
