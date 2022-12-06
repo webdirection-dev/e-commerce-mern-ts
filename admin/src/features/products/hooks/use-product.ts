@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
 
-import {useAppDispatch} from "../../static/hooks/hookRedux"
-import {createProduct} from "./products-slice"
+import {useAppDispatch} from "../../../static/hooks/hookRedux"
+import {createProduct} from "../products-slice"
 
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage"
-import {storage} from "../../static/configs/firebase"
-import {noImg} from "../../static/configs/firebase"
+import {storage} from "../../../static/configs/firebase"
+import {noImg} from "../../../static/configs/firebase"
 
-import {IObjString} from "../../static/types/typeAnother"
+import {IObjString} from "../../../static/types/typeAnother"
 
 const init: IObjString = {
     img: noImg,
-    inStock: 'false',
+    inStock: 'true',
     // active: 'true',
 }
 
@@ -22,7 +22,6 @@ export const useProduct = () => {
 
     //todo что сохраниться в inStock монги строка 'false' или булинов тип?
     const [newProduct, setNewProduct] = useState(init)
-    console.log(newProduct)
     const [newPic, setNewPic] = useState({localFile: {}, path: ''})
     const [productImg, setProductImg] = useState('' as string | File)
 
@@ -32,7 +31,7 @@ export const useProduct = () => {
 
     const imgUrl = productImg ? URL.createObjectURL(productImg as Blob | MediaSource) : noImg
 
-    const handelProductImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleProductImg = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const localFile = e.target.files
         if (localFile !== null) {
@@ -40,7 +39,7 @@ export const useProduct = () => {
         }
     }
 
-    const handelChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target
 
         setNewProduct({
@@ -49,7 +48,7 @@ export const useProduct = () => {
         })
     }
 
-    const handelChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         const value = e.target.files
 
@@ -61,10 +60,10 @@ export const useProduct = () => {
         }
     }
 
-    const handelUpload = async () => {
+    const handleUpload = async () => {
         setIsLoading(true)
 
-        const fileName = 'profilePic-' + newPic.path.split('.')[0] + '-' + new Date().getTime()
+        const fileName = 'img-' + newPic.path.split('.')[0] + '-' + new Date().getTime()
 
         const storageRef = ref(storage, `/products/${fileName}`)
         const uploadTask = uploadBytesResumable(storageRef, newPic.localFile as Blob | Uint8Array | ArrayBuffer)
@@ -99,7 +98,7 @@ export const useProduct = () => {
                         setNewProduct(prev => (
                             {
                                 ...prev,
-                                profilePic: downloadURL,
+                                img: downloadURL,
                             }
                         ))
 
@@ -110,11 +109,11 @@ export const useProduct = () => {
         )
     }
 
-    const handelSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
         if (newPic.path !== '') {
-            handelUpload()
+            handleUpload()
         } else {
             dispatch(createProduct(newProduct))
             navigate('../')
@@ -142,9 +141,9 @@ export const useProduct = () => {
         imgUrl,
         isAllReady,
         isLoading,
-        handelProductImg,
-        handelChange,
-        handelChangeFile,
-        handelSubmit,
+        handleProductImg,
+        handleChange,
+        handleChangeFile,
+        handleSubmit,
     }
 }

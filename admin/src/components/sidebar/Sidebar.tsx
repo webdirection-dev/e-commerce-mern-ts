@@ -39,7 +39,7 @@ const Sidebar: FC<IAside> = ({setDark, dark}) => {
                     <div className="colorOption light"></div>
                 </div>
 
-                <div className="border-style" onClick={() => setDark(true)}>
+                <div className="dark-theme-btn border-style" onClick={() => setDark(true)}>
                     <div className="colorOption gray"></div>
                 </div>
             </div>

@@ -52,7 +52,7 @@ export const ordersColumns: GridColDef[] = [
     },
     {
         field: "amount",
-        headerName: "$Amount",
+        headerName: "Amount $",
         width: 100,
     },
     {

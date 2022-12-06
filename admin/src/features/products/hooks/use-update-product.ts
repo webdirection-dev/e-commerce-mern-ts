@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../static/hooks/hookRedux'
-import { updateUser } from '../users-slice'
 
-import { storage, defaultAvatar } from '../../../static/configs/firebase'
+import { storage, noImg } from '../../../static/configs/firebase'
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 
 import {IObjString} from "../../../static/types/typeAnother"
 import {TFile, IUpload} from "../../../static/types/typesFirebase"
+import {updateProduct} from "../products-slice";
 
-export const useUpdateUser = (profilePic: string, status: string, isAdmin: string) => {
+export const useUpdateProduct = (img: string, inStock: boolean) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
@@ -18,21 +18,21 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
     const [isAllReady, setIsAllReady] = useState(false)
     const [isUploaded, setIsUploaded] = useState(false)
 
-    const [updUser, setUpdUser] = useState({status, isAdmin: String(isAdmin)} as IObjString)
-    const [newImg, setNewImg] = useState({ localFile: {}, path: '' })
+    const [updProduct, setUpdProduct] = useState({inStock: String(inStock)} as IObjString)
+    const [newImgProduct, setNewImgProduct] = useState({ localFile: {}, path: '' })
     const [updateId, setUpdateId] = useState('')
-    const [userAvatar, setUserAvatar] = useState('' as string | File)
+    const [productImg, setProductImg] = useState('' as string | File)
     const [snapshot, setSnapshot] = useState([] as {[key: string]: string | number}[])
 
-    const imgUrl = userAvatar
-        ? URL.createObjectURL(userAvatar as Blob | MediaSource)
-        : profilePic
+    const imgUrl = productImg
+        ? URL.createObjectURL(productImg as Blob | MediaSource)
+        : img
 
     const handleUserAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const localFile = e.target.files;
         if (localFile !== null) {
-            setUserAvatar(localFile[0]);
+            setProductImg(localFile[0]);
         }
     }
 
@@ -41,8 +41,8 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
     ) => {
         const { name, value } = e.target;
 
-        setUpdUser({
-            ...updUser,
+        setUpdProduct({
+            ...updProduct,
             [name]: value,
         });
     }
@@ -52,7 +52,7 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
         const value = e.target.files;
 
         if (value !== null) {
-            setNewImg({
+            setNewImgProduct({
                 localFile: value[0],
                 path: value[0].name,
             });
@@ -60,26 +60,26 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
     }
 
     const deleteFirebase = async () => {
-        if (profilePic !== defaultAvatar) {
-            const desertRef = ref(storage, profilePic);
+        if (img !== noImg) {
+            const desertRef = ref(storage, img);
             await deleteObject(desertRef)
                 .then(() => {})
                 .catch((error) => {console.error(error)})
         } else return;
     }
 
-    const upload = (user: IUpload) => {
+    const upload = (product: IUpload) => {
         setIsLoading(true);
 
         const fileName =
-            user.label +
+            product.label +
             '-' +
-            user.path.split('.')[0] +
+            product.path.split('.')[0] +
             '-' +
             new Date().getTime();
 
-        const storageRef = ref(storage, `/avatars/${fileName}`);
-        const uploadTask = uploadBytesResumable(storageRef, user.file);
+        const storageRef = ref(storage, `/products/${fileName}`);
+        const uploadTask = uploadBytesResumable(storageRef, product.file);
 
         uploadTask.on(
             'state_changed',
@@ -93,32 +93,32 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
 
                 switch (snapshot.state) {
                     case 'paused':
-                        setSnapshot((prev) => [
-                            ...prev,
-                            {
-                                name: elem + 'Snapshot',
-                                value: 'Upload is paused',
-                            },
-                        ]);
-                        break;
+                        // setSnapshot((prev) => [
+                        //     ...prev,
+                        //     {
+                        //         name: elem + 'Snapshot',
+                        //         value: 'Upload is paused',
+                        //     },
+                        // ])
+                        break
                     case 'running':
-                        setSnapshot((prev) => [
-                            ...prev,
-                            {
-                                name: elem + 'Snapshot',
-                                value: 'Upload is running',
-                            },
-                        ]);
-                        break;
+                        // setSnapshot((prev) => [
+                        //     ...prev,
+                        //     {
+                        //         name: elem + 'Snapshot',
+                        //         value: 'Upload is running',
+                        //     },
+                        // ])
+                        break
                 }
 
-                setSnapshot((prev) => [
-                    ...prev,
-                    {
-                        name: elem + 'Snapshot',
-                        value: 'Upload is ' + progress + '%',
-                    },
-                ]);
+                // setSnapshot((prev) => [
+                //     ...prev,
+                //     {
+                //         name: elem + 'Snapshot',
+                //         value: 'Upload is ' + progress + '%',
+                //     },
+                // ])
             },
 
             (err) => console.error(err),
@@ -126,18 +126,18 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
             () => {
                 // Upload completed successfully, now we can get the download URL
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setUpdUser((prev) => ({
+                    setUpdProduct((prev) => ({
                         ...prev,
-                        [user.label]: downloadURL,
+                        [product.label]: downloadURL,
                     }));
 
-                    setSnapshot((prev) => [
-                        ...prev,
-                        {
-                            name: user.label + 'Successfully',
-                            value: `Download completed successfully. File available: ${downloadURL}`,
-                        },
-                    ]);
+                    // setSnapshot((prev) => [
+                    //     ...prev,
+                    //     {
+                    //         name: product.label + 'Successfully',
+                    //         value: `Download completed successfully. File available: ${downloadURL}`,
+                    //     },
+                    // ])
 
                     setIsUploaded(true);
                     setIsLoading(false);
@@ -148,10 +148,10 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
 
     const uploadFirebase = async () => {
         await upload({
-            file: newImg.localFile as TFile,
-            label: 'profilePic',
-            path: newImg.path,
-        });
+            file: newImgProduct.localFile as TFile,
+            label: 'img',
+            path: newImgProduct.path,
+        })
     }
 
     const handleUpdate = async (
@@ -161,13 +161,13 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
         e.preventDefault();
 
         if (isAllReady) {
-            if (newImg.path !== '') {
+            if (newImgProduct.path !== '') {
                 setUpdateId(_id);
 
                 await deleteFirebase();
                 await uploadFirebase();
             } else {
-                dispatch(updateUser({ _id, items: updUser }));
+                dispatch(updateProduct({ _id, items: updProduct }))
                 navigate('../');
             }
         } else navigate('../');
@@ -179,7 +179,7 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
 
     useEffect(() => {
         if (isUploaded) {
-            dispatch(updateUser({ _id: updateId, items: updUser }));
+            dispatch(updateProduct({ _id: updateId, items: updProduct }))
             navigate('../');
         }
     }, [isUploaded])
@@ -187,24 +187,19 @@ export const useUpdateUser = (profilePic: string, status: string, isAdmin: strin
     useEffect(() => {
         let counter = 0;
 
-        for (let key in updUser) {
+        for (let key in updProduct) {
             if (
-                (updUser.username && updUser.username !== '') ||
-                (updUser.email && updUser.email !== '') ||
-                (updUser.password && updUser.password !== '')
-            )
-                counter++;
+                (updProduct.title && updProduct.title !== '') ||
+                (updProduct.desc && updProduct.desc !== '') ||
+                (updProduct.price && updProduct.price !== '')
+            ) {
+                counter++
+            } else counter = 0
         }
 
-        if (
-            updUser.status !== status ||
-            updUser.isAdmin !== String(isAdmin) ||
-            newImg.path !== '' ||
-            counter > 2
-        )
-            setIsAllReady(true);
+        if (newImgProduct.path !== '' || counter > 1 || updProduct.inStock !== String(inStock)) setIsAllReady(true)
         else setIsAllReady(false);
-    }, [updUser, newImg])
+    }, [updProduct, newImgProduct])
 
     return {
         imgUrl,

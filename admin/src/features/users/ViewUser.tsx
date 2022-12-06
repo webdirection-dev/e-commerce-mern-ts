@@ -207,6 +207,8 @@ const ViewUser: React.FC<IUserCard> = ({ item, titleCard }) => {
                     <Chart
                         aspect={3 / 1}
                         title='User Spending (Last 6 Months)'
+                        myDataKey='Quantity'
+                        stat={[{name: 'Last Month', 'Quantity': 11}, {name: 'This Month', 'Quantity': 22}]}
                     />
                 </div>
             </div>

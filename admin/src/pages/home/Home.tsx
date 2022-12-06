@@ -29,7 +29,7 @@ const Home = () => {
                 <Chart
                     aspect={2 / 1}
                     title='User Analytics'
-                    userStat={userStat}
+                    stat={userStat}
                     myDataKey='New Users'
                 />
             </div>

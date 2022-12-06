@@ -2,20 +2,23 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../static/hooks/hookRedux'
 import { selectUsersInfo, getUserById } from '../../features/users/users-slice'
+import {selectProductInfo, getProductById} from "../../features/products/products-slice"
 
 import {isEmptyObject} from "../../static/helpers/functionsForObjects"
-import {IUser } from '../../static/types/typesMongo'
+import {IUser, IProduct} from '../../static/types/typesMongo'
 
-type TPropsCard = IUser
-interface IItemData {titleCard: string; dataCard: TPropsCard}
-interface IPropsFromDataTable {propsFromDataTable: {data: TPropsCard}}
-interface IPropsFromWidgetSmall {propsFromWidgetSmall: {data: TPropsCard}}
+type TPropsCard = IUser | IProduct
+
+interface IUserData {titleCard: string; dataCard: TPropsCard}
+interface IUserFromDataTable {propsFromDataTable: {data: TPropsCard}}
+interface IUserFromWidgetSmall {propsFromWidgetSmall: {data: TPropsCard}}
 
 export const useGetSingleData = () => {
     const location = useLocation()
     const dispatch = useAppDispatch()
     const {userById} = useAppSelector((state) => selectUsersInfo(state))
-    const [data, setData] = useState({} as IItemData)
+    const {productById} = useAppSelector((state) => selectProductInfo(state))
+    const [data, setData] = useState({} as IUserData)
 
     const path = location.pathname.split('/')[1]
     const titleCard = path[0].toUpperCase() + path.slice(1, path.length - 1)
@@ -23,31 +26,33 @@ export const useGetSingleData = () => {
 
     useEffect(() => {
         if (location.state && location.state.propsFromDataTable) {
-            const {propsFromDataTable}  = location.state as IPropsFromDataTable
+            const {propsFromDataTable}  = location.state as IUserFromDataTable
             setData({titleCard, dataCard: propsFromDataTable.data})
         }
 
         if (location.state && location.state.propsFromWidgetSmall) {
-            const {propsFromWidgetSmall}  = location.state as IPropsFromWidgetSmall
+            const {propsFromWidgetSmall}  = location.state as IUserFromWidgetSmall
             setData({titleCard, dataCard: propsFromWidgetSmall.data})
         }
 
         if (!location.state.propsFromDataTable && !location.state.propsFromWidgetSmall) {
-            dispatch(getUserById(id))
+            if (titleCard === 'User') dispatch(getUserById(id))
+            if (titleCard === 'Product') dispatch(getProductById(id))
         }
     }, [])
 
     useEffect(() => {
+        const obj = titleCard === 'User' ? userById : productById
         //проверка userById на пустоту
-        const isEmpty = isEmptyObject(userById)
+        const isEmpty = isEmptyObject(obj)
 
-        if (!isEmpty && userById) {
+        if (!isEmpty && obj) {
             setData({
                 titleCard,
-                dataCard: userById as TPropsCard,
+                dataCard: obj as TPropsCard,
             })
         }
-    }, [userById])
+    }, [userById, productById])
 
     return data
 }

@@ -1,6 +1,6 @@
 import '../users/style/user.scss'
 
-import {useProduct} from "./use-product"
+import {useProduct} from "./hooks/use-product"
 import {MdOutlineDriveFolderUpload} from "react-icons/md"
 import spinner from "../../static/img/spinner.svg"
 
@@ -10,10 +10,10 @@ const NewCart = () => {
         imgUrl,
         isAllReady,
         isLoading,
-        handelProductImg,
-        handelChange,
-        handelChangeFile,
-        handelSubmit,
+        handleProductImg,
+        handleChange,
+        handleChangeFile,
+        handleSubmit,
     } = useProduct()
 
     return(
@@ -34,18 +34,18 @@ const NewCart = () => {
                             </div>
                         </label>
 
-                        <input type='file' id='productPic' name='productPic'
+                        <input type='file' id='productPic' name='img'
                             style={{display: 'none'}}
                             onChange={(e) => {
-                                handelChangeFile(e)
-                                handelProductImg(e)
+                                handleChangeFile(e)
+                                handleProductImg(e)
                             }}
                         />
                     </div>
 
                     <button disabled={isLoading} className='upBtn'
                         onClick={e => {
-                            if (isAllReady) handelSubmit(e)
+                            if (isAllReady) handleSubmit(e)
                             else navigate('../')
                         }}
                     >
@@ -66,7 +66,7 @@ const NewCart = () => {
                             id='productTitle'
                             name='title'
                             placeholder='product'
-                            onChange={e => handelChange(e)}
+                            onChange={e => handleChange(e)}
                         />
                     </div>
 
@@ -78,7 +78,7 @@ const NewCart = () => {
                             id='descProduct'
                             name='desc'
                             placeholder='...'
-                            onChange={e => handelChange(e)}
+                            onChange={e => handleChange(e)}
                         />
                     </div>
 
@@ -90,7 +90,7 @@ const NewCart = () => {
                             id='priceProduct'
                             name='price'
                             placeholder='$'
-                            onChange={e => handelChange(e)}
+                            onChange={e => handleChange(e)}
                         />
                     </div>
 
@@ -100,8 +100,8 @@ const NewCart = () => {
                         <select
                             name='inStock'
                             id='inStock'
-                            onChange={e => handelChange(e)}
-                            defaultValue='no'
+                            onChange={e => handleChange(e)}
+                            defaultValue='true'
                         >
 
                             <option value='false'>No</option>
@@ -115,7 +115,7 @@ const NewCart = () => {
                         <select
                             name='active'
                             id='active'
-                            onChange={e => handelChange(e)}
+                            onChange={e => handleChange(e)}
                             defaultValue='true'
                         >
 

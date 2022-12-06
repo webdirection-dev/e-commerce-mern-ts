@@ -38,7 +38,6 @@ export const useGetDataForDatatable = (type: string) => {
 
         if (type === 'product') {
             dispatch(removeProduct(id))
-            // dispatch(loadStats(''))
 
             const product = products.find(i => i._id === id)
             if (product) await deleteAvatarFromFirebase(product.img)

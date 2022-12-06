@@ -90,22 +90,14 @@ export const removeProduct = createAsyncThunk<
     { extra: DetailsExtra; rejectValue: string }
 >(
     '@@products/remove-product',
+    async (id, { extra: { client }, rejectWithValue }) => {
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
 
-    //заглушка
-    () => {
-        console.log('product has ben deleted')
-        return ''
+        return await client
+            .delete('/products/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
+            .then(() => id)
+            .catch((err) => {return rejectWithValue(err.message)})
     }
-
-    // рабочий метод удаления продукта
-    // async (id, { extra: { client }, rejectWithValue }) => {
-    //     const user = JSON.parse(localStorage.getItem('currentUser') as string);
-    //
-    //     return await client
-    //         .delete('/products/' + id, {headers: {authorization: 'Bearer ' + user.accessToken}})
-    //         .then(() => id)
-    //         .catch((err) => {return rejectWithValue(err.message)})
-    // }
 )
 
 const productsSlice = createSlice({

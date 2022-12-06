@@ -33,9 +33,9 @@ const userSlice = createSlice({
     name: '@@auth',
     initialState,
     reducers: {
-        singOut: () => {
+        singOut: (state) => {
             localStorage.removeItem('currentUser')
-            return initialState
+            state.currentUser = null
         },
     },
 
