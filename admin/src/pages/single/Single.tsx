@@ -2,9 +2,10 @@ import './single.scss'
 
 import ViewUser from '../../features/users/ViewUser'
 import ViewProduct from "../../features/products/ViewProduct"
+import ViewOrder from "../../features/orders/ViewOrder"
 import { useGetSingleData } from './use-get-single-data'
 
-import {IUser, IProduct} from "../../static/types/typesMongo"
+import {IUser, IProduct, IOrder} from "../../static/types/typesMongo"
 
 const Single = () => {
     const { titleCard, dataCard } = useGetSingleData()
@@ -17,6 +18,10 @@ const Single = () => {
 
             {titleCard === 'Product' && (
                 <ViewProduct item={dataCard as IProduct} titleCard={titleCard} />
+            )}
+
+            {titleCard === 'Order' && (
+                <ViewOrder item={dataCard as IOrder} titleCard={titleCard} />
             )}
         </div>
     );

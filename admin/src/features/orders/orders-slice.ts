@@ -36,6 +36,21 @@ export const loadOrders = createAsyncThunk<
     }
 )
 
+export const getOrderById = createAsyncThunk<
+    IOrder,
+    string,
+    { extra: DetailsExtra; rejectValue: string }
+>(
+    '@@orders/get-order',
+
+    async (id, { extra: { client }, rejectWithValue }) => {
+        return await client
+            .get('/orders/order/'+id)
+            .then(({ data }) => data)
+            .catch((err) => {return rejectWithValue(err.message)})
+    }
+)
+
 export const getIncome = createAsyncThunk<
     TStats[],
     string,
@@ -68,6 +83,11 @@ const ordersSlice = createSlice({
             .addCase(loadOrders.fulfilled, (state, action) => {
                 state.status = 'received'
                 state.orders = action.payload
+            })
+
+            .addCase(getOrderById.fulfilled, (state, action) => {
+                state.status = 'received'
+                state.order = action.payload
             })
 
             .addCase(getIncome.fulfilled, (state, action) => {

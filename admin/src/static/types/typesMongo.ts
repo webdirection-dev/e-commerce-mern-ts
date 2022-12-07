@@ -41,3 +41,13 @@ export interface ICart {
     userId: string;
     products: {}[];
 }
+
+export interface IOrder {
+    _id: string;
+    createdAt: string;
+    userId: string;
+    products: [];
+    amount: number;
+    address: {};
+    status: string;
+}

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Order = require('../models/Order')
 const {verifyToken, verifyTokenAndAuthorisation, verifyTokenAndAdmin} = require('./verifyToken')
+const Product = require('../models/Product');
 
 //CREATE ORDER
 router.post(
@@ -39,6 +40,15 @@ router.delete(
             await Order.findByIdAndDelete(req.params.id)
             res.status(200).json('Order has been deleted.')
         } catch (err) { res.status(500).json(err) }
+    }
+)
+
+//GET PRODUCT BY ID
+router.get(
+    '/order/:id',
+    async (req, res) => {
+        try { res.status(200).json(await Order.findById(req.params.id)) }
+        catch (err) { res.status(500).json(err) }
     }
 )
 
