@@ -32,16 +32,36 @@ export const getAuth = createAsyncThunk<
     }
 )
 
+export const createUser = createAsyncThunk<
+    IUserFromMongo,
+    {},
+    { extra: DetailsExtra, rejectValue: string }
+>(
+    '@@auth/create-user',
+
+    async (newUser, { extra: { client }, rejectWithValue }) => {
+        return await client
+            .post('/auth/register', newUser)
+            .then(({ data }) => data)
+            .catch((err) => {return rejectWithValue(err.message)})
+    }
+)
+
 const userSlice = createSlice({
     name: '@@auth',
     initialState,
     reducers: {
-        singOut: () => initialState,
+        singOut: () => initialState
     },
 
     extraReducers: (builder) => {
         builder
             .addCase(getAuth.fulfilled, (state, action) => {
+                state.status = 'received'
+                state.currentUser = action.payload
+            })
+
+            .addCase(createUser.fulfilled, (state, action) => {
                 state.status = 'received'
                 state.currentUser = action.payload
             })
@@ -65,14 +85,15 @@ export const authReducer = userSlice.reducer;
 export const selectAuthInfo = (state: RootState) => ({
     status: state.authReducer.status,
     error: state.authReducer.error,
+    currentUser: state.authReducer.currentUser,
     auth: !!state.authReducer.currentUser.email,
 });
 
 // //helpers
 function isError(action: AnyAction) {
-    return action.type.endsWith('get-auth/rejected')
+    return action.type.endsWith('rejected') && action.type.startsWith('@@auth')
 }
 
 function isPending(action: AnyAction) {
-    return action.type.endsWith('get-auth/pending')
+    return action.type.endsWith('pending') && action.type.startsWith('@@auth')
 }

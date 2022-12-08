@@ -16,20 +16,10 @@ const  App = () => {
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='*' element={<Root />}/>
-
-                    <Route path='/login'
-                           element={ auth ? <Navigate to='/' replace={true} /> : <Login /> }
-                    />
-
-                    <Route
-                        path='/register'
-                        element={ auth ? <Navigate to='/' replace={true} /> : <Register /> }
-                    />
-
-                    //todo Проверить роутинг не авторизированных пользователей
+                    <Route path='*' element={<Root />} />
+                    <Route path='/login' element={ auth ? <Navigate to='/' replace={true} /> : <Login /> } />
+                    <Route path='/register' element={ auth ? <Navigate to='/' replace={true} /> : <Register /> } />
                     <Route path='*' element={ <Register /> } />
-
                     <Route path='*' element={ <h1 style={{height: 'calc(100vh - 58.5px - 246.5px)', textAlign: 'center'}}>404. Page not found</h1> } />
                 </Routes>
             </BrowserRouter>

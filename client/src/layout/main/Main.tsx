@@ -5,7 +5,7 @@ import Vitrine from "../../pages/vitrine/Vitrine"
 import SingleProduct from "../../pages/singleProduct/SingleProduct"
 import Cart from "../../features/cart/Cart"
 import Wishlist from "../../features/wishlist/Wishlist"
-import Success from "../../components/success/Success"
+import Success from "../../pages/success/Success"
 
 const Main = () => {
 

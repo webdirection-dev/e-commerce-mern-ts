@@ -22,7 +22,6 @@ export const useGetSingleData = () => {
     const {orderById} = useAppSelector((state) => selectOrdersInfo(state))
     const [data, setData] = useState({} as IUserData)
 
-
     const path = location.pathname.split('/')[1]
     const titleCard = path[0].toUpperCase() + path.slice(1, path.length - 1)
     const id = location.pathname.split('/').reverse()[0]

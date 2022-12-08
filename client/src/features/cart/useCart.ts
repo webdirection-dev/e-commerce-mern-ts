@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {useAppDispatch, useAppSelector} from "../../store"
+import {useAppSelector} from "../../store"
 import {selectCartInfo} from "./cart-slice"
 import {selectWishlistInfo} from "../wishlist/wishlist-slice"
 

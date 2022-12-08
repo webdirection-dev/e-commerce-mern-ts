@@ -20,7 +20,6 @@ export const useProduct = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    //todo что сохраниться в inStock монги строка 'false' или булинов тип?
     const [newProduct, setNewProduct] = useState(init)
     const [newPic, setNewPic] = useState({localFile: {}, path: ''})
     const [productImg, setProductImg] = useState('' as string | File)

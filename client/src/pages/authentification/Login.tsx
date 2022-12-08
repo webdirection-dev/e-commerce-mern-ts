@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
 import './Auth.scss'
 import {preloader} from "../../static/img"
-import {useLogin} from "./hooks/useLogin"
+import {useLogin} from "./hooks/use-login"
 import React from "react";
 
 const Login = () => {
