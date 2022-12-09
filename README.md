@@ -13,4 +13,4 @@
 - Firebase
 - STRIPE
 
-[DEMO](https://e-commerce-mern-ts.vercel.app)
+[DEMO](http://demo2.apwdev.ru)
