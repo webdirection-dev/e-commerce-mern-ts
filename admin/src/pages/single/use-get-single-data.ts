@@ -42,8 +42,6 @@ export const useGetSingleData = () => {
             if (titleCard === 'Product') dispatch(getProductById(id))
             if (titleCard === 'Order') dispatch(getOrderById(id))
         }
-
-        dispatch(getOrderById(id))
     }, [])
 
     useEffect(() => {
