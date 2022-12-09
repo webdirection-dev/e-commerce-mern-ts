@@ -25,9 +25,12 @@ const Header = () => {
             </Link>
 
             <div className='header__user'>
-                {auth
-                    ? <button className='header__user-action' onClick={handleSingOut}>SING OUT</button>
-                    : <>
+                {auth ? <>
+                        <button className='header__user-action' onClick={handleSingOut}>SING OUT</button>
+                        <a href='https://admin.demo2.apwdev.ru' className='header__user-action'>ADMIN PANEL</a>
+
+                    </>
+                    :  <>
                         <Link to='/register' className='header__user-action'>REGISTER</Link>
                         <Link to='/login' className='header__user-action'>SING IN</Link>
                     </>

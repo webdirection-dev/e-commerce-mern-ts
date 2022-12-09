@@ -17,7 +17,7 @@ const Sidebar: FC<IAside> = ({setDark, dark}) => {
     return(
         <aside className='sidebar'>
             <div className="top">
-                <a href='https://demo1.apwpro.ru' className="logo">.STORE</a>
+                <a href='https://demo2.apwdev.ru' className="logo">.STORE</a>
             </div>
 
             <hr/>
