@@ -1,12 +1,13 @@
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 
-import {useAppDispatch, useAppSelector} from "../../store"
-import {getProducts, selectAllProduct, selectProductsInfo} from "./product-slice"
+import { useAppDispatch, useAppSelector } from "../../store"
+import { getProducts, selectAllProduct, selectProductsInfo } from "./product-slice"
 
-import {IProductFromMongo} from "../../static/types/mongoTypes"
-import {IProductProps} from "./Products"
+import { IProductFromMongo } from "../../static/types/mongoTypes"
+import { IProductProps } from "./Products"
+import { log } from 'console'
 
-export const useProducts = ({category, filter, sort}: IProductProps) => {
+export const useProducts = ({ category, filter, sort }: IProductProps) => {
     const dispatch = useAppDispatch()
     const products = useAppSelector(state => selectAllProduct(state))
     const productInfo = useAppSelector(state => selectProductsInfo(state))
@@ -19,14 +20,14 @@ export const useProducts = ({category, filter, sort}: IProductProps) => {
     }
 
     useEffect(() => {
-        const path = category ? '/products?category='+category : '/products?random='+productInfo.random
+        const path = category ? '/products?category=' + category : '/products?random=' + productInfo.random
         dispatch(getProducts(path))
     }, [category])
 
     useEffect(() => {
         if (category && filter) {
             Array.isArray(products) && setFilteredProducts(
-                 products.filter(
+                products.filter(
                     (item: any) => Object.entries(filter).every(([key, value]) => filter[key] === 'all' || item[key].includes(value))
                 )
             )
@@ -50,9 +51,9 @@ export const useProducts = ({category, filter, sort}: IProductProps) => {
             )
         }
 
-        if (sort === 'asc') setFilteredProducts( prev => [...prev].sort((a, b) => a.price - b.price))
-        if (sort === 'desc') setFilteredProducts( prev => [...prev].sort((a, b) => b.price - a.price))
+        if (sort === 'asc') setFilteredProducts(prev => [...prev].sort((a, b) => a.price - b.price))
+        if (sort === 'desc') setFilteredProducts(prev => [...prev].sort((a, b) => b.price - a.price))
     }, [sort])
 
-    return {productInfo, filteredProducts, isPopup, handlePopup}
+    return { productInfo, filteredProducts, isPopup, handlePopup }
 }

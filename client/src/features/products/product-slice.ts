@@ -1,14 +1,15 @@
-import {createSlice, createAsyncThunk, PayloadAction, AnyAction} from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit'
 import { RootState, DetailsExtra } from '../../store'
-import {IProductFromMongo} from "../../static/types/mongoTypes"
+import { IProductFromMongo } from "../../static/types/mongoTypes"
+import { log } from 'console'
 
 type TProductState = {
-    status: string;
-    error: null | string;
-    products: IProductFromMongo[];
-    singleProduct: IProductFromMongo;
-    productForPopup: IProductFromMongo;
-    random: string;
+    status: string
+    error: null | string
+    products: IProductFromMongo[]
+    singleProduct: IProductFromMongo
+    productForPopup: IProductFromMongo
+    random: string
 }
 
 const initialState: TProductState = {
@@ -24,7 +25,7 @@ export const getProducts = createAsyncThunk<
     IProductFromMongo[],
     string,
     { extra: DetailsExtra; rejectValue: string }
-    >(
+>(
     '@@products/get-products',
 
     async (path, { extra: { client }, rejectWithValue }) => {
@@ -33,8 +34,14 @@ export const getProducts = createAsyncThunk<
 
         return await client
             .get(path)
-            .then(({ data }) => data)
-            .catch((err) => rejectWithValue(err.message))
+            .then(({ data }) => {
+                return data
+            })
+            .catch((err) => {
+                console.log(err)
+
+                return rejectWithValue(err.message)
+            })
     }
 )
 
@@ -42,7 +49,7 @@ export const getSingleProduct = createAsyncThunk<
     IProductFromMongo,
     string,
     { extra: DetailsExtra; rejectValue: string }
-    >(
+>(
     '@@products/get-single-product',
 
     async (id, { extra: { client }, rejectWithValue }) => {
@@ -50,7 +57,7 @@ export const getSingleProduct = createAsyncThunk<
         // const token = 'Bearer ' + user.accessToken;
 
         return await client
-            .get('/products/find/'+id)
+            .get('/products/find/' + id)
             .then(({ data }) => data)
             .catch((err) => rejectWithValue(err.message))
     }
@@ -97,12 +104,12 @@ const productSlice = createSlice({
             .addMatcher(isError, (state, action: PayloadAction<string>) => {
                 state.error = action.payload
                 state.status = 'rejected'
-            });
+            })
     },
-});
+})
 
-export const {resetState, setProductForPopup, resetProductForPopup} = productSlice.actions
-export const productReducer = productSlice.reducer;
+export const { resetState, setProductForPopup, resetProductForPopup } = productSlice.actions
+export const productReducer = productSlice.reducer
 
 //selectors
 export const selectProductsInfo = (state: RootState) => ({
@@ -110,7 +117,7 @@ export const selectProductsInfo = (state: RootState) => ({
     error: state.productReducer.error,
     random: state.productReducer.random,
     qty: state.productReducer.products.length,
-});
+})
 
 export const selectAllProduct = (state: RootState) => state.productReducer.products
 export const selectProductById = (state: RootState, id: string) => state.productReducer.products.find((i) => i._id === id)
